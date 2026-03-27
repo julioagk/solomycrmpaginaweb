@@ -16,8 +16,8 @@ export function renderHero() {
             Implementa una operacion comercial ordenada desde el primer dia.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/contacto" data-link>Quiero una demostracion</a>
-            <a class="btn btn-secondary" href="/paquetes" data-link>Comparar paquetes</a>
+            <a class="btn btn-primary" href="/contacto" data-link data-track="hero_demo_click">Quiero una demostracion</a>
+            <a class="btn btn-secondary" href="/paquetes" data-link data-track="hero_paquetes_click">Comparar paquetes</a>
           </div>
           <div class="hero-points">
             <span>Seguimiento centralizado</span>

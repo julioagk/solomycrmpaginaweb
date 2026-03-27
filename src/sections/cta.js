@@ -1,9 +1,8 @@
 import { renderHeader } from './header.js'
-import { getWhatsAppLink, isWhatsAppConfigured } from '../config/contact.js'
+import { isWhatsAppConfigured } from '../config/contact.js'
 
 export function renderCTA() {
-  const whatsappLink = getWhatsAppLink()
-  const isConfigured = isWhatsAppConfigured()
+  const hasWhatsApp = isWhatsAppConfigured()
 
   return `
     ${renderHeader()}
@@ -15,18 +14,43 @@ export function renderCTA() {
             Te mostramos como adaptar SOLOMYCRM a tu operacion para que dejes de perder
             prospectos y conviertas mas reuniones en ventas.
           </p>
-          <div class="contact-actions">
-            ${
-              isConfigured
-                ? `<a class="btn btn-whatsapp" href="${whatsappLink}" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp ahora</a>`
-                : `<button class="btn btn-whatsapp btn-disabled" type="button" disabled>WhatsApp pendiente (proximamente)</button>`
-            }
-          </div>
+          <form id="lead-form" class="lead-form" novalidate>
+            <div class="lead-form-grid">
+              <label class="lead-field" for="lead-name">
+                Nombre completo
+                <input id="lead-name" name="name" type="text" autocomplete="name" required />
+              </label>
+              <label class="lead-field" for="lead-company">
+                Empresa
+                <input id="lead-company" name="company" type="text" autocomplete="organization" required />
+              </label>
+              <label class="lead-field" for="lead-phone">
+                Telefono
+                <input id="lead-phone" name="phone" type="tel" autocomplete="tel" required />
+              </label>
+              <label class="lead-field" for="lead-need">
+                Que necesitas resolver
+                <textarea id="lead-need" name="need" rows="4" required></textarea>
+              </label>
+            </div>
+
+            <div class="contact-actions">
+              <button
+                class="btn btn-whatsapp ${hasWhatsApp ? '' : 'btn-disabled'}"
+                type="submit"
+                data-track="lead_whatsapp_submit_click"
+                ${hasWhatsApp ? '' : 'disabled'}
+              >
+                Enviar por WhatsApp
+              </button>
+            </div>
+            <p id="lead-form-status" class="contact-note" role="status" aria-live="polite"></p>
+          </form>
           <p class="contact-note">
             ${
-              isConfigured
-                ? 'Respuesta directa para resolver dudas, elegir plan y agendar implementacion.'
-                : 'Canal de WhatsApp listo para activarse. En cuanto tengamos numero, se habilita automaticamente.'
+              hasWhatsApp
+                ? 'Llena el formulario y envia tus datos directo por WhatsApp.'
+                : 'Configura el numero de WhatsApp para activar el contacto.'
             }
           </p>
         </div>

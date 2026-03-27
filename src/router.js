@@ -22,6 +22,11 @@ export class Router {
     const app = document.querySelector('#app')
     if (handler && app) {
       app.innerHTML = handler()
+      document.dispatchEvent(
+        new CustomEvent('route:changed', {
+          detail: { path: this.currentRoute },
+        }),
+      )
     }
   }
 

@@ -30,7 +30,7 @@ export function renderProcess() {
           </div>
           <div class="process-cta">
             <p>Este proceso se adapta a tu operacion actual en pocos pasos.</p>
-            <a class="btn btn-primary" href="/contacto" data-link>Quiero implementarlo</a>
+            <a class="btn btn-primary" href="/contacto" data-link data-track="process_demo_click">Quiero implementarlo</a>
           </div>
         </div>
       </div>

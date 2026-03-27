@@ -22,7 +22,7 @@ export function renderPricing() {
                 <li>Seguimiento comercial en una sola bandeja.</li>
                 <li>Agenda, reunion y cierre desde el mismo flujo.</li>
               </ul>
-              <a class="btn btn-primary" href="/contacto" data-link>Solicitar plan Individual</a>
+              <a class="btn btn-primary" href="/contacto" data-link data-track="pricing_individual_click">Solicitar plan Individual</a>
             </article>
 
             <article class="price-card featured">
@@ -37,13 +37,13 @@ export function renderPricing() {
                 <li>1 closer dedicado a reuniones y cierre de ventas.</li>
                 <li>Vision compartida de avance comercial por etapa.</li>
               </ul>
-              <a class="btn btn-primary" href="/contacto" data-link>Solicitar plan Equipo</a>
+              <a class="btn btn-primary" href="/contacto" data-link data-track="pricing_team_click">Solicitar plan Equipo</a>
             </article>
           </div>
 
           <div class="pricing-bottom-cta">
             <p>No estas seguro de cual elegir? Te recomendamos el plan ideal segun tu operacion.</p>
-            <a class="btn btn-primary" href="/contacto" data-link>Hablar con asesoria comercial</a>
+            <a class="btn btn-primary" href="/contacto" data-link data-track="pricing_advisory_click">Hablar con asesoria comercial</a>
           </div>
         </div>
       </div>
