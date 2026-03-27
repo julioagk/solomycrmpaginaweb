@@ -20,18 +20,22 @@ export function renderCTA() {
               <label class="lead-field" for="lead-name">
                 Nombre completo
                 <input id="lead-name" name="name" type="text" autocomplete="name" required />
+                <span class="lead-field-error" data-error-for="name" aria-live="polite"></span>
               </label>
               <label class="lead-field" for="lead-company">
                 Empresa
                 <input id="lead-company" name="company" type="text" autocomplete="organization" required />
+                <span class="lead-field-error" data-error-for="company" aria-live="polite"></span>
               </label>
               <label class="lead-field" for="lead-phone">
                 Telefono
                 <input id="lead-phone" name="phone" type="tel" autocomplete="tel" required />
+                <span class="lead-field-error" data-error-for="phone" aria-live="polite"></span>
               </label>
               <label class="lead-field" for="lead-need">
                 Que necesitas resolver
                 <textarea id="lead-need" name="need" rows="4" required></textarea>
+                <span class="lead-field-error" data-error-for="need" aria-live="polite"></span>
               </label>
             </div>
 

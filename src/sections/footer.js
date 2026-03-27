@@ -24,7 +24,11 @@ export function renderFooter() {
 
         <section class="footer-block">
           <p class="footer-heading">Contacto</p>
-          <p class="footer-copy">WhatsApp: +52 81 3645 8366</p>
+          ${
+            whatsappLink
+              ? `<a class="footer-link footer-contact-link" href="${whatsappLink}" target="_blank" rel="noopener noreferrer" data-track="footer_phone_whatsapp_click">WhatsApp: +52 81 3645 8366</a>`
+              : `<p class="footer-copy">WhatsApp: +52 81 3645 8366</p>`
+          }
           <p class="footer-copy">Atencion para demos y asesoria comercial.</p>
           ${
             whatsappLink
