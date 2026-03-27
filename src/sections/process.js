@@ -1,4 +1,5 @@
 import { renderHeader } from './header.js'
+import { renderFooter } from './footer.js'
 
 export function renderProcess() {
   return `
@@ -35,8 +36,6 @@ export function renderProcess() {
         </div>
       </div>
     </main>
-    <footer>
-      <p>SOLOMYCRM · Sistema comercial para prospectar, dar seguimiento y cerrar ventas.</p>
-    </footer>
+    ${renderFooter()}
   `;
 }

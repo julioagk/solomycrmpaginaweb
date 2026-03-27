@@ -1,4 +1,5 @@
 import { renderHeader } from './header.js'
+import { renderFooter } from './footer.js'
 
 export function renderPricing() {
   return `
@@ -48,8 +49,6 @@ export function renderPricing() {
         </div>
       </div>
     </main>
-    <footer>
-      <p>SOLOMYCRM · Sistema comercial para prospectar, dar seguimiento y cerrar ventas.</p>
-    </footer>
+    ${renderFooter()}
   `;
 }

@@ -1,5 +1,6 @@
 import { renderHeader } from './header.js'
 import { isWhatsAppConfigured } from '../config/contact.js'
+import { renderFooter } from './footer.js'
 
 export function renderCTA() {
   const hasWhatsApp = isWhatsAppConfigured()
@@ -56,8 +57,6 @@ export function renderCTA() {
         </div>
       </div>
     </main>
-    <footer>
-      <p>SOLOMYCRM · Sistema comercial para prospectar, dar seguimiento y cerrar ventas.</p>
-    </footer>
+    ${renderFooter()}
   `;
 }

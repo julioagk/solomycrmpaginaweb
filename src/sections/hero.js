@@ -1,4 +1,5 @@
 import { renderHeader } from './header.js'
+import { renderFooter } from './footer.js'
 
 export function renderHero() {
   return `
@@ -91,8 +92,6 @@ export function renderHero() {
         </div>
       </section>
     </main>
-    <footer>
-      <p>SOLOMYCRM · Sistema comercial para prospectar, dar seguimiento y cerrar ventas.</p>
-    </footer>
+    ${renderFooter()}
   `;
 }
