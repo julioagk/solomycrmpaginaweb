@@ -84,12 +84,26 @@ body {
 }
 
 .logo { 
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
   font-family: "Courier New", monospace;
   font-size: 1.3rem; 
   font-weight: 800;
   color: var(--primary); 
   text-decoration: none; 
   letter-spacing: -0.02em;
+}
+
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.logo-text {
+  line-height: 1;
 }
 
 .nav-menu { 
@@ -1037,6 +1051,11 @@ main { flex: 1; }
     font-size: 1.1rem;
   }
 
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+  }
+
   .nav-link {
     font-size: 0.9rem;
   }
@@ -1156,6 +1175,11 @@ main { flex: 1; }
   .logo {
     font-size: 1rem;
     flex: 0 0 auto;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
   }
 
   h1 {
