@@ -1,5 +1,5 @@
 const whatsappPhone = '+52 8136458366'
-const defaultMessage = 'Hola, quiero informacion sobre SOLOMYCRM.'
+const defaultMessage = 'Hola, quiero informacion sobre CRM DR.'
 
 function normalizePhone(phone) {
   return phone.replace(/\D/g, '')

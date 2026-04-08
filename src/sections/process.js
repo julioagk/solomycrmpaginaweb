@@ -1,41 +1,37 @@
-import { renderHeader } from './header.js'
-import { renderFooter } from './footer.js'
-
 export function renderProcess() {
   return `
-    ${renderHeader()}
-    <main>
-      <div class="page-section">
-        <div class="section card process">
-          <h2>Flujo comercial SOLOMYCRM</h2>
-          <p>
-            Tu equipo trabaja con roles definidos para no perder prospectos en el
-            camino y acelerar el cierre.
-          </p>
-          <div class="steps">
-            <article>
-              <span>01</span>
-              <h3>Prospeccion</h3>
-              <p>Busqueda activa de prospectos con datos organizados desde el dia uno.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Seguimiento</h3>
-              <p>Secuencia de contactos para generar interes real y agendar citas.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Cierre</h3>
-              <p>Reuniones con el cliente para resolver objeciones y concretar la venta.</p>
-            </article>
-          </div>
-          <div class="process-cta">
-            <p>Este proceso se adapta a tu operacion actual en pocos pasos.</p>
-            <a class="btn btn-primary" href="/contacto" data-link data-track="process_demo_click">Quiero implementarlo</a>
-          </div>
-        </div>
+    <section class="page-section section process" id="como-funciona">
+      <div class="section-head">
+        <p class="tag">COMO FUNCIONA</p>
+        <h2>Un flujo comercial claro de punta a punta</h2>
+        <p class="section-lead">
+          Desde la captacion del prospecto hasta la conversion a cliente, CRM DR
+          mantiene todo el contexto para que no se pierdan oportunidades.
+        </p>
       </div>
-    </main>
-    ${renderFooter()}
+
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <h3>Captacion de prospectos</h3>
+          <p>Registra leads de formularios, llamadas, WhatsApp o referidos y clasificalos al instante.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Seguimiento y recordatorios</h3>
+          <p>Programa proxima accion por prospecto para ejecutar llamadas, correos y mensajes en tiempo.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Reuniones y negociacion</h3>
+          <p>El Closer llega a cada reunion con historial completo para negociar con informacion real.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>Conversion a cliente</h3>
+          <p>Mueve la oportunidad a cliente y conserva toda la trazabilidad de interacciones y acuerdos.</p>
+        </article>
+      </div>
+    </section>
   `;
 }
