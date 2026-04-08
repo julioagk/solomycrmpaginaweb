@@ -1,5 +1,7 @@
 ﻿import { isWhatsAppConfigured } from '../config/contact.js'
 import { getWhatsAppLink } from '../config/contact.js'
+import { renderHeader } from './header.js'
+import { renderFooter } from './footer.js'
 
 export function renderCTA() {
   const hasWhatsApp = isWhatsAppConfigured()
@@ -72,5 +74,15 @@ export function renderCTA() {
       </p>
     </section>
   `;
+}
+
+export function renderCTAPage() {
+  return `
+    ${renderHeader()}
+    <main>
+      ${renderCTA()}
+    </main>
+    ${renderFooter()}
+  `
 }
 

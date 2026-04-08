@@ -1,6 +1,9 @@
 ﻿import './style.css'
 import { Router } from './router.js'
 import { renderHero } from './sections/hero.js'
+import { renderProcessPage } from './sections/process.js'
+import { renderPricingPage } from './sections/pricing.js'
+import { renderCTAPage } from './sections/cta.js'
 import { trackEvent } from './analytics.js'
 import { getWhatsAppLink } from './config/contact.js'
 
@@ -10,9 +13,10 @@ const router = new Router()
 // Register routes
 router.register('/', renderHero)
 router.register('/inicio', renderHero)
-router.register('/proceso', renderHero)
-router.register('/paquetes', renderHero)
-router.register('/contacto', renderHero)
+router.register('/proceso', renderProcessPage)
+router.register('/funcionalidades', renderPricingPage)
+router.register('/paquetes', renderPricingPage)
+router.register('/contacto', renderCTAPage)
 
 function setupClickTracking() {
 	document.addEventListener('click', (event) => {

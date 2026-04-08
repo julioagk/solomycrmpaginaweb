@@ -1,7 +1,4 @@
 ﻿import { renderHeader } from './header.js'
-import { renderProcess } from './process.js'
-import { renderPricing } from './pricing.js'
-import { renderCTA } from './cta.js'
 import { renderFooter } from './footer.js'
 
 export function renderHero() {
@@ -17,8 +14,8 @@ export function renderHero() {
             en un solo flujo para Prospectores y Closers.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#solicitar-demo" data-track="hero_demo_click">Solicitar demo</a>
-            <a class="btn btn-secondary" href="#probar-ahora" data-track="hero_trial_click">Probar ahora</a>
+            <a class="btn btn-primary" href="/contacto" data-link data-track="hero_demo_click">Solicitar demo</a>
+            <a class="btn btn-secondary" href="/funcionalidades" data-link data-track="hero_trial_click">Ver funcionalidades</a>
           </div>
           <div class="hero-points">
             <span>Embudo por etapas</span>
@@ -52,9 +49,32 @@ export function renderHero() {
         </aside>
       </section>
 
-      ${renderProcess()}
-      ${renderPricing()}
-      ${renderCTA()}
+      <section class="page-section section">
+        <div class="section-head">
+          <p class="tag">NAVEGA POR ETAPAS</p>
+          <h2>Explora cada parte del CRM en su propia pagina</h2>
+          <p class="section-lead">
+            Consulta el flujo comercial, funcionalidades y contacto en rutas separadas para una navegacion mas clara.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Proceso comercial</h3>
+            <p>Conoce la secuencia completa de captacion, seguimiento, negociacion y cierre.</p>
+            <a class="btn btn-secondary" href="/proceso" data-link data-track="home_process_click">Ir a proceso</a>
+          </article>
+          <article class="feature-card">
+            <h3>Funcionalidades</h3>
+            <p>Revisa embudo, actividades, colaboracion y privacidad por registro.</p>
+            <a class="btn btn-secondary" href="/funcionalidades" data-link data-track="home_features_click">Ir a funcionalidades</a>
+          </article>
+          <article class="feature-card">
+            <h3>Contacto</h3>
+            <p>Solicita demo o inicia prueba para validar tu operacion comercial.</p>
+            <a class="btn btn-secondary" href="/contacto" data-link data-track="home_contact_click">Ir a contacto</a>
+          </article>
+        </div>
+      </section>
     </main>
     ${renderFooter()}
   `;

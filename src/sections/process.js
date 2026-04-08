@@ -1,4 +1,7 @@
-﻿export function renderProcess() {
+﻿import { renderHeader } from './header.js'
+import { renderFooter } from './footer.js'
+
+export function renderProcess() {
   return `
     <section class="page-section section process" id="como-funciona">
       <div class="section-head">
@@ -34,5 +37,15 @@
       </div>
     </section>
   `;
+}
+
+export function renderProcessPage() {
+  return `
+    ${renderHeader()}
+    <main>
+      ${renderProcess()}
+    </main>
+    ${renderFooter()}
+  `
 }
 

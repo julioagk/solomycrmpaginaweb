@@ -1,4 +1,7 @@
-﻿export function renderPricing() {
+﻿import { renderHeader } from './header.js'
+import { renderFooter } from './footer.js'
+
+export function renderPricing() {
   return `
     <section class="page-section section" id="funcionalidades">
       <div class="section-head">
@@ -143,5 +146,15 @@
       </div>
     </section>
   `;
+}
+
+export function renderPricingPage() {
+  return `
+    ${renderHeader()}
+    <main>
+      ${renderPricing()}
+    </main>
+    ${renderFooter()}
+  `
 }
 

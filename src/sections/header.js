@@ -9,10 +9,10 @@ export function renderHeader() {
           <span class="logo-text">SOLOMYCRM</span>
         </a>
         <nav class="nav-menu">
-          <a href="#como-funciona" data-track="nav_como_funciona_click" class="nav-link">Como funciona</a>
-          <a href="#funcionalidades" data-track="nav_funcionalidades_click" class="nav-link">Funcionalidades</a>
-          <a href="#colaboracion" data-track="nav_colaboracion_click" class="nav-link">Colaboracion</a>
-          <a href="#solicitar-demo" data-track="nav_demo_click" class="nav-link btn btn-primary">Solicitar demo</a>
+          <a href="/" data-link data-track="nav_inicio_click" class="nav-link">Inicio</a>
+          <a href="/proceso" data-link data-track="nav_como_funciona_click" class="nav-link">Proceso</a>
+          <a href="/funcionalidades" data-link data-track="nav_funcionalidades_click" class="nav-link">Funcionalidades</a>
+          <a href="/contacto" data-link data-track="nav_demo_click" class="nav-link btn btn-primary">Solicitar demo</a>
         </nav>
       </div>
     </header>

@@ -16,10 +16,10 @@ export function renderFooter() {
 
         <nav class="footer-block" aria-label="Navegacion del sitio">
           <p class="footer-heading">Navegacion</p>
-          <a href="#inicio" class="footer-link">Inicio</a>
-          <a href="#como-funciona" class="footer-link">Como funciona</a>
-          <a href="#funcionalidades" class="footer-link">Funcionalidades</a>
-          <a href="#faq" class="footer-link">FAQ</a>
+          <a href="/" data-link class="footer-link">Inicio</a>
+          <a href="/proceso" data-link class="footer-link">Proceso</a>
+          <a href="/funcionalidades" data-link class="footer-link">Funcionalidades</a>
+          <a href="/contacto" data-link class="footer-link">Contacto</a>
         </nav>
 
         <section class="footer-block">
@@ -32,13 +32,13 @@ export function renderFooter() {
           <p class="footer-copy">Atencion para demos, onboarding y consultoria comercial.</p>
           ${
             whatsappLink
-              ? `<a class="btn btn-primary footer-cta" href="#solicitar-demo" data-track="footer_demo_click">Solicitar demo</a>`
+              ? `<a class="btn btn-primary footer-cta" href="/contacto" data-link data-track="footer_demo_click">Solicitar demo</a>`
               : ''
           }
         </section>
       </div>
 
-      <p class="footer-legal">Â© ${currentYear} SOLOMYCRM. Todos los derechos reservados.</p>
+      <p class="footer-legal">&copy; ${currentYear} SOLOMYCRM. Todos los derechos reservados.</p>
     </footer>
   `
 }
