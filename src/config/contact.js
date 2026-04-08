@@ -1,5 +1,5 @@
-const whatsappPhone = '+52 8136458366'
-const defaultMessage = 'Hola, quiero informacion sobre MYSOLOCRM.'
+﻿const whatsappPhone = '+52 8136458366'
+const defaultMessage = 'Hola, quiero informacion sobre SOLOMYCRM.'
 
 function normalizePhone(phone) {
   return phone.replace(/\D/g, '')
@@ -19,3 +19,4 @@ export function getWhatsAppLink(customMessage = defaultMessage) {
   const encodedMessage = encodeURIComponent(customMessage)
   return `https://wa.me/${phone}?text=${encodedMessage}`
 }
+

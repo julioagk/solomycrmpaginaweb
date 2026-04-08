@@ -1,4 +1,4 @@
-import { renderHeader } from './header.js'
+﻿import { renderHeader } from './header.js'
 import { renderProcess } from './process.js'
 import { renderPricing } from './pricing.js'
 import { renderCTA } from './cta.js'
@@ -13,7 +13,7 @@ export function renderHero() {
           <p class="tag">CRM COMERCIAL PARA EQUIPOS DE VENTAS</p>
           <h1>Convierte prospectos en clientes con trazabilidad real</h1>
           <p class="lead">
-            MYSOLOCRM ordena captacion, seguimiento, reuniones, negociacion y cierre
+            SOLOMYCRM ordena captacion, seguimiento, reuniones, negociacion y cierre
             en un solo flujo para Prospectores y Closers.
           </p>
           <div class="hero-actions">
@@ -59,3 +59,4 @@ export function renderHero() {
     ${renderFooter()}
   `;
 }
+

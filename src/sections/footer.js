@@ -1,4 +1,4 @@
-import { getWhatsAppLink } from '../config/contact.js'
+﻿import { getWhatsAppLink } from '../config/contact.js'
 
 export function renderFooter() {
   const currentYear = new Date().getFullYear()
@@ -8,7 +8,7 @@ export function renderFooter() {
     <footer class="site-footer">
       <div class="footer-grid">
         <section class="footer-block">
-          <p class="footer-title">MYSOLOCRM</p>
+          <p class="footer-title">SOLOMYCRM</p>
           <p class="footer-copy">
             CRM comercial para captar, dar seguimiento y cerrar ventas con trazabilidad completa.
           </p>
@@ -38,7 +38,8 @@ export function renderFooter() {
         </section>
       </div>
 
-      <p class="footer-legal">© ${currentYear} MYSOLOCRM. Todos los derechos reservados.</p>
+      <p class="footer-legal">Â© ${currentYear} SOLOMYCRM. Todos los derechos reservados.</p>
     </footer>
   `
 }
+

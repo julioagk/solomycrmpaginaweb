@@ -1,4 +1,4 @@
-import './style.css'
+﻿import './style.css'
 import { Router } from './router.js'
 import { renderHero } from './sections/hero.js'
 import { trackEvent } from './analytics.js'
@@ -92,7 +92,7 @@ function setupWhatsAppLeadForm() {
 		}
 
 		const message = [
-			'Hola, quiero una demostracion de MYSOLOCRM.',
+			'Hola, quiero una demostracion de SOLOMYCRM.',
 			'',
 			`Nombre: ${payload.name}`,
 			`Empresa: ${payload.company}`,
@@ -143,3 +143,4 @@ setupWhatsAppLeadForm()
 
 // Start router
 router.start()
+

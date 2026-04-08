@@ -1,12 +1,12 @@
-import logoSolomycrm from '../assets/logosolomycrm.png'
+﻿import logoSolomycrm from '../assets/logosolomycrm.png'
 
 export function renderHeader() {
   return `
     <header class="navbar">
       <div class="navbar-container">
-        <a href="/" data-link data-track="nav_logo_click" class="logo" aria-label="MYSOLOCRM - Inicio">
-          <img src="${logoSolomycrm}" alt="Logo MYSOLOCRM" class="logo-mark" />
-          <span class="logo-text">MYSOLOCRM</span>
+        <a href="/" data-link data-track="nav_logo_click" class="logo" aria-label="SOLOMYCRM - Inicio">
+          <img src="${logoSolomycrm}" alt="Logo SOLOMYCRM" class="logo-mark" />
+          <span class="logo-text">SOLOMYCRM</span>
         </a>
         <nav class="nav-menu">
           <a href="#como-funciona" data-track="nav_como_funciona_click" class="nav-link">Como funciona</a>
@@ -18,3 +18,4 @@ export function renderHeader() {
     </header>
   `;
 }
+
