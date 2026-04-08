@@ -5,7 +5,7 @@ export function renderProcess() {
         <p class="tag">COMO FUNCIONA</p>
         <h2>Un flujo comercial claro de punta a punta</h2>
         <p class="section-lead">
-          Desde la captacion del prospecto hasta la conversion a cliente, CRM DR
+          Desde la captacion del prospecto hasta la conversion a cliente, MYSOLOCRM
           mantiene todo el contexto para que no se pierdan oportunidades.
         </p>
       </div>

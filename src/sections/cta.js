@@ -3,7 +3,7 @@ import { getWhatsAppLink } from '../config/contact.js'
 
 export function renderCTA() {
   const hasWhatsApp = isWhatsAppConfigured()
-  const trialLink = getWhatsAppLink('Hola, quiero probar CRM DR y conocer el flujo comercial.')
+  const trialLink = getWhatsAppLink('Hola, quiero probar MYSOLOCRM y conocer el flujo comercial.')
 
   return `
     <section class="page-section section cta" id="solicitar-demo">
@@ -11,7 +11,7 @@ export function renderCTA() {
         <p class="tag">CTA FINAL</p>
         <h2>Activa un proceso comercial mas ordenado y predecible</h2>
         <p class="section-lead">
-          Solicita una demo guiada de CRM DR o inicia una prueba para validar tu flujo real de ventas.
+          Solicita una demo guiada de MYSOLOCRM o inicia una prueba para validar tu flujo real de ventas.
         </p>
       </div>
 

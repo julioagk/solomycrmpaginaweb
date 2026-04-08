@@ -96,7 +96,7 @@ export function renderPricing() {
     <section class="page-section section" id="prueba-social">
       <div class="section-head">
         <p class="tag">PRUEBA SOCIAL</p>
-        <h2>Equipos comerciales que ya operan con CRM DR</h2>
+        <h2>Equipos comerciales que ya operan con MYSOLOCRM</h2>
       </div>
       <div class="social-grid">
         <article class="social-card">
@@ -121,7 +121,7 @@ export function renderPricing() {
       </div>
       <div class="faq-list">
         <details>
-          <summary>Que diferencia a CRM DR de un CRM generico?</summary>
+          <summary>Que diferencia a MYSOLOCRM de un CRM generico?</summary>
           <p>Esta enfocado en operacion comercial real: captacion, seguimiento, reuniones y cierre con trazabilidad.</p>
         </details>
         <details>

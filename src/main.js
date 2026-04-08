@@ -92,7 +92,7 @@ function setupWhatsAppLeadForm() {
 		}
 
 		const message = [
-			'Hola, quiero una demostracion de CRM DR.',
+			'Hola, quiero una demostracion de MYSOLOCRM.',
 			'',
 			`Nombre: ${payload.name}`,
 			`Empresa: ${payload.company}`,
