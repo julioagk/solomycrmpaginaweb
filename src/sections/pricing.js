@@ -96,27 +96,6 @@ export function renderPricing() {
       </div>
     </section>
 
-    <section class="page-section section" id="prueba-social">
-      <div class="section-head">
-        <p class="tag">PRUEBA SOCIAL</p>
-        <h2>Equipos comerciales que ya operan con SOLOMYCRM</h2>
-      </div>
-      <div class="social-grid">
-        <article class="social-card">
-          <p>"Subimos nuestra tasa de seguimiento efectivo en ocho semanas."</p>
-          <span>Gerencia Comercial, Distribuidora Industrial</span>
-        </article>
-        <article class="social-card">
-          <p>"Ahora sabemos exactamente que lead esta en riesgo y quien debe actuar."</p>
-          <span>Head de Ventas, SaaS B2B</span>
-        </article>
-        <article class="social-card">
-          <p>"La separacion Prospector/Closer se volvio medible y escalable."</p>
-          <span>Director Comercial, Servicios Financieros</span>
-        </article>
-      </div>
-    </section>
-
     <section class="page-section section faq" id="faq">
       <div class="section-head">
         <p class="tag">FAQ</p>
