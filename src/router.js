@@ -73,12 +73,12 @@ export class Router {
 
   start() {
     this.currentRoute = this.getRouteFromLocation()
-    if (window.location.hash !== `#${this.currentRoute}`) {
-      window.location.replace(`#${this.currentRoute}`)
-      return
+    if (!window.location.hash) {
+      window.location.hash = this.currentRoute
     }
 
     this.listen()
+    this.currentRoute = this.getRouteFromLocation()
     this.render()
   }
 }
