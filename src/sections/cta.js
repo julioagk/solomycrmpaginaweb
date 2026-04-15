@@ -10,11 +10,26 @@ export function renderCTA() {
   return `
     <section class="page-section section cta" id="solicitar-demo">
       <div class="section-head">
-        <p class="tag">CTA FINAL</p>
-        <h2>Activa un proceso comercial mas ordenado y predecible</h2>
+        <p class="tag">OFERTA COMERCIAL</p>
+        <h2>Para equipos que necesitan orden comercial y mas conversion</h2>
         <p class="section-lead">
-          Solicita una demo guiada de SOLOMYCRM o inicia una prueba para validar tu flujo real de ventas.
+          Para equipos B2B y B2C, closers, prospectores, pymes y agencias que quieren ejecutar mejor.
         </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Para quien es</h3>
+          <p>Equipos comerciales B2B/B2C, areas de prospeccion y cierre, pymes y agencias.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Que incluye</h3>
+          <p>Implementacion, capacitacion y soporte para adopcion rapida del equipo.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Resultado esperado</h3>
+          <p>Menor tiempo de respuesta, mas reuniones efectivas y mejor tasa de conversion.</p>
+        </article>
       </div>
 
       <form id="lead-form" class="lead-form" novalidate>
@@ -59,7 +74,7 @@ export function renderCTA() {
             data-track="cta_trial_click"
             ${hasWhatsApp ? '' : 'aria-disabled="true"'}
           >
-            Probar ahora
+            Agendar llamada
           </a>
         </div>
         <p id="lead-form-status" class="contact-note" role="status" aria-live="polite"></p>
@@ -68,9 +83,13 @@ export function renderCTA() {
       <p class="contact-note">
         ${
           hasWhatsApp
-            ? 'Completa el formulario y abrimos WhatsApp con tus datos precargados para la demo.'
+            ? 'Completa el formulario y abrimos WhatsApp con tu informacion para iniciar implementacion y demo.'
             : 'Configura el numero de WhatsApp para activar la captacion de leads.'
         }
+      </p>
+
+      <p class="contact-note">
+        Deja de perder oportunidades por desorden comercial. Centraliza tu operacion y convierte mas con un CRM disenado para vender.
       </p>
     </section>
   `;

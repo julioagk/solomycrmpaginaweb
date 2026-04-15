@@ -5,35 +5,40 @@ export function renderProcess() {
   return `
     <section class="page-section section process" id="como-funciona">
       <div class="section-head">
-        <p class="tag">COMO FUNCIONA</p>
-        <h2>Un flujo comercial claro de punta a punta</h2>
+        <p class="tag">COMO FUNCIONA EN 4 PASOS</p>
+        <h2>Proceso simple para ejecutar y convertir</h2>
         <p class="section-lead">
-          Desde la captacion del prospecto hasta la conversion a cliente, SOLOMYCRM
-          mantiene todo el contexto para que no se pierdan oportunidades.
+          Desde la captura del prospecto hasta la medicion de resultados, todo queda
+          centralizado para que el equipo actue rapido.
         </p>
       </div>
 
       <div class="steps">
         <article>
           <span>01</span>
-          <h3>Captacion de prospectos</h3>
-          <p>Registra leads de formularios, llamadas, WhatsApp o referidos y clasificalos al instante.</p>
+          <h3>Captura prospectos</h3>
+          <p>Registra leads desde formularios, llamadas, referidos o WhatsApp en segundos.</p>
         </article>
         <article>
           <span>02</span>
-          <h3>Seguimiento y recordatorios</h3>
-          <p>Programa proxima accion por prospecto para ejecutar llamadas, correos y mensajes en tiempo.</p>
+          <h3>Da seguimiento</h3>
+          <p>Asigna actividades y recordatorios para mantener cada oportunidad activa.</p>
         </article>
         <article>
           <span>03</span>
-          <h3>Reuniones y negociacion</h3>
-          <p>El Closer llega a cada reunion con historial completo para negociar con informacion real.</p>
+          <h3>Agenda y registra reuniones</h3>
+          <p>Sincroniza calendario y documenta resultado, acuerdos y proxima accion.</p>
         </article>
         <article>
           <span>04</span>
-          <h3>Conversion a cliente</h3>
-          <p>Mueve la oportunidad a cliente y conserva toda la trazabilidad de interacciones y acuerdos.</p>
+          <h3>Convierte y mide</h3>
+          <p>Mueve a cliente y revisa conversion, ventas y desempeno comercial por vendedor.</p>
         </article>
+      </div>
+
+      <div class="hero-actions process-actions">
+        <a class="btn btn-primary" href="/contacto" data-link data-track="process_demo_click">Solicitar demo</a>
+        <a class="btn btn-secondary" href="/funcionalidades" data-link data-track="process_modules_click">Ver modulos</a>
       </div>
     </section>
   `;

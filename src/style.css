@@ -1,21 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap");
 
 :root {
-  --bg: #f3f2ee;
-  --bg-soft: #faf9f6;
-  --ink: #161a23;
-  --ink-soft: #4d566a;
-  --line: #d5d0c8;
-  --line-strong: #b9b1a5;
-  --brand: #0f4c5c;
-  --brand-strong: #07313b;
-  --accent: #c57b57;
-  --accent-soft: #f0e1d8;
+  --bg: #edf3fb;
+  --bg-soft: #f6f9fe;
+  --ink: #0f1b2d;
+  --ink-soft: #44546f;
+  --line: #d1dcec;
+  --line-strong: #9cb2cf;
+  --brand: #0b3d91;
+  --brand-strong: #072a66;
+  --accent: #0f766e;
+  --accent-soft: #d8f2ef;
   --card: #ffffff;
-  --success: #1f7a55;
-  --danger: #b54444;
-  --shadow: 0 14px 42px rgba(25, 28, 36, 0.08);
-  --shadow-lg: 0 24px 70px rgba(25, 28, 36, 0.14);
+  --success: #198754;
+  --danger: #c53030;
+  --warning: #b7791f;
+  --shadow: 0 14px 42px rgba(10, 31, 68, 0.1);
+  --shadow-lg: 0 24px 70px rgba(10, 31, 68, 0.18);
 }
 
 * {
@@ -31,9 +32,9 @@ body {
   color: var(--ink);
   font-family: "Manrope", "Segoe UI", sans-serif;
   background:
-    radial-gradient(circle at 10% 15%, rgba(197, 123, 87, 0.14), transparent 42%),
-    radial-gradient(circle at 90% 0%, rgba(15, 76, 92, 0.14), transparent 34%),
-    linear-gradient(180deg, var(--bg) 0%, #efece5 100%);
+    radial-gradient(circle at 12% 12%, rgba(15, 118, 110, 0.14), transparent 42%),
+    radial-gradient(circle at 90% 0%, rgba(11, 61, 145, 0.14), transparent 36%),
+    linear-gradient(180deg, var(--bg) 0%, #e7effa 100%);
 }
 
 #app {
@@ -74,8 +75,8 @@ p {
   top: 0;
   z-index: 50;
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(15, 76, 92, 0.18);
-  background: rgba(248, 247, 243, 0.9);
+  border-bottom: 1px solid rgba(11, 61, 145, 0.16);
+  background: rgba(246, 249, 254, 0.9);
 }
 
 .navbar-container {
@@ -210,7 +211,7 @@ main {
 }
 
 .hero-copy {
-  background: linear-gradient(160deg, #fff 0%, #f6f3ed 100%);
+  background: linear-gradient(160deg, #ffffff 0%, #f3f7fd 100%);
   border: 1px solid var(--line);
   border-radius: 22px;
   padding: clamp(1.4rem, 3vw, 2.4rem);
@@ -252,15 +253,15 @@ main {
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: clamp(1.2rem, 2vw, 2rem);
   background:
-    radial-gradient(circle at 85% 14%, rgba(197, 123, 87, 0.3), transparent 38%),
-    linear-gradient(150deg, #102331 0%, #0f4c5c 52%, #10495a 100%);
+    radial-gradient(circle at 85% 14%, rgba(15, 118, 110, 0.32), transparent 38%),
+    linear-gradient(150deg, #0d1e3f 0%, #0b3d91 52%, #0f4f7f 100%);
   color: #ebf7fb;
   box-shadow: var(--shadow-lg);
   animation: fadeUp 650ms ease both;
 }
 
 .panel-tag {
-  color: #acd7e6;
+  color: #b6d9ff;
   text-transform: uppercase;
   font-size: 0.68rem;
   letter-spacing: 0.14em;
@@ -287,7 +288,7 @@ main {
 }
 
 .metric-title {
-  color: #d2ecf6;
+  color: #d9ebff;
   font-size: 0.74rem;
   font-weight: 700;
 }
@@ -378,7 +379,7 @@ main {
 }
 
 .feature-card {
-  background: linear-gradient(170deg, #fff 0%, #fcfaf7 100%);
+  background: linear-gradient(170deg, #ffffff 0%, #f5f8fe 100%);
 }
 
 .feature-card p {
@@ -407,12 +408,12 @@ main {
 }
 
 .collab-card {
-  background: linear-gradient(175deg, #fff 0%, #faf7f3 100%);
+  background: linear-gradient(175deg, #ffffff 0%, #f5f8fd 100%);
 }
 
 .collab-card.shared {
-  border-color: rgba(15, 76, 92, 0.45);
-  background: linear-gradient(155deg, #f8fffd 0%, #ebf7f6 100%);
+  border-color: rgba(15, 118, 110, 0.45);
+  background: linear-gradient(155deg, #f5fffe 0%, #e8f8f6 100%);
 }
 
 .collab-badge {
@@ -421,9 +422,9 @@ main {
   padding: 0.24rem 0.6rem;
   font-size: 0.74rem;
   font-weight: 800;
-  color: var(--brand-strong);
-  border: 1px solid rgba(15, 76, 92, 0.25);
-  background: #f1fbfd;
+  color: #0f5d57;
+  border: 1px solid rgba(15, 118, 110, 0.25);
+  background: #ecfbf9;
 }
 
 .owner-line {
@@ -450,7 +451,7 @@ main {
 }
 
 .social-card {
-  background: linear-gradient(180deg, #ffffff 0%, #f8f6f2 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #f4f8fe 100%);
 }
 
 .social-card span {
@@ -561,8 +562,8 @@ main {
   padding: 1.3rem;
   border-radius: 18px;
   background:
-    radial-gradient(circle at 88% 20%, rgba(197, 123, 87, 0.2), transparent 34%),
-    linear-gradient(145deg, #0b2f3a 0%, #0f4c5c 100%);
+    radial-gradient(circle at 88% 20%, rgba(15, 118, 110, 0.24), transparent 34%),
+    linear-gradient(145deg, #0a234a 0%, #0b3d91 100%);
   color: #e7f5f9;
 }
 

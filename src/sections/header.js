@@ -10,8 +10,8 @@ export function renderHeader() {
         </a>
         <nav class="nav-menu">
           <a href="/" data-link data-track="nav_inicio_click" class="nav-link">Inicio</a>
-          <a href="/proceso" data-link data-track="nav_como_funciona_click" class="nav-link">Proceso</a>
-          <a href="/funcionalidades" data-link data-track="nav_funcionalidades_click" class="nav-link">Funcionalidades</a>
+          <a href="/proceso" data-link data-track="nav_como_funciona_click" class="nav-link">Como funciona</a>
+          <a href="/funcionalidades" data-link data-track="nav_funcionalidades_click" class="nav-link">Modulos</a>
           <a href="/contacto" data-link data-track="nav_demo_click" class="nav-link btn btn-primary">Solicitar demo</a>
         </nav>
       </div>

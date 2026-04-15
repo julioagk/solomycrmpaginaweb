@@ -4,35 +4,61 @@ export class Router {
     this.currentRoute = null
   }
 
+  normalize(path) {
+    if (!path) return '/'
+    const sanitized = String(path).trim()
+    if (!sanitized || sanitized === '#') return '/'
+
+    const withoutHash = sanitized.startsWith('#') ? sanitized.slice(1) : sanitized
+    const withoutQuery = withoutHash.split('?')[0].split('#')[0]
+    const cleaned = withoutQuery.replace(/\/+$/, '')
+
+    if (!cleaned || cleaned === '/') return '/'
+    return cleaned.startsWith('/') ? cleaned : `/${cleaned}`
+  }
+
+  getRouteFromLocation() {
+    const hashRoute = this.normalize(window.location.hash)
+    if (hashRoute !== '/') return hashRoute
+    return this.normalize(window.location.pathname)
+  }
+
   register(path, handler) {
-    this.routes[path] = handler
+    this.routes[this.normalize(path)] = handler
   }
 
   navigate(path) {
-    const handler = this.routes[path] || this.routes['/']
+    const targetPath = this.normalize(path)
+    const handler = this.routes[targetPath] || this.routes['/']
     if (!handler) return
 
-    window.history.pushState(null, null, path)
-    this.currentRoute = path
+    if (window.location.hash !== `#${targetPath}`) {
+      window.location.hash = targetPath
+      return
+    }
+
+    this.currentRoute = targetPath
     this.render()
   }
 
   render() {
-    const handler = this.routes[this.currentRoute] || this.routes['/']
+    const resolvedRoute = this.routes[this.currentRoute] ? this.currentRoute : '/'
+    const handler = this.routes[resolvedRoute]
     const app = document.querySelector('#app')
     if (handler && app) {
+      this.currentRoute = resolvedRoute
       app.innerHTML = handler()
       document.dispatchEvent(
         new CustomEvent('route:changed', {
-          detail: { path: this.currentRoute },
+          detail: { path: resolvedRoute },
         }),
       )
     }
   }
 
   listen() {
-    window.addEventListener('popstate', () => {
-      this.currentRoute = window.location.pathname
+    window.addEventListener('hashchange', () => {
+      this.currentRoute = this.getRouteFromLocation()
       this.render()
     })
 
@@ -46,7 +72,12 @@ export class Router {
   }
 
   start() {
-    this.currentRoute = window.location.pathname || '/'
+    this.currentRoute = this.getRouteFromLocation()
+    if (window.location.hash !== `#${this.currentRoute}`) {
+      window.location.replace(`#${this.currentRoute}`)
+      return
+    }
+
     this.listen()
     this.render()
   }
