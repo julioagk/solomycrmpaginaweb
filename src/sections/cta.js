@@ -41,9 +41,14 @@ export function renderCTA() {
             <span class="lead-field-error" data-error-for="company" aria-live="polite"></span>
           </label>
           <label class="lead-field" for="lead-phone">
-            Telefono
+            Teléfono
             <input id="lead-phone" name="phone" type="tel" autocomplete="tel" required />
             <span class="lead-field-error" data-error-for="phone" aria-live="polite"></span>
+          </label>
+          <label class="lead-field" for="lead-email">
+            Correo electrónico
+            <input id="lead-email" name="email" type="email" autocomplete="email" required />
+            <span class="lead-field-error" data-error-for="email" aria-live="polite"></span>
           </label>
           <label class="lead-field" for="lead-need">
             Objetivo comercial actual

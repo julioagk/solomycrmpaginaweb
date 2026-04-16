@@ -87,10 +87,11 @@ function setupRouteTracking() {
 
 function setupLeadForm() {
 	const fieldMessages = {
-		name: 'Escribe tu nombre completo.',
+		name:    'Escribe tu nombre completo.',
 		company: 'Escribe el nombre de tu empresa.',
-		phone: 'Escribe un teléfono de contacto.',
-		need: 'Describe brevemente lo que necesitas resolver.',
+		phone:   'Escribe un teléfono de contacto.',
+		email:   'Escribe un correo electrónico válido.',
+		need:    'Describe brevemente lo que necesitas resolver.',
 	}
 
 	const setFieldError = (form, fieldName, message) => {
@@ -114,6 +115,7 @@ function setupLeadForm() {
 			name:    String(formData.get('name')    || '').trim(),
 			company: String(formData.get('company') || '').trim(),
 			phone:   String(formData.get('phone')   || '').trim(),
+			email:   String(formData.get('email')   || '').trim(),
 			need:    String(formData.get('need')    || '').trim(),
 		}
 
@@ -139,6 +141,7 @@ function setupLeadForm() {
 				name:    payload.name,
 				company: payload.company,
 				phone:   payload.phone,
+				email:   payload.email,
 				need:    payload.need,
 			}
 		).then(() => {
