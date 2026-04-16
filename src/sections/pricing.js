@@ -1,4 +1,4 @@
-﻿import { renderHeader } from './header.js'
+import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
 
 export function renderPricing() {
@@ -11,7 +11,7 @@ export function renderPricing() {
 
       <div class="feature-grid">
         <article class="feature-card">
-          <h3>Gestion de prospectos y clientes</h3>
+          <h3>Gestión de prospectos y clientes</h3>
           <p>Centraliza datos y transiciona oportunidades sin perder contexto comercial.</p>
         </article>
         <article class="feature-card">
@@ -23,7 +23,7 @@ export function renderPricing() {
           <p>Integra Google Calendar para agendar, confirmar y ejecutar reuniones con orden.</p>
         </article>
         <article class="feature-card">
-          <h3>Gestion de equipo y metas</h3>
+          <h3>Gestión de equipo y metas</h3>
           <p>Monitorea objetivos, actividad y avance comercial por vendedor o celula.</p>
         </article>
         <article class="feature-card">
@@ -40,9 +40,9 @@ export function renderPricing() {
     <section class="page-section section" id="diferenciadores">
       <div class="section-head">
         <p class="tag">DIFERENCIADORES PARA VENDER</p>
-        <h2>Por que SOLOMYCRM acelera la ejecucion comercial</h2>
+        <h2>Por qué SOLOMYCRM acelera la ejecución comercial</h2>
         <p class="section-lead">
-          Disenado para equipos de ventas que necesitan accion diaria, seguimiento consistente
+          Diseñado para equipos de ventas que necesitan acción diaria, seguimiento consistente
           y visibilidad real de resultados.
         </p>
       </div>
@@ -50,7 +50,7 @@ export function renderPricing() {
       <div class="benefits-grid">
         <article class="collab-card">
           <h3>Flujo comercial de punta a punta</h3>
-          <p>Desde captacion hasta cierre, con historial y contexto en cada oportunidad.</p>
+          <p>Desde captación hasta cierre, con historial y contexto en cada oportunidad.</p>
         </article>
         <article class="collab-card">
           <h3>Enfoque en ejecucion diaria</h3>
@@ -61,16 +61,16 @@ export function renderPricing() {
           <p>El equipo ve lo necesario para avanzar cuentas sin perder control.</p>
         </article>
         <article class="collab-card">
-          <h3>Automatizacion practica</h3>
-          <p>Agenda, plantillas y seguimiento automatico para vender de forma consistente.</p>
+          <h3>Automatización práctica</h3>
+          <p>Agenda, plantillas y seguimiento automático para vender de forma consistente.</p>
         </article>
         <article class="collab-card">
-          <h3>Facil adopcion</h3>
+          <h3>Fácil adopción</h3>
           <p>Interfaz pensada para uso comercial diario sin curva larga de aprendizaje.</p>
         </article>
         <article class="collab-card">
           <h3>Control por equipo</h3>
-          <p>Metas, conversiones y rendimiento visibles para lideres comerciales.</p>
+          <p>Metas, conversiones y rendimiento visibles para líderes comerciales.</p>
         </article>
       </div>
     </section>

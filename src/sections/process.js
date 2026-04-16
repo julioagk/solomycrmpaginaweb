@@ -1,15 +1,15 @@
-﻿import { renderHeader } from './header.js'
+import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
 
 export function renderProcess() {
   return `
     <section class="page-section section process" id="como-funciona">
       <div class="section-head">
-        <p class="tag">COMO FUNCIONA EN 4 PASOS</p>
+        <p class="tag">CÓMO FUNCIONA EN 4 PASOS</p>
         <h2>Proceso simple para ejecutar y convertir</h2>
         <p class="section-lead">
           Desde la captura del prospecto hasta la medicion de resultados, todo queda
-          centralizado para que el equipo actue rapido.
+          centralizado para que el equipo actúe rápido.
         </p>
       </div>
 
@@ -27,18 +27,18 @@ export function renderProcess() {
         <article>
           <span>03</span>
           <h3>Agenda y registra reuniones</h3>
-          <p>Sincroniza calendario y documenta resultado, acuerdos y proxima accion.</p>
+          <p>Sincroniza calendario y documenta resultado, acuerdos y próxima acción.</p>
         </article>
         <article>
           <span>04</span>
           <h3>Convierte y mide</h3>
-          <p>Mueve a cliente y revisa conversion, ventas y desempeno comercial por vendedor.</p>
+          <p>Mueve a cliente y revisa conversión, ventas y desempeño comercial por vendedor.</p>
         </article>
       </div>
 
       <div class="hero-actions process-actions">
         <a class="btn btn-primary" href="/contacto" data-link data-track="process_demo_click">Solicitar demo</a>
-        <a class="btn btn-secondary" href="/funcionalidades" data-link data-track="process_modules_click">Ver modulos</a>
+        <a class="btn btn-secondary" href="/funcionalidades" data-link data-track="process_modules_click">Ver módulos</a>
       </div>
     </section>
   `;

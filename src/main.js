@@ -1,4 +1,4 @@
-﻿import './style.css'
+import './style.css'
 import { Router } from './router.js'
 import { renderHero } from './sections/hero.js'
 import { renderProcessPage } from './sections/process.js'
@@ -42,7 +42,7 @@ function setupWhatsAppLeadForm() {
 	const fieldMessages = {
 		name: 'Escribe tu nombre completo.',
 		company: 'Escribe el nombre de tu empresa.',
-		phone: 'Escribe un telefono de contacto.',
+		phone: 'Escribe un teléfono de contacto.',
 		need: 'Describe brevemente lo que necesitas resolver.',
 	}
 
@@ -96,11 +96,11 @@ function setupWhatsAppLeadForm() {
 		}
 
 		const message = [
-			'Hola, quiero una demostracion de SOLOMYCRM.',
+			'Hola, quiero una demostración de SOLOMYCRM.',
 			'',
 			`Nombre: ${payload.name}`,
 			`Empresa: ${payload.company}`,
-			`Telefono: ${payload.phone}`,
+			`Teléfono: ${payload.phone}`,
 			`Necesidad: ${payload.need}`,
 		].join('\n')
 
@@ -108,7 +108,7 @@ function setupWhatsAppLeadForm() {
 
 		if (!whatsappLink) {
 			if (statusElement) {
-				statusElement.textContent = 'WhatsApp no esta configurado en este momento.'
+				statusElement.textContent = 'WhatsApp no está configurado en este momento.'
 			}
 			trackEvent('lead_whatsapp_missing_configuration', { path: window.location.pathname })
 			return
@@ -116,7 +116,7 @@ function setupWhatsAppLeadForm() {
 
 		window.open(whatsappLink, '_blank', 'noopener,noreferrer')
 		if (statusElement) {
-			statusElement.textContent = 'Listo. Abrimos WhatsApp con tu informacion precargada.'
+			statusElement.textContent = 'Listo. Abrimos WhatsApp con tu información precargada.'
 		}
 		clearFormErrors(form)
 

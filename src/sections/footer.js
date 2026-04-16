@@ -1,4 +1,4 @@
-﻿import { getWhatsAppLink } from '../config/contact.js'
+import { getWhatsAppLink } from '../config/contact.js'
 
 export function renderFooter() {
   const currentYear = new Date().getFullYear()
@@ -14,8 +14,8 @@ export function renderFooter() {
           </p>
         </section>
 
-        <nav class="footer-block" aria-label="Navegacion del sitio">
-          <p class="footer-heading">Navegacion</p>
+        <nav class="footer-block" aria-label="Navegación del sitio">
+          <p class="footer-heading">Navegación</p>
           <a href="/" data-link class="footer-link">Inicio</a>
           <a href="/proceso" data-link class="footer-link">Proceso</a>
           <a href="/funcionalidades" data-link class="footer-link">Funcionalidades</a>
@@ -29,7 +29,7 @@ export function renderFooter() {
               ? `<a class="footer-link footer-contact-link" href="${whatsappLink}" target="_blank" rel="noopener noreferrer" data-track="footer_phone_whatsapp_click">WhatsApp: +52 81 3645 8366</a>`
               : `<p class="footer-copy">WhatsApp: +52 81 3645 8366</p>`
           }
-          <p class="footer-copy">Atencion para demos, onboarding y consultoria comercial.</p>
+          <p class="footer-copy">Atención para demos, onboarding y consultoría comercial.</p>
           ${
             whatsappLink
               ? `<a class="btn btn-primary footer-cta" href="/contacto" data-link data-track="footer_demo_click">Solicitar demo</a>`

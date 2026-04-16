@@ -1,4 +1,4 @@
-﻿import { isWhatsAppConfigured } from '../config/contact.js'
+import { isWhatsAppConfigured } from '../config/contact.js'
 import { getWhatsAppLink } from '../config/contact.js'
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
@@ -11,7 +11,7 @@ export function renderCTA() {
     <section class="page-section section cta" id="solicitar-demo">
       <div class="section-head">
         <p class="tag">OFERTA COMERCIAL</p>
-        <h2>Para equipos que necesitan orden comercial y mas conversion</h2>
+        <h2>Para equipos que necesitan orden comercial y más conversión</h2>
         <p class="section-lead">
           Para equipos B2B y B2C, closers, prospectores, pymes y agencias que quieren ejecutar mejor.
         </p>
@@ -20,15 +20,15 @@ export function renderCTA() {
       <div class="feature-grid">
         <article class="feature-card">
           <h3>Para quien es</h3>
-          <p>Equipos comerciales B2B/B2C, areas de prospeccion y cierre, pymes y agencias.</p>
+          <p>Equipos comerciales B2B/B2C, áreas de prospección y cierre, pymes y agencias.</p>
         </article>
         <article class="feature-card">
           <h3>Que incluye</h3>
-          <p>Implementacion, capacitacion y soporte para adopcion rapida del equipo.</p>
+          <p>Implementación, capacitación y soporte para adopción rápida del equipo.</p>
         </article>
         <article class="feature-card">
           <h3>Resultado esperado</h3>
-          <p>Menor tiempo de respuesta, mas reuniones efectivas y mejor tasa de conversion.</p>
+          <p>Menor tiempo de respuesta, más reuniones efectivas y mejor tasa de conversión.</p>
         </article>
       </div>
 
@@ -83,13 +83,13 @@ export function renderCTA() {
       <p class="contact-note">
         ${
           hasWhatsApp
-            ? 'Completa el formulario y abrimos WhatsApp con tu informacion para iniciar implementacion y demo.'
-            : 'Configura el numero de WhatsApp para activar la captacion de leads.'
+            ? 'Completa el formulario y abrimos WhatsApp con tu información para iniciar implementación y demo.'
+            : 'Configura el número de WhatsApp para activar la captación de leads.'
         }
       </p>
 
       <p class="contact-note">
-        Deja de perder oportunidades por desorden comercial. Centraliza tu operacion y convierte mas con un CRM disenado para vender.
+        Deja de perder oportunidades por desorden comercial. Centraliza tu operación y convierte más con un CRM diseñado para vender.
       </p>
     </section>
   `;
