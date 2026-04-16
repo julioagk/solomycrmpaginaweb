@@ -1,11 +1,7 @@
-import { isWhatsAppConfigured } from '../config/contact.js'
-import { getWhatsAppLink } from '../config/contact.js'
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
 
 export function renderCTA() {
-  const hasWhatsApp = isWhatsAppConfigured()
-  const trialLink = getWhatsAppLink('Hola, quiero probar SOLOMYCRM y conocer el flujo comercial.')
 
   return `
     <section class="page-section section cta" id="solicitar-demo">
@@ -58,39 +54,17 @@ export function renderCTA() {
 
         <div class="contact-actions">
           <button
-            class="btn btn-primary ${hasWhatsApp ? '' : 'btn-disabled'}"
+            class="btn btn-primary"
             type="submit"
-            data-track="lead_whatsapp_submit_click"
-            ${hasWhatsApp ? '' : 'disabled'}
+            data-track="lead_email_submit_click"
           >
             Solicitar demo
           </button>
-          <a
-            id="probar-ahora"
-            class="btn btn-secondary ${hasWhatsApp ? '' : 'btn-disabled'}"
-            href="${hasWhatsApp && trialLink ? trialLink : '#'}"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="cta_trial_click"
-            ${hasWhatsApp ? '' : 'aria-disabled="true"'}
-          >
-            Agendar llamada
-          </a>
         </div>
         <p id="lead-form-status" class="contact-note" role="status" aria-live="polite"></p>
       </form>
 
-      <p class="contact-note">
-        ${
-          hasWhatsApp
-            ? 'Completa el formulario y abrimos WhatsApp con tu información para iniciar implementación y demo.'
-            : 'Configura el número de WhatsApp para activar la captación de leads.'
-        }
-      </p>
 
-      <p class="contact-note">
-        Deja de perder oportunidades por desorden comercial. Centraliza tu operación y convierte más con un CRM diseñado para vender.
-      </p>
 
       <p class="contact-note">
         ¿Prefieres escribir por correo? Contáctanos en

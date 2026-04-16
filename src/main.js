@@ -5,7 +5,7 @@ import { renderProcessPage } from './sections/process.js'
 import { renderPricingPage } from './sections/pricing.js'
 import { renderCTAPage } from './sections/cta.js'
 import { trackEvent } from './analytics.js'
-import { getWhatsAppLink } from './config/contact.js'
+
 import emailjs from '@emailjs/browser'
 
 // EmailJS configuration
@@ -82,7 +82,7 @@ function setupRouteTracking() {
 	})
 }
 
-function setupWhatsAppLeadForm() {
+function setupLeadForm() {
 	const fieldMessages = {
 		name: 'Escribe tu nombre completo.',
 		company: 'Escribe el nombre de tu empresa.',
@@ -93,33 +93,25 @@ function setupWhatsAppLeadForm() {
 	const setFieldError = (form, fieldName, message) => {
 		const errorElement = form.querySelector(`[data-error-for="${fieldName}"]`)
 		const fieldElement = form.querySelector(`[name="${fieldName}"]`)
-		if (errorElement) {
-			errorElement.textContent = message
-		}
-		if (fieldElement) {
-			fieldElement.classList.toggle('input-invalid', Boolean(message))
-		}
+		if (errorElement) errorElement.textContent = message
+		if (fieldElement) fieldElement.classList.toggle('input-invalid', Boolean(message))
 	}
 
 	const clearFormErrors = (form) => {
-		Object.keys(fieldMessages).forEach((fieldName) => {
-			setFieldError(form, fieldName, '')
-		})
+		Object.keys(fieldMessages).forEach((fieldName) => setFieldError(form, fieldName, ''))
 	}
 
 	document.addEventListener('submit', (event) => {
 		const form = event.target.closest('#lead-form')
 		if (!form) return
-
 		event.preventDefault()
 
-		const statusElement = document.querySelector('#lead-form-status')
 		const formData = new FormData(form)
 		const payload = {
-			name: String(formData.get('name') || '').trim(),
+			name:    String(formData.get('name')    || '').trim(),
 			company: String(formData.get('company') || '').trim(),
-			phone: String(formData.get('phone') || '').trim(),
-			need: String(formData.get('need') || '').trim(),
+			phone:   String(formData.get('phone')   || '').trim(),
+			need:    String(formData.get('need')    || '').trim(),
 		}
 
 		clearFormErrors(form)
@@ -132,41 +124,11 @@ function setupWhatsAppLeadForm() {
 		})
 
 		if (hasErrors) {
-			if (statusElement) {
-				statusElement.textContent = 'Revisa los campos marcados para continuar.'
-			}
-			trackEvent('lead_whatsapp_validation_error', { path: window.location.pathname })
+			trackEvent('lead_validation_error', { path: window.location.pathname })
 			return
 		}
 
-		const message = [
-			'Hola, quiero una demostración de SOLOMYCRM.',
-			'',
-			`Nombre: ${payload.name}`,
-			`Empresa: ${payload.company}`,
-			`Teléfono: ${payload.phone}`,
-			`Necesidad: ${payload.need}`,
-		].join('\n')
-
-		const whatsappLink = getWhatsAppLink(message)
-
-		if (!whatsappLink) {
-			if (statusElement) {
-				statusElement.textContent = 'WhatsApp no está configurado en este momento.'
-			}
-			trackEvent('lead_whatsapp_missing_configuration', { path: window.location.pathname })
-			return
-		}
-
-		window.open(whatsappLink, '_blank', 'noopener,noreferrer')
-		clearFormErrors(form)
-
-		trackEvent('lead_whatsapp_submit_success', {
-			path: window.location.pathname,
-			source: 'contact_form',
-		})
-
-		// Send email notification via EmailJS
+		// Enviar por correo via EmailJS
 		emailjs.send(
 			EMAILJS_SERVICE_ID,
 			EMAILJS_TEMPLATE_ID,
@@ -184,12 +146,13 @@ function setupWhatsAppLeadForm() {
 				message: 'Recibimos tu solicitud. En breve te contactamos para agendar tu demo.',
 			})
 			form.reset()
+			trackEvent('lead_email_submit_success', { path: window.location.pathname })
 		}).catch((error) => {
 			console.error('EmailJS error:', error)
 			showModal({
 				type: 'error',
 				title: 'Algo salió mal',
-				message: 'No pudimos enviar tu mensaje por correo. Por favor escríbenos directamente a lesly@updm.mx',
+				message: 'No pudimos enviar tu mensaje. Por favor escríbenos a lesly@updm.mx',
 			})
 		})
 	})
@@ -197,13 +160,10 @@ function setupWhatsAppLeadForm() {
 	document.addEventListener('input', (event) => {
 		const field = event.target.closest('#lead-form [name]')
 		if (!field) return
-
 		const form = field.closest('#lead-form')
 		if (!form) return
-
 		const fieldName = field.getAttribute('name')
 		if (!fieldName || !Object.hasOwn(fieldMessages, fieldName)) return
-
 		const value = String(field.value || '').trim()
 		setFieldError(form, fieldName, value ? '' : fieldMessages[fieldName])
 	})
@@ -211,7 +171,7 @@ function setupWhatsAppLeadForm() {
 
 setupClickTracking()
 setupRouteTracking()
-setupWhatsAppLeadForm()
+setupLeadForm()
 
 // Start router
 router.start()
