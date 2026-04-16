@@ -91,6 +91,11 @@ export function renderCTA() {
       <p class="contact-note">
         Deja de perder oportunidades por desorden comercial. Centraliza tu operación y convierte más con un CRM diseñado para vender.
       </p>
+
+      <p class="contact-note">
+        ¿Prefieres escribir por correo? Contáctanos en
+        <a href="mailto:lesly@updm.mx" data-track="cta_email_click" style="color: inherit; text-decoration: underline;">lesly@updm.mx</a>
+      </p>
     </section>
   `;
 }

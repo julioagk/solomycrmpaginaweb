@@ -6,6 +6,12 @@ import { renderPricingPage } from './sections/pricing.js'
 import { renderCTAPage } from './sections/cta.js'
 import { trackEvent } from './analytics.js'
 import { getWhatsAppLink } from './config/contact.js'
+import emailjs from '@emailjs/browser'
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID  = 'service_4wpqrr7'
+const EMAILJS_TEMPLATE_ID = 'template_sh906y3'
+const EMAILJS_PUBLIC_KEY  = 'BUzcIop_RG77aWTGqQoOJ'
 
 // Initialize router
 const router = new Router()
@@ -123,6 +129,21 @@ function setupWhatsAppLeadForm() {
 		trackEvent('lead_whatsapp_submit_success', {
 			path: window.location.pathname,
 			source: 'contact_form',
+		})
+
+		// Send email notification via EmailJS
+		emailjs.send(
+			EMAILJS_SERVICE_ID,
+			EMAILJS_TEMPLATE_ID,
+			{
+				name:    payload.name,
+				company: payload.company,
+				phone:   payload.phone,
+				need:    payload.need,
+			},
+			EMAILJS_PUBLIC_KEY
+		).catch((error) => {
+			console.error('EmailJS error:', error)
 		})
 	})
 

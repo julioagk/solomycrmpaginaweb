@@ -29,6 +29,7 @@ export function renderFooter() {
               ? `<a class="footer-link footer-contact-link" href="${whatsappLink}" target="_blank" rel="noopener noreferrer" data-track="footer_phone_whatsapp_click">WhatsApp: +52 81 3645 8366</a>`
               : `<p class="footer-copy">WhatsApp: +52 81 3645 8366</p>`
           }
+          <a class="footer-link footer-contact-link" href="mailto:lesly@updm.mx" data-track="footer_email_click">lesly@updm.mx</a>
           <p class="footer-copy">Atención para demos, onboarding y consultoría comercial.</p>
           ${
             whatsappLink
