@@ -11,7 +11,10 @@ import emailjs from '@emailjs/browser'
 // EmailJS configuration
 const EMAILJS_SERVICE_ID  = 'service_4wpqrr7'
 const EMAILJS_TEMPLATE_ID = 'template_sh906y3'
-const EMAILJS_PUBLIC_KEY  = 'BUzcIop_RG77aWTGqQoOJ'
+const EMAILJS_PUBLIC_KEY  = 'vHksxDcHgxvB7ZPHk'
+
+// Inicializar EmailJS (requerido en v4)
+emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
 
 // Initialize router
 const router = new Router()
@@ -137,8 +140,7 @@ function setupLeadForm() {
 				company: payload.company,
 				phone:   payload.phone,
 				need:    payload.need,
-			},
-			EMAILJS_PUBLIC_KEY
+			}
 		).then(() => {
 			showModal({
 				type: 'success',
@@ -148,7 +150,8 @@ function setupLeadForm() {
 			form.reset()
 			trackEvent('lead_email_submit_success', { path: window.location.pathname })
 		}).catch((error) => {
-			console.error('EmailJS error:', error)
+			console.error('EmailJS error status:', error?.status)
+			console.error('EmailJS error text:', error?.text)
 			showModal({
 				type: 'error',
 				title: 'Algo salió mal',
