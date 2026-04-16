@@ -48,6 +48,7 @@ export class Router {
     if (handler && app) {
       this.currentRoute = resolvedRoute
       app.innerHTML = handler()
+      window.scrollTo({ top: 0, behavior: 'instant' })
       document.dispatchEvent(
         new CustomEvent('route:changed', {
           detail: { path: resolvedRoute },
