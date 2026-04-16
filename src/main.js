@@ -24,6 +24,44 @@ router.register('/funcionalidades', renderPricingPage)
 router.register('/paquetes', renderPricingPage)
 router.register('/contacto', renderCTAPage)
 
+// ── Modal helpers ────────────────────────────────────────────
+function showModal({ type, title, message }) {
+	let overlay = document.getElementById('lead-modal')
+	if (!overlay) {
+		overlay = document.createElement('div')
+		overlay.id = 'lead-modal'
+		overlay.className = 'modal-overlay'
+		overlay.setAttribute('role', 'dialog')
+		overlay.setAttribute('aria-modal', 'true')
+		overlay.innerHTML = `
+			<div class="modal-box">
+				<div class="modal-icon" id="lead-modal-icon"></div>
+				<h3 id="lead-modal-title"></h3>
+				<p id="lead-modal-message"></p>
+				<button class="btn btn-primary modal-close" id="lead-modal-close">Entendido</button>
+			</div>
+		`
+		document.body.appendChild(overlay)
+
+		overlay.addEventListener('click', (e) => {
+			if (e.target === overlay) closeModal()
+		})
+		document.getElementById('lead-modal-close').addEventListener('click', closeModal)
+	}
+
+	document.getElementById('lead-modal-icon').className = `modal-icon ${type}`
+	document.getElementById('lead-modal-icon').textContent = type === 'success' ? '✓' : '✕'
+	document.getElementById('lead-modal-title').textContent = title
+	document.getElementById('lead-modal-message').textContent = message
+
+	requestAnimationFrame(() => overlay.classList.add('is-visible'))
+}
+
+function closeModal() {
+	const overlay = document.getElementById('lead-modal')
+	if (overlay) overlay.classList.remove('is-visible')
+}
+
 function setupClickTracking() {
 	document.addEventListener('click', (event) => {
 		const target = event.target.closest('[data-track]')
@@ -121,9 +159,6 @@ function setupWhatsAppLeadForm() {
 		}
 
 		window.open(whatsappLink, '_blank', 'noopener,noreferrer')
-		if (statusElement) {
-			statusElement.textContent = 'Listo. Abrimos WhatsApp con tu información precargada.'
-		}
 		clearFormErrors(form)
 
 		trackEvent('lead_whatsapp_submit_success', {
@@ -142,8 +177,20 @@ function setupWhatsAppLeadForm() {
 				need:    payload.need,
 			},
 			EMAILJS_PUBLIC_KEY
-		).catch((error) => {
+		).then(() => {
+			showModal({
+				type: 'success',
+				title: '¡Mensaje enviado!',
+				message: 'Recibimos tu solicitud. En breve te contactamos para agendar tu demo.',
+			})
+			form.reset()
+		}).catch((error) => {
 			console.error('EmailJS error:', error)
+			showModal({
+				type: 'error',
+				title: 'Algo salió mal',
+				message: 'No pudimos enviar tu mensaje por correo. Por favor escríbenos directamente a lesly@updm.mx',
+			})
 		})
 	})
 
