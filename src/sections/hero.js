@@ -16,7 +16,18 @@ export function renderHero() {
           <div class="hero-actions">
             <a class="btn btn-primary" href="/contacto" data-link data-track="hero_demo_click">Solicitar demo</a>
             <a class="btn btn-secondary" href="/contacto" data-link data-track="hero_trial_click">Probar gratis</a>
+            <a
+              class="btn btn-secondary btn-demo-access"
+              href="https://app.solomycrm.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="hero_app_demo_click"
+              aria-label="Abrir demo de SOLOMYCRM (requiere usuario y contraseña)"
+            >
+              Ver demo en vivo
+            </a>
           </div>
+          <p class="hero-demo-note">La demo en vivo requiere usuario y contraseña. Si no tienes acceso, solicita una demo guiada.</p>
           <div class="hero-points">
             <span>Embudo comercial con etapas claras</span>
             <span>Seguimiento y recordatorios automáticos</span>

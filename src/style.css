@@ -123,6 +123,11 @@ p {
   color: var(--brand);
 }
 
+.nav-demo-live {
+  padding: 0.62rem 1rem;
+  font-size: 0.86rem;
+}
+
 .tag {
   display: inline-block;
   text-transform: uppercase;
@@ -229,6 +234,17 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
+}
+
+.btn-demo-access {
+  border-style: dashed;
+}
+
+.hero-demo-note {
+  margin-top: 0.7rem;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+  max-width: 65ch;
 }
 
 .hero-points {
