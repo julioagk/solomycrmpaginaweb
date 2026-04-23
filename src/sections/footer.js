@@ -39,7 +39,18 @@ export function renderFooter() {
         </section>
       </div>
 
-      <p class="footer-legal">&copy; ${currentYear} SOLOMYCRM. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <p>&copy; ${currentYear} SOLOMYCRM. Todos los derechos reservados.</p>
+        <div class="legal-links">
+          <a href="https://app.solomycrm.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer">
+            Política de Privacidad
+          </a>
+          <span class="legal-separator">|</span>
+          <a href="https://app.solomycrm.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer">
+            Términos y Condiciones
+          </a>
+        </div>
+      </div>
     </footer>
   `
 }

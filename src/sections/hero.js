@@ -14,7 +14,7 @@ export function renderHero() {
             y control total de tu equipo comercial.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="/contacto" data-link data-track="hero_demo_click">Solicitar demo</a>
+            <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="hero_demo_click">Solicitar demo</a>
             <a class="btn btn-secondary" href="/contacto" data-link data-track="hero_trial_click">Probar gratis</a>
             <a
               class="btn btn-secondary btn-demo-access"
@@ -140,7 +140,7 @@ export function renderHero() {
           </p>
         </div>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto" data-link data-track="home_demo_bottom_click">Solicitar demo</a>
+          <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="home_demo_bottom_click">Solicitar demo</a>
           <a class="btn btn-secondary" href="/proceso" data-link data-track="home_process_click">Ver cómo funciona</a>
         </div>
         <p class="contact-note">Deja de perder oportunidades por desorden comercial. Centraliza tu operación y convierte más con un CRM diseñado para vender.</p>

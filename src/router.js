@@ -7,10 +7,9 @@ export class Router {
   normalize(path) {
     if (!path) return '/'
     const sanitized = String(path).trim()
-    if (!sanitized || sanitized === '#') return '/'
+    if (!sanitized || sanitized === '/') return '/'
 
-    const withoutHash = sanitized.startsWith('#') ? sanitized.slice(1) : sanitized
-    const withoutQuery = withoutHash.split('?')[0].split('#')[0]
+    const withoutQuery = sanitized.split('?')[0].split('#')[0]
     const cleaned = withoutQuery.replace(/\/+$/, '')
 
     if (!cleaned || cleaned === '/') return '/'
@@ -18,8 +17,6 @@ export class Router {
   }
 
   getRouteFromLocation() {
-    const hashRoute = this.normalize(window.location.hash)
-    if (hashRoute !== '/') return hashRoute
     return this.normalize(window.location.pathname)
   }
 
@@ -32,9 +29,8 @@ export class Router {
     const handler = this.routes[targetPath] || this.routes['/']
     if (!handler) return
 
-    if (window.location.hash !== `#${targetPath}`) {
-      window.location.hash = targetPath
-      return
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState({}, '', targetPath)
     }
 
     this.currentRoute = targetPath
@@ -58,7 +54,7 @@ export class Router {
   }
 
   listen() {
-    window.addEventListener('hashchange', () => {
+    window.addEventListener('popstate', () => {
       this.currentRoute = this.getRouteFromLocation()
       this.render()
     })
@@ -73,11 +69,6 @@ export class Router {
   }
 
   start() {
-    this.currentRoute = this.getRouteFromLocation()
-    if (!window.location.hash) {
-      window.location.hash = this.currentRoute
-    }
-
     this.listen()
     this.currentRoute = this.getRouteFromLocation()
     this.render()
