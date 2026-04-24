@@ -15,10 +15,6 @@ export function renderPricing() {
           <p>Centraliza datos y transiciona oportunidades sin perder contexto comercial.</p>
         </article>
         <article class="feature-card">
-          <h3>Embudo comercial por etapas</h3>
-          <p>Visualiza avance desde primer contacto hasta venta ganada o perdida.</p>
-        </article>
-        <article class="feature-card">
           <h3>Calendario comercial</h3>
           <p>Integra Google Calendar para agendar, confirmar y ejecutar reuniones con orden.</p>
         </article>

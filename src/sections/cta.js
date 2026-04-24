@@ -5,11 +5,15 @@ export function renderCTA() {
   return `
     <section class="page-section section cta-section" id="solicitar-demo">
       <div class="section-head">
-        <p class="tag">SOLICITAR DEMO</p>
-        <h2>Empieza a vender con más orden hoy</h2>
+        <h2>Solicitar demo</h2>
         <p class="section-lead">
-          Completa el formulario y te contactamos en menos de 24 horas para mostrarte cómo funciona SOLOMYCRM para tu equipo.
+          Completa el formulario y te contactamos en menos de 24 horas.
         </p>
+      </div>
+
+      <div class="cta-trust-row" aria-label="Beneficios de contacto">
+        <span class="cta-trust-chip">Respuesta en menos de 24h</span>
+        <span class="cta-trust-chip">Demo guiada</span>
       </div>
 
       <div class="cta-layout">
@@ -39,16 +43,8 @@ export function renderCTA() {
                 <p>Implementación y capacitación desde el primer día.</p>
               </div>
             </li>
-            <li class="cta-benefit">
-              <span class="cta-benefit-icon">✓</span>
-              <div>
-                <strong>Respuesta en 24 hrs</strong>
-                <p>Un asesor te contacta al siguiente día hábil.</p>
-              </div>
-            </li>
           </ul>
           <div class="cta-panel-footer">
-            <p>¿Prefieres escribirnos directo?</p>
             <a href="mailto:lesly@updm.mx" class="cta-email-link" data-track="cta_email_click">
               ✉ lesly@updm.mx
             </a>
@@ -58,6 +54,7 @@ export function renderCTA() {
         <!-- Panel derecho: formulario -->
         <div class="cta-form-wrap">
           <p class="cta-form-title">Agenda tu demo gratuita</p>
+          <p class="cta-form-subtitle">Cuéntanos tu situación y te mostramos cómo adaptarlo a tu equipo.</p>
           <form id="lead-form" class="lead-form-v2" novalidate>
             <div class="lead-form-row">
               <label class="lead-field-v2" for="lead-name">
@@ -85,7 +82,7 @@ export function renderCTA() {
             </div>
             <label class="lead-field-v2 full-width" for="lead-need">
               <span class="lead-label">¿Qué quieres mejorar en tu proceso comercial?</span>
-              <textarea id="lead-need" name="need" rows="4" placeholder="Ej. Quiero mejorar el seguimiento de prospectos y tener visibilidad del equipo..." required></textarea>
+              <textarea id="lead-need" name="need" rows="3" placeholder="Ej. Quiero mejorar el seguimiento de prospectos y la visibilidad del equipo." required></textarea>
               <span class="lead-field-error" data-error-for="need" aria-live="polite"></span>
             </label>
             <button class="btn btn-primary cta-submit-btn" type="submit" data-track="lead_email_submit_click">

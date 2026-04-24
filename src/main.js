@@ -4,14 +4,15 @@ import { renderHero } from './sections/hero.js'
 import { renderProcessPage } from './sections/process.js'
 import { renderPricingPage } from './sections/pricing.js'
 import { renderCTAPage } from './sections/cta.js'
+import { initCascade } from './animations.js'
 import { trackEvent } from './analytics.js'
 
 import emailjs from '@emailjs/browser'
 
 // EmailJS configuration
-const EMAILJS_SERVICE_ID  = 'service_4wpqrr7'
+const EMAILJS_SERVICE_ID = 'service_4wpqrr7'
 const EMAILJS_TEMPLATE_ID = 'template_sh906y3'
-const EMAILJS_PUBLIC_KEY  = 'vHksxDcHgxvB7ZPHk'
+const EMAILJS_PUBLIC_KEY = 'vHksxDcHgxvB7ZPHk'
 
 // Inicializar EmailJS (requerido en v4)
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
@@ -82,16 +83,71 @@ function setupRouteTracking() {
 	document.addEventListener('route:changed', (event) => {
 		const routePath = event?.detail?.path || window.location.pathname
 		trackEvent('page_view', { path: routePath })
+
+		if (routePath === '/' || routePath === '/inicio') {
+			initCascade('#hero-cascade')
+		}
 	})
+}
+
+function setupNavbarTypewriter() {
+	const runTypewriter = (element) => {
+		if (!element || element.dataset.typewriterReady === 'true') return
+		element.dataset.typewriterReady = 'true'
+
+		const text = element.dataset.typewriterText || element.textContent.trim() || ''
+		const typingDelay = 100
+		const deletingDelay = 50
+		const pauseDelay = 30000
+		let index = 0
+		let deleting = false
+		let timeoutId = null
+
+		const tick = () => {
+			if (!element.isConnected) return
+
+			if (!deleting) {
+				index += 1
+				element.textContent = text.slice(0, index)
+				if (index >= text.length) {
+					deleting = true
+					timeoutId = window.setTimeout(tick, pauseDelay)
+					return
+				}
+				timeoutId = window.setTimeout(tick, typingDelay)
+				return
+			}
+
+			index -= 1
+			element.textContent = text.slice(0, index)
+			if (index <= 0) {
+				deleting = false
+				timeoutId = window.setTimeout(tick, typingDelay)
+				return
+			}
+			timeoutId = window.setTimeout(tick, deletingDelay)
+		}
+
+		element.textContent = ''
+		if (timeoutId) window.clearTimeout(timeoutId)
+		tick()
+	}
+
+	const refreshNavbar = () => {
+		document.querySelectorAll('[data-typewriter]').forEach(runTypewriter)
+	}
+
+	document.addEventListener('route:changed', refreshNavbar)
+	refreshNavbar()
 }
 
 function setupLeadForm() {
 	const fieldMessages = {
-		name:    'Escribe tu nombre completo.',
+		name: 'Escribe tu nombre completo.',
 		company: 'Escribe el nombre de tu empresa.',
-		phone:   'Escribe un teléfono de contacto.',
-		email:   'Escribe un correo electrónico válido.',
-		need:    'Describe brevemente lo que necesitas resolver.',
+		phone: 'Escribe un teléfono de contacto.',
+		email: 'Escribe un correo electrónico válido.',
+		need: 'Describe brevemente lo que necesitas resolver.',
 	}
 
 	const setFieldError = (form, fieldName, message) => {
@@ -112,11 +168,11 @@ function setupLeadForm() {
 
 		const formData = new FormData(form)
 		const payload = {
-			name:    String(formData.get('name')    || '').trim(),
+			name: String(formData.get('name') || '').trim(),
 			company: String(formData.get('company') || '').trim(),
-			phone:   String(formData.get('phone')   || '').trim(),
-			email:   String(formData.get('email')   || '').trim(),
-			need:    String(formData.get('need')    || '').trim(),
+			phone: String(formData.get('phone') || '').trim(),
+			email: String(formData.get('email') || '').trim(),
+			need: String(formData.get('need') || '').trim(),
 		}
 
 		clearFormErrors(form)
@@ -138,11 +194,11 @@ function setupLeadForm() {
 			EMAILJS_SERVICE_ID,
 			EMAILJS_TEMPLATE_ID,
 			{
-				name:    payload.name,
+				name: payload.name,
 				company: payload.company,
-				phone:   payload.phone,
-				email:   payload.email,
-				need:    payload.need,
+				phone: payload.phone,
+				email: payload.email,
+				need: payload.need,
 			}
 		).then(() => {
 			showModal({
@@ -177,8 +233,14 @@ function setupLeadForm() {
 
 setupClickTracking()
 setupRouteTracking()
+setupNavbarTypewriter()
 setupLeadForm()
 
 // Start router
 router.start()
+
+// Initial cascade call for the home page
+if (window.location.pathname === '/' || window.location.pathname === '/inicio') {
+	initCascade('#hero-cascade')
+}
 

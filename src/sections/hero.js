@@ -1,152 +1,127 @@
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
+import dashboardImage from '../assets/dashboard.png'
+import modulosImage from '../assets/modulos.png'
 
 export function renderHero() {
   return `
     ${renderHeader()}
     <main>
       <section class="hero-shell section" id="inicio">
-        <div class="hero-copy">
+        <div class="hero-glow"></div>
+        <div class="hero-copy" style="position: relative; overflow: hidden; z-index: 10;">
+          <div id="hero-cascade" class="svg-cascade-container"></div>
           <p class="tag">CRM COMERCIAL PARA EQUIPOS DE VENTAS</p>
-          <h1>SOLOMYCRM</h1>
-          <p class="lead">
+          <h1 class="crm-title">SOLOMY<span class="crm-accent">CRM</span></h1>
+          <p class="crm-subtitle">
             Convierte más prospectos en ventas con seguimiento inteligente, agenda integrada
             y control total de tu equipo comercial.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="hero_demo_click">Solicitar demo</a>
-            <a class="btn btn-secondary" href="/contacto" data-link data-track="hero_trial_click">Probar gratis</a>
             <a
-              class="btn btn-secondary btn-demo-access"
+              class="btn btn-primary premium-reflejo"
               href="https://app.solomycrm.com/"
               target="_blank"
               rel="noopener noreferrer"
-              data-track="hero_app_demo_click"
-              aria-label="Abrir demo de SOLOMYCRM (requiere usuario y contraseña)"
+              data-track="hero_crm_click"
+              aria-label="Abrir SOLOMYCRM en una nueva pestaña"
             >
-              Ver demo en vivo
+              Ir al CRM
+            </a>
+            <a class="btn btn-secondary" href="/contacto" data-link data-track="hero_contacto_click">Contáctanos</a>
+            <a
+              class="btn btn-secondary btn-demo-access"
+              href="/proceso"
+              data-link
+              data-track="hero_proceso_click"
+            >
+              Cómo funciona
             </a>
           </div>
-          <p class="hero-demo-note">La demo en vivo requiere usuario y contraseña. Si no tienes acceso, solicita una demo guiada.</p>
+          <p class="hero-demo-note">Si ya tienes acceso, entra directo al CRM. Si no, te ayudamos desde contacto.</p>
           <div class="hero-points">
-            <span>Embudo comercial con etapas claras</span>
-            <span>Seguimiento y recordatorios automáticos</span>
-            <span>Integración con Google Calendar y Meet</span>
-            <span>Gestión de equipo, metas y productividad</span>
-            <span>Plantillas para WhatsApp y correo</span>
+            <span>Gestión simple</span>
+            <span>Agenda integrada</span>
+            <span>Control de equipo</span>
           </div>
         </div>
 
-        <aside class="hero-panel" aria-label="Vista previa del dashboard CRM">
-          <p class="panel-tag">PROPUESTA DE VALOR</p>
-          <h3>Operación comercial unificada para vender con más control</h3>
-          <div class="pipeline-mockup">
-            <article>
-              <p class="metric-title">Tiempo de respuesta</p>
-              <p class="metric-value">-27%</p>
-            </article>
-            <article>
-              <p class="metric-title">Reuniones efectivas</p>
-              <p class="metric-value">+22%</p>
-            </article>
-            <article>
-              <p class="metric-title">Conversión general</p>
-              <p class="metric-value">+18%</p>
-            </article>
-            <article>
-              <p class="metric-title">Fuga de oportunidades</p>
-              <p class="metric-value">-31%</p>
-            </article>
+        <aside class="hero-panel">
+          <div class="panel-tag">VISTA PREVIA DEL SISTEMA</div>
+          <h3>Dashboard de ventas</h3>
+          
+          <div class="panel-simple-box">
+            <img src="${dashboardImage}" alt="Dashboard SOLOMYCRM" class="process-preview-image" style="margin-bottom: 1rem;" />
+            <p class="panel-simple-title">Métricas clave en tiempo real</p>
+            <ul class="panel-simple-list">
+              <li>Visualización de embudo comercial</li>
+              <li>Actividad diaria de prospectores</li>
+              <li>Metas de ventas por mes</li>
+            </ul>
           </div>
-          <p class="panel-note">Solicita una demo y descubre cómo aumentar tus cierres desde el primer mes.</p>
+
+          <div class="panel-note">
+            Interfaz diseñada para la ejecución diaria sin distracciones.
+          </div>
         </aside>
       </section>
 
       <section class="page-section section">
         <div class="section-head">
-          <p class="tag">PROBLEMA QUE RESUELVE</p>
-          <h2>El dolor real de los equipos comerciales</h2>
+          <p class="tag">CRM SIMPLE Y DIRECTO</p>
+          <h2>Sin funciones de más, solo lo que realmente ayuda a vender</h2>
           <p class="section-lead">
-            Muchas empresas no pierden ventas por falta de esfuerzo, sino por falta de seguimiento y orden operativo.
+            SOLOMYCRM está pensado para equipos que quieren trabajar rápido, con una herramienta clara y sin complicaciones.
           </p>
         </div>
         <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Leads que se enfrían</h3>
-            <p>Sin recordatorios y próxima acción, los prospectos se quedan sin seguimiento.</p>
+          <article class="feature-card premium-reflejo">
+            <h3>Todo en un solo lugar</h3>
+            <p>Clientes, prospectos, tareas y seguimiento en una vista simple para trabajar el día a día.</p>
           </article>
-          <article class="feature-card">
-            <h3>Reuniones sin control</h3>
-            <p>Se agenda la reunión, pero no se documentan acuerdos ni resultados.</p>
+          <article class="feature-card premium-reflejo">
+            <h3>Curva de aprendizaje corta</h3>
+            <p>No necesitas semanas de capacitación: la plataforma está diseñada para ser intuitiva desde el inicio.</p>
           </article>
-          <article class="feature-card">
-            <h3>Información dispersa</h3>
-            <p>WhatsApp, notas y hojas de cálculo separadas impiden decidir rápido.</p>
+          <article class="feature-card premium-reflejo">
+            <h3>Capturas reales del sistema</h3>
+            <p>En la sección “Cómo funciona” mostramos imágenes reales como panel de cliente y calendario para que veas exactamente cómo se usa.</p>
           </article>
-          <article class="feature-card">
-            <h3>Sin visibilidad del equipo</h3>
-            <p>Falta claridad de metas, conversión y actividad por vendedor.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Poca estandarización</h3>
-            <p>Cada vendedor trabaja distinto y se pierde consistencia comercial.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Dificil escalar ventas</h3>
-            <p>Sin operacion centralizada, crecer el equipo baja el control del pipeline.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="page-section section">
-        <div class="section-head">
-          <p class="tag">BENEFICIOS PRINCIPALES</p>
-          <h2>Resultados accionables para vender mejor</h2>
-        </div>
-        <div class="benefits-grid">
-          <article class="benefit-card">
-            <h3>Mas cierres</h3>
-            <p>Seguimiento ordenado de cada oportunidad hasta convertirla en venta.</p>
-          </article>
-          <article class="benefit-card">
-            <h3>Menos fuga de oportunidades</h3>
-            <p>Recordatorios y tareas pendientes visibles para todo el equipo comercial.</p>
-          </article>
-          <article class="benefit-card">
-            <h3>Mas productividad</h3>
-            <p>Plantillas de mensajes y procesos repetibles para ejecutar más en menos tiempo.</p>
-          </article>
-          <article class="benefit-card">
-            <h3>Mejor control</h3>
-            <p>Metas, conversiones y desempeño por vendedor en un solo panel.</p>
-          </article>
-          <article class="benefit-card">
-            <h3>Operacion unificada</h3>
-            <p>Prospectos, clientes, agenda y equipo conectados en una sola plataforma.</p>
-          </article>
-          <article class="benefit-card">
-            <h3>Adopción rápida</h3>
-            <p>Interfaz enfocada en ejecución diaria para que el equipo la use de verdad.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="page-section section">
-        <div class="section-head">
-          <p class="tag">SEGURIDAD Y CONTROL</p>
-          <h2>Tu operación comercial centralizada y protegida</h2>
-          <p class="section-lead">
-            La información del equipo se administra con control de acceso por rol y visibilidad según responsabilidades.
-          </p>
         </div>
         <div class="hero-actions">
           <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="home_demo_bottom_click">Solicitar demo</a>
           <a class="btn btn-secondary" href="/proceso" data-link data-track="home_process_click">Ver cómo funciona</a>
         </div>
-        <p class="contact-note">Deja de perder oportunidades por desorden comercial. Centraliza tu operación y convierte más con un CRM diseñado para vender.</p>
+      </section>
+
+      <section class="page-section section">
+        <div class="section-head">
+          <p class="tag">NOVEDADES CONSTANTES</p>
+          <h2>SOLOMYCRM evoluciona contigo</h2>
+          <p class="section-lead">
+            Módulos nuevos que se adaptan a cada tipo de cliente o necesidad.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card premium-reflejo">
+            <h3>Actualizaciones constantes</h3>
+            <p>Publicamos mejoras continuas para que el sistema sea más rápido, estable y útil en tu operación diaria.</p>
+          </article>
+          <article class="feature-card premium-reflejo">
+            <h3>Módulos personalizados</h3>
+            <p>Podemos adaptar módulos según tu tipo de cliente, industria y situación comercial sin volver el CRM complejo.</p>
+          </article>
+          <article class="feature-card premium-reflejo">
+            <h3>Módulos nuevos de forma continua</h3>
+            <p>Seguimos incorporando funciones prácticas que sí aportan valor, evitando herramientas que solo estorban.</p>
+          </article>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="novedades_demo_click">Solicitar demo</a>
+          <a class="btn btn-secondary" href="/proceso" data-link data-track="novedades_process_click">Ver cómo funciona</a>
+        </div>
       </section>
     </main>
     ${renderFooter()}
   `;
 }
-

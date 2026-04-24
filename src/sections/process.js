@@ -1,5 +1,7 @@
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
+import panelClienteImage from '../assets/panelcliente.png'
+import calendarSectionImage from '../assets/calendarsection.png'
 
 export function renderProcess() {
   return `
@@ -35,6 +37,26 @@ export function renderProcess() {
           <p>Mueve a cliente y revisa conversión, ventas y desempeño comercial por vendedor.</p>
         </article>
       </div>
+
+      <figure class="process-preview">
+        <img
+          src="${panelClienteImage}"
+          alt="Panel de cliente en SOLOMYCRM"
+          class="process-preview-image"
+          loading="lazy"
+        />
+        <figcaption>Vista real del panel de cliente dentro de SOLOMYCRM.</figcaption>
+      </figure>
+
+      <figure class="process-preview">
+        <img
+          src="${calendarSectionImage}"
+          alt="Sección de calendario en SOLOMYCRM"
+          class="process-preview-image"
+          loading="lazy"
+        />
+        <figcaption>Vista real de la sección de calendario dentro de SOLOMYCRM.</figcaption>
+      </figure>
 
       <div class="hero-actions process-actions">
         <a class="btn btn-primary" href="/contacto" data-link data-track="process_demo_click">Solicitar demo</a>
