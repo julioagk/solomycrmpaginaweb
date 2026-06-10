@@ -1,3 +1,4 @@
+import logoImage from '../assets/logosolomycrm.png'
 import { getWhatsAppLink } from '../config/contact.js'
 
 export function renderFooter() {
@@ -8,7 +9,12 @@ export function renderFooter() {
     <footer class="site-footer">
       <div class="footer-grid">
         <section class="footer-block">
-          <p class="footer-title">SOLOMYCRM</p>
+          <a href="/" data-link class="logo footer-logo" aria-label="SOLOMYCRM - Inicio" style="margin-bottom: 1rem; display: inline-flex; text-decoration: none;">
+            <img src="${logoImage}" alt="SOLOMYCRM" class="logo-img" />
+            <strong class="logo-text">
+              SoloMy<span class="logo-accent">CRM</span>
+            </strong>
+          </a>
           <p class="footer-copy">
             CRM comercial para captar, dar seguimiento y cerrar ventas con trazabilidad completa.
           </p>

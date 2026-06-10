@@ -1,17 +1,14 @@
+import logoImage from '../assets/logosolomycrm.png'
+
 export function renderHeader() {
   return `
     <header class="navbar">
       <div class="navbar-container">
         <div class="navbar-internal-glow"></div>
         <a href="/" data-link data-track="nav_logo_click" class="logo" aria-label="SOLOMYCRM - Inicio">
+          <img src="${logoImage}" alt="SOLOMYCRM" class="logo-img" />
           <strong class="logo-text">
-            <span class="brand-spacer" aria-hidden="true">solomycrm.com</span>
-            <span
-              class="brand-typewriter"
-              data-typewriter
-              data-typewriter-text="solomycrm.com"
-              aria-hidden="true"
-            ></span>
+            SoloMy<span class="logo-accent">CRM</span>
           </strong>
         </a>
 

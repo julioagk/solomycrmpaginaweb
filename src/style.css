@@ -139,16 +139,17 @@ p {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0;
-  color: #0f172a;
+  gap: 8px;
   text-decoration: none;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-  font-size: 10px;
   position: relative;
   z-index: 10;
   flex-shrink: 0;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 
 .logo-text {
@@ -156,34 +157,14 @@ p {
   position: relative;
   line-height: 1;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #0f172a;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
-.brand-spacer {
-  visibility: hidden;
-  white-space: nowrap;
-}
-
-.brand-typewriter {
-  position: absolute;
-  inset: 0;
-  white-space: nowrap;
-  display: inline-block;
-  overflow: visible;
-  min-width: 13ch;
-  padding-right: 5px;
-}
-
-.brand-typewriter::after {
-  content: '|';
-  margin-left: 0.1em;
+.logo-accent {
   color: var(--brand);
-  font-weight: 900;
-  animation: caret-blink 1s steps(1, end) infinite;
 }
 
 .nav-menu {
