@@ -147,7 +147,7 @@ p {
 }
 
 .logo-img {
-  height: 38px;
+  height: 24px;
   width: auto;
   display: block;
 }
@@ -157,9 +157,9 @@ p {
   position: relative;
   line-height: 1;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   color: var(--ink);
 }
 
