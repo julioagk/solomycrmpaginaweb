@@ -167,6 +167,14 @@ p {
   color: var(--brand);
 }
 
+.footer-logo .logo-text {
+  color: #ffffff;
+}
+
+.footer-logo .logo-accent {
+  color: #b6e9f7;
+}
+
 .nav-menu {
   display: flex;
   align-items: center;
