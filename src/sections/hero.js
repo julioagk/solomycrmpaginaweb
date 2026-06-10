@@ -1,6 +1,6 @@
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
-import dashboardImage from '../assets/dashboard.png'
+import dashboardImage from '../assets/dashboardsmcrm.png'
 import modulosImage from '../assets/modulos.png'
 
 export function renderHero() {
