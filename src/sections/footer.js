@@ -1,3 +1,4 @@
+import logoImage from '../assets/logosolomycrm.png'
 import { getWhatsAppLink } from '../config/contact.js'
 
 export function renderFooter() {

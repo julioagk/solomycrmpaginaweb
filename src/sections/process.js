@@ -1,7 +1,7 @@
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
 import panelClienteImage from '../assets/panelcliente.png'
-import calendarSectionImage from '../assets/calendarsection.png'
+import calendarSectionImage from '../assets/calendariocrm.png'
 
 export function renderProcess() {
   return `

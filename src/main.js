@@ -90,56 +90,7 @@ function setupRouteTracking() {
 	})
 }
 
-function setupNavbarTypewriter() {
-	const runTypewriter = (element) => {
-		if (!element || element.dataset.typewriterReady === 'true') return
-		element.dataset.typewriterReady = 'true'
 
-		const text = element.dataset.typewriterText || element.textContent.trim() || ''
-		const typingDelay = 100
-		const deletingDelay = 50
-		const pauseDelay = 30000
-		let index = 0
-		let deleting = false
-		let timeoutId = null
-
-		const tick = () => {
-			if (!element.isConnected) return
-
-			if (!deleting) {
-				index += 1
-				element.textContent = text.slice(0, index)
-				if (index >= text.length) {
-					deleting = true
-					timeoutId = window.setTimeout(tick, pauseDelay)
-					return
-				}
-				timeoutId = window.setTimeout(tick, typingDelay)
-				return
-			}
-
-			index -= 1
-			element.textContent = text.slice(0, index)
-			if (index <= 0) {
-				deleting = false
-				timeoutId = window.setTimeout(tick, typingDelay)
-				return
-			}
-			timeoutId = window.setTimeout(tick, deletingDelay)
-		}
-
-		element.textContent = ''
-		if (timeoutId) window.clearTimeout(timeoutId)
-		tick()
-	}
-
-	const refreshNavbar = () => {
-		document.querySelectorAll('[data-typewriter]').forEach(runTypewriter)
-	}
-
-	document.addEventListener('route:changed', refreshNavbar)
-	refreshNavbar()
-}
 
 function setupLeadForm() {
 	const fieldMessages = {
@@ -233,7 +184,6 @@ function setupLeadForm() {
 
 setupClickTracking()
 setupRouteTracking()
-setupNavbarTypewriter()
 setupLeadForm()
 
 // Start router
