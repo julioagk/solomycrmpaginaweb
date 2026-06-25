@@ -1,124 +1,68 @@
 import { renderHeader } from './header.js'
 import { renderFooter } from './footer.js'
-import dashboardImage from '../assets/dashboard.png'
-import modulosImage from '../assets/modulos.png'
 
 export function renderHero() {
   return `
     ${renderHeader()}
     <main>
-      <section class="hero-shell section" id="inicio">
-        <div class="hero-glow"></div>
-        <div class="hero-copy" style="position: relative; overflow: hidden; z-index: 10;">
-          <div id="hero-cascade" class="svg-cascade-container"></div>
-          <p class="tag">CRM COMERCIAL PARA EQUIPOS DE VENTAS</p>
-          <h1 class="crm-title">SOLOMY<span class="crm-accent">CRM</span></h1>
-          <p class="crm-subtitle">
-            Convierte más prospectos en ventas con seguimiento inteligente, agenda integrada
-            y control total de tu equipo comercial.
-          </p>
-          <div class="hero-actions">
-            <a
-              class="btn btn-primary premium-reflejo"
-              href="https://app.solomycrm.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="hero_crm_click"
-              aria-label="Abrir SOLOMYCRM en una nueva pestaña"
-            >
-              Ir al CRM
-            </a>
-            <a class="btn btn-secondary" href="/contacto" data-link data-track="hero_contacto_click">Contáctanos</a>
-            <a
-              class="btn btn-secondary btn-demo-access"
-              href="/proceso"
-              data-link
-              data-track="hero_proceso_click"
-            >
-              Cómo funciona
-            </a>
-          </div>
-          <p class="hero-demo-note">Si ya tienes acceso, entra directo al CRM. Si no, te ayudamos desde contacto.</p>
-          <div class="hero-points">
-            <span>Gestión simple</span>
-            <span>Agenda integrada</span>
-            <span>Control de equipo</span>
-          </div>
-        </div>
-
-        <aside class="hero-panel">
-          <div class="panel-tag">VISTA PREVIA DEL SISTEMA</div>
-          <h3>Dashboard de ventas</h3>
+      <!-- Hero Principal -->
+      <section class="section hero" id="inicio" style="padding: 7rem 0 5rem;">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 900px; margin: 0 auto;">
           
-          <div class="panel-simple-box">
-            <img src="${dashboardImage}" alt="Dashboard SOLOMYCRM" class="process-preview-image" style="margin-bottom: 1rem;" />
-            <p class="panel-simple-title">Métricas clave en tiempo real</p>
-            <ul class="panel-simple-list">
-              <li>Visualización de embudo comercial</li>
-              <li>Actividad diaria de prospectores</li>
-              <li>Metas de ventas por mes</li>
-            </ul>
-          </div>
-
-          <div class="panel-note">
-            Interfaz diseñada para la ejecución diaria sin distracciones.
-          </div>
-        </aside>
-      </section>
-
-      <section class="page-section section">
-        <div class="section-head">
-          <p class="tag">CRM SIMPLE Y DIRECTO</p>
-          <h2>Sin funciones de más, solo lo que realmente ayuda a vender</h2>
-          <p class="section-lead">
-            SOLOMYCRM está pensado para equipos que quieren trabajar rápido, con una herramienta clara y sin complicaciones.
+          <span class="tag" style="margin-bottom: 1.5rem; padding: 0.4rem 1.2rem; font-size: 0.85rem; border-radius: 999px; background: var(--brand-light); color: var(--brand); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+            El CRM enfocado en ejecución
+          </span>
+          
+          <h1 style="font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.05; color: var(--text-main); margin-bottom: 1.5rem; letter-spacing: -0.03em;">
+            Convierte más prospectos en ventas con <span style="color: var(--brand);">control total</span>
+          </h1>
+          
+          <p class="lead" style="font-size: 1.25rem; color: var(--text-muted); line-height: 1.6; max-width: 650px; margin: 0 auto 2.5rem;">
+            Seguimiento inteligente, agenda integrada y visibilidad de resultados 
+            para equipos comerciales que quieren trabajar rápido y sin distracciones.
           </p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card premium-reflejo">
-            <h3>Todo en un solo lugar</h3>
-            <p>Clientes, prospectos, tareas y seguimiento en una vista simple para trabajar el día a día.</p>
-          </article>
-          <article class="feature-card premium-reflejo">
-            <h3>Curva de aprendizaje corta</h3>
-            <p>No necesitas semanas de capacitación: la plataforma está diseñada para ser intuitiva desde el inicio.</p>
-          </article>
-          <article class="feature-card premium-reflejo">
-            <h3>Capturas reales del sistema</h3>
-            <p>En la sección “Cómo funciona” mostramos imágenes reales como panel de cliente y calendario para que veas exactamente cómo se usa.</p>
-          </article>
-        </div>
-        <div class="hero-actions">
-          <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="home_demo_bottom_click">Solicitar demo</a>
-          <a class="btn btn-secondary" href="/proceso" data-link data-track="home_process_click">Ver cómo funciona</a>
+          
+          <div class="hero-actions" style="display: flex; gap: 1.2rem; align-items: center; justify-content: center;">
+            <a class="btn btn-primary" href="/contacto" data-link style="padding: 1rem 2rem; font-size: 1.05rem;">Solicitar demo gratuita</a>
+            <a class="btn btn-secondary" href="/proceso" data-link style="padding: 1rem 2rem; font-size: 1.05rem;">Cómo funciona</a>
+          </div>
+          
         </div>
       </section>
 
-      <section class="page-section section">
-        <div class="section-head">
-          <p class="tag">NOVEDADES CONSTANTES</p>
-          <h2>SOLOMYCRM evoluciona contigo</h2>
-          <p class="section-lead">
-            Módulos nuevos que se adaptan a cada tipo de cliente o necesidad.
-          </p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card premium-reflejo">
-            <h3>Actualizaciones constantes</h3>
-            <p>Publicamos mejoras continuas para que el sistema sea más rápido, estable y útil en tu operación diaria.</p>
-          </article>
-          <article class="feature-card premium-reflejo">
-            <h3>Módulos personalizados</h3>
-            <p>Podemos adaptar módulos según tu tipo de cliente, industria y situación comercial sin volver el CRM complejo.</p>
-          </article>
-          <article class="feature-card premium-reflejo">
-            <h3>Módulos nuevos de forma continua</h3>
-            <p>Seguimos incorporando funciones prácticas que sí aportan valor, evitando herramientas que solo estorban.</p>
-          </article>
-        </div>
-        <div class="hero-actions">
-          <a class="btn btn-primary premium-reflejo" href="/contacto" data-link data-track="novedades_demo_click">Solicitar demo</a>
-          <a class="btn btn-secondary" href="/proceso" data-link data-track="novedades_process_click">Ver cómo funciona</a>
+      <!-- Subsección -->
+      <section class="section" style="padding-top: 2rem;">
+        <div class="container">
+          <div style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700;">Sin funciones de más, solo lo que ayuda a vender</h2>
+            <p style="max-width: 600px; margin: 1rem auto 0; font-size: 1.1rem; color: var(--text-muted);">
+              SOLOMYCRM está pensado para equipos que quieren trabajar rápido con una herramienta clara.
+            </p>
+          </div>
+          
+          <div class="grid-3" style="gap: 2rem;">
+            <div class="card" style="padding: 2.5rem; text-align: left;">
+              <div style="background: var(--brand-light); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--brand);">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+              </div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Todo en un solo lugar</h3>
+              <p style="font-size: 1rem; color: var(--text-muted);">Clientes, prospectos, tareas y seguimiento en una vista simple para trabajar el día a día.</p>
+            </div>
+            <div class="card" style="padding: 2.5rem; text-align: left;">
+              <div style="background: var(--brand-light); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--brand);">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Curva de aprendizaje corta</h3>
+              <p style="font-size: 1rem; color: var(--text-muted);">No necesitas semanas de capacitación: la plataforma está diseñada para ser intuitiva desde el inicio.</p>
+            </div>
+            <div class="card" style="padding: 2.5rem; text-align: left;">
+              <div style="background: var(--brand-light); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; color: var(--brand);">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+              </div>
+              <h3 style="font-size: 1.25rem; margin-bottom: 0.75rem;">Visibilidad compartida</h3>
+              <p style="font-size: 1rem; color: var(--text-muted);">Muestra información y métricas clave a tu equipo sin perder el control comercial.</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>

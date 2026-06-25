@@ -5,62 +5,55 @@ import calendarSectionImage from '../assets/calendarsection.png'
 
 export function renderProcess() {
   return `
-    <section class="page-section section process" id="como-funciona">
-      <div class="section-head">
-        <p class="tag">CÓMO FUNCIONA EN 4 PASOS</p>
-        <h2>Proceso simple para ejecutar y convertir</h2>
-        <p class="section-lead">
-          Desde la captura del prospecto hasta la medicion de resultados, todo queda
-          centralizado para que el equipo actúe rápido.
-        </p>
-      </div>
+    <section class="section" id="como-funciona">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+          <span class="tag">CÓMO FUNCIONA EN 4 PASOS</span>
+          <h2>Proceso simple para ejecutar y convertir</h2>
+          <p style="max-width: 700px; margin: 0 auto;">
+            Desde la captura del prospecto hasta la medición de resultados, todo queda centralizado.
+          </p>
+        </div>
 
-      <div class="steps">
-        <article>
-          <span>01</span>
-          <h3>Captura prospectos</h3>
-          <p>Registra leads desde formularios, llamadas, referidos o WhatsApp en segundos.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h3>Da seguimiento</h3>
-          <p>Asigna actividades y recordatorios para mantener cada oportunidad activa.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h3>Agenda y registra reuniones</h3>
-          <p>Sincroniza calendario y documenta resultado, acuerdos y próxima acción.</p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3>Convierte y mide</h3>
-          <p>Mueve a cliente y revisa conversión, ventas y desempeño comercial por vendedor.</p>
-        </article>
-      </div>
+        <div class="grid-2" style="margin-bottom: 4rem;">
+          <div class="card" style="text-align: center;">
+            <div style="background-color: var(--brand-light); color: var(--brand); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">1</div>
+            <h3>Captura prospectos</h3>
+            <p>Registra leads desde formularios, llamadas, referidos o WhatsApp en segundos.</p>
+          </div>
+          <div class="card" style="text-align: center;">
+            <div style="background-color: var(--brand-light); color: var(--brand); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">2</div>
+            <h3>Da seguimiento</h3>
+            <p>Asigna actividades y recordatorios para mantener cada oportunidad activa.</p>
+          </div>
+          <div class="card" style="text-align: center;">
+            <div style="background-color: var(--brand-light); color: var(--brand); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">3</div>
+            <h3>Agenda y reuniones</h3>
+            <p>Sincroniza calendario y documenta resultado, acuerdos y próxima acción.</p>
+          </div>
+          <div class="card" style="text-align: center;">
+            <div style="background-color: var(--brand-light); color: var(--brand); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 1rem;">4</div>
+            <h3>Convierte y mide</h3>
+            <p>Mueve a cliente y revisa conversión, ventas y desempeño comercial por vendedor.</p>
+          </div>
+        </div>
 
-      <figure class="process-preview">
-        <img
-          src="${panelClienteImage}"
-          alt="Panel de cliente en SOLOMYCRM"
-          class="process-preview-image"
-          loading="lazy"
-        />
-        <figcaption>Vista real del panel de cliente dentro de SOLOMYCRM.</figcaption>
-      </figure>
+        <div class="grid-2">
+          <figure style="text-align: center;">
+            <img src="${panelClienteImage}" alt="Panel de cliente en SOLOMYCRM" style="max-width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);" loading="lazy" />
+            <figcaption style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">Vista real del panel de cliente dentro de SOLOMYCRM.</figcaption>
+          </figure>
 
-      <figure class="process-preview">
-        <img
-          src="${calendarSectionImage}"
-          alt="Sección de calendario en SOLOMYCRM"
-          class="process-preview-image"
-          loading="lazy"
-        />
-        <figcaption>Vista real de la sección de calendario dentro de SOLOMYCRM.</figcaption>
-      </figure>
+          <figure style="text-align: center;">
+            <img src="${calendarSectionImage}" alt="Sección de calendario en SOLOMYCRM" style="max-width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm);" loading="lazy" />
+            <figcaption style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">Vista real de la sección de calendario dentro de SOLOMYCRM.</figcaption>
+          </figure>
+        </div>
 
-      <div class="hero-actions process-actions">
-        <a class="btn btn-primary" href="/contacto" data-link data-track="process_demo_click">Solicitar demo</a>
-        <a class="btn btn-secondary" href="/funcionalidades" data-link data-track="process_modules_click">Ver módulos</a>
+        <div style="text-align: center; margin-top: 4rem;">
+          <a class="btn btn-primary" href="/contacto" data-link style="margin-right: 1rem;">Solicitar demo</a>
+          <a class="btn btn-secondary" href="/funcionalidades" data-link>Ver módulos</a>
+        </div>
       </div>
     </section>
   `;
@@ -75,4 +68,3 @@ export function renderProcessPage() {
     ${renderFooter()}
   `
 }
-

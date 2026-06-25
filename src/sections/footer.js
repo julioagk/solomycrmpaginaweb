@@ -5,53 +5,54 @@ export function renderFooter() {
   const whatsappLink = getWhatsAppLink()
 
   return `
-    <footer class="site-footer">
-      <div class="footer-grid">
-        <section class="footer-block">
-          <p class="footer-title">SOLOMYCRM</p>
-          <p class="footer-copy">
-            CRM comercial para captar, dar seguimiento y cerrar ventas con trazabilidad completa.
-          </p>
-        </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="logo" style="margin-bottom: 1rem;">
+              SOLOMY<span style="color: var(--brand);">CRM</span>
+            </div>
+            <p style="max-width: 400px; font-size: 0.875rem;">
+              CRM comercial para captar, dar seguimiento y cerrar ventas con trazabilidad completa.
+            </p>
+          </div>
 
-        <nav class="footer-block" aria-label="Navegación del sitio">
-          <p class="footer-heading">Navegación</p>
-          <a href="/" data-link class="footer-link">Inicio</a>
-          <a href="/proceso" data-link class="footer-link">Proceso</a>
-          <a href="/funcionalidades" data-link class="footer-link">Funcionalidades</a>
-          <a href="/contacto" data-link class="footer-link">Contacto</a>
-        </nav>
+          <div class="footer-col">
+            <h4>Navegación</h4>
+            <ul class="footer-links">
+              <li><a href="/" data-link>Inicio</a></li>
+              <li><a href="/proceso" data-link>Proceso</a></li>
+              <li><a href="/funcionalidades" data-link>Funcionalidades</a></li>
+              <li><a href="/contacto" data-link>Contacto</a></li>
+            </ul>
+          </div>
 
-        <section class="footer-block">
-          <p class="footer-heading">Contacto</p>
-          ${
-            whatsappLink
-              ? `<a class="footer-link footer-contact-link" href="${whatsappLink}" target="_blank" rel="noopener noreferrer" data-track="footer_phone_whatsapp_click">WhatsApp: +52 81 3645 8366</a>`
-              : `<p class="footer-copy">WhatsApp: +52 81 3645 8366</p>`
-          }
-          <a class="footer-link footer-contact-link" href="mailto:lesly@updm.mx" data-track="footer_email_click">lesly@updm.mx</a>
-          <p class="footer-copy">Atención para demos, onboarding y consultoría comercial.</p>
-          ${
-            whatsappLink
-              ? `<a class="btn btn-primary footer-cta" href="/contacto" data-link data-track="footer_demo_click">Solicitar demo</a>`
-              : ''
-          }
-        </section>
-      </div>
+          <div class="footer-col">
+            <h4>Contacto</h4>
+            <ul class="footer-links">
+              ${
+                whatsappLink
+                  ? `<li><a href="${whatsappLink}" target="_blank" rel="noopener noreferrer">WhatsApp: +52 81 3645 8366</a></li>`
+                  : `<li><span style="color: var(--text-muted); font-size: 0.875rem;">WhatsApp: +52 81 3645 8366</span></li>`
+              }
+              <li><a href="mailto:lesly@updm.mx">lesly@updm.mx</a></li>
+            </ul>
+            ${
+              whatsappLink
+                ? `<a class="btn btn-primary" href="/contacto" data-link style="margin-top: 1rem; font-size: 0.875rem; padding: 0.5rem 1rem;">Solicitar demo</a>`
+                : ''
+            }
+          </div>
+        </div>
 
-      <div class="footer-legal">
-        <p>&copy; ${currentYear} SOLOMYCRM. Todos los derechos reservados.</p>
-        <div class="legal-links">
-          <a href="https://app.solomycrm.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer">
-            Política de Privacidad
-          </a>
-          <span class="legal-separator">|</span>
-          <a href="https://app.solomycrm.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer">
-            Términos y Condiciones
-          </a>
+        <div class="footer-bottom">
+          <div>&copy; ${currentYear} SOLOMYCRM. Todos los derechos reservados.</div>
+          <div style="display: flex; gap: 1rem;">
+            <a href="https://app.solomycrm.com/politica-de-privacidad" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Política de Privacidad</a>
+            <a href="https://app.solomycrm.com/terminos-y-condiciones" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">Términos y Condiciones</a>
+          </div>
         </div>
       </div>
     </footer>
   `
 }
-

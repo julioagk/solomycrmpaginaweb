@@ -3,93 +3,84 @@ import { renderFooter } from './footer.js'
 
 export function renderCTA() {
   return `
-    <section class="page-section section cta-section" id="solicitar-demo">
-      <div class="section-head">
-        <h2>Solicitar demo</h2>
-        <p class="section-lead">
-          Completa el formulario y te contactamos en menos de 24 horas.
-        </p>
-      </div>
+    <section class="section" id="solicitar-demo">
+      <div class="container">
+        
+        <div class="grid-2">
+          <aside class="cta-panel">
+            <h2>Solicitar demo</h2>
+            <p style="margin-bottom: 2rem;">Completa el formulario y te contactamos en menos de 24 horas.</p>
+            
+            <ul style="list-style: none; padding: 0; text-align: left; max-width: 300px; margin: 0 auto 3rem;">
+              <li style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">✓</span>
+                <div>
+                  <strong>Sin compromiso</strong>
+                  <p style="font-size: 0.875rem; color: rgba(255,255,255,0.8); margin-top: 0.25rem;">Conoce el sistema sin presión.</p>
+                </div>
+              </li>
+              <li style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">✓</span>
+                <div>
+                  <strong>Demo personalizada</strong>
+                  <p style="font-size: 0.875rem; color: rgba(255,255,255,0.8); margin-top: 0.25rem;">Casos de uso según tu industria.</p>
+                </div>
+              </li>
+              <li style="display: flex; gap: 1rem;">
+                <span style="background: rgba(255,255,255,0.2); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">✓</span>
+                <div>
+                  <strong>Onboarding incluido</strong>
+                  <p style="font-size: 0.875rem; color: rgba(255,255,255,0.8); margin-top: 0.25rem;">Implementación desde el primer día.</p>
+                </div>
+              </li>
+            </ul>
+            
+            <div>
+              <a href="mailto:lesly@updm.mx" style="color: white; text-decoration: underline;">✉ lesly@updm.mx</a>
+            </div>
+          </aside>
 
-      <div class="cta-trust-row" aria-label="Beneficios de contacto">
-        <span class="cta-trust-chip">Respuesta en menos de 24h</span>
-        <span class="cta-trust-chip">Demo guiada</span>
-      </div>
-
-      <div class="cta-layout">
-
-        <!-- Panel izquierdo: beneficios -->
-        <aside class="cta-panel">
-          <p class="cta-panel-label">¿Por qué agendar una demo?</p>
-          <ul class="cta-benefits">
-            <li class="cta-benefit">
-              <span class="cta-benefit-icon">✓</span>
-              <div>
-                <strong>Sin compromiso</strong>
-                <p>Conoce el sistema sin presión de compra.</p>
+          <div class="card" style="align-self: center;">
+            <h3 style="margin-bottom: 0.5rem;">Agenda tu demo gratuita</h3>
+            <p style="margin-bottom: 2rem; font-size: 0.875rem;">Cuéntanos tu situación y te mostramos cómo adaptarlo a tu equipo.</p>
+            
+            <form id="lead-form" novalidate>
+              <div class="grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group" style="margin: 0;">
+                  <label class="form-label" for="lead-name">Nombre completo</label>
+                  <input class="form-control" id="lead-name" name="name" type="text" placeholder="Ej. Carlos Ramírez" required />
+                  <span class="error-message" data-error-for="name"></span>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                  <label class="form-label" for="lead-company">Empresa</label>
+                  <input class="form-control" id="lead-company" name="company" type="text" placeholder="Ej. Distribuidora Norte" required />
+                  <span class="error-message" data-error-for="company"></span>
+                </div>
               </div>
-            </li>
-            <li class="cta-benefit">
-              <span class="cta-benefit-icon">✓</span>
-              <div>
-                <strong>Demo personalizada</strong>
-                <p>Te mostramos casos de uso según tu industria.</p>
+              
+              <div class="grid-2" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group" style="margin: 0;">
+                  <label class="form-label" for="lead-phone">Teléfono</label>
+                  <input class="form-control" id="lead-phone" name="phone" type="tel" placeholder="Ej. 81 1234 5678" required />
+                  <span class="error-message" data-error-for="phone"></span>
+                </div>
+                <div class="form-group" style="margin: 0;">
+                  <label class="form-label" for="lead-email">Correo electrónico</label>
+                  <input class="form-control" id="lead-email" name="email" type="email" placeholder="tu@empresa.com" required />
+                  <span class="error-message" data-error-for="email"></span>
+                </div>
               </div>
-            </li>
-            <li class="cta-benefit">
-              <span class="cta-benefit-icon">✓</span>
-              <div>
-                <strong>Onboarding incluido</strong>
-                <p>Implementación y capacitación desde el primer día.</p>
+              
+              <div class="form-group">
+                <label class="form-label" for="lead-need">¿Qué quieres mejorar?</label>
+                <textarea class="form-control" id="lead-need" name="need" rows="3" placeholder="Ej. Quiero mejorar el seguimiento de prospectos." required></textarea>
+                <span class="error-message" data-error-for="need"></span>
               </div>
-            </li>
-          </ul>
-          <div class="cta-panel-footer">
-            <a href="mailto:lesly@updm.mx" class="cta-email-link" data-track="cta_email_click">
-              ✉ lesly@updm.mx
-            </a>
+              
+              <button class="btn btn-primary" type="submit" style="width: 100%;">Solicitar demo gratuita</button>
+              <p id="lead-form-status" style="margin-top: 1rem; text-align: center; font-size: 0.875rem; color: var(--text-muted);"></p>
+            </form>
           </div>
-        </aside>
-
-        <!-- Panel derecho: formulario -->
-        <div class="cta-form-wrap">
-          <p class="cta-form-title">Agenda tu demo gratuita</p>
-          <p class="cta-form-subtitle">Cuéntanos tu situación y te mostramos cómo adaptarlo a tu equipo.</p>
-          <form id="lead-form" class="lead-form-v2" novalidate>
-            <div class="lead-form-row">
-              <label class="lead-field-v2" for="lead-name">
-                <span class="lead-label">Nombre completo</span>
-                <input id="lead-name" name="name" type="text" autocomplete="name" placeholder="Ej. Carlos Ramírez" required />
-                <span class="lead-field-error" data-error-for="name" aria-live="polite"></span>
-              </label>
-              <label class="lead-field-v2" for="lead-company">
-                <span class="lead-label">Empresa</span>
-                <input id="lead-company" name="company" type="text" autocomplete="organization" placeholder="Ej. Distribuidora Norte" required />
-                <span class="lead-field-error" data-error-for="company" aria-live="polite"></span>
-              </label>
-            </div>
-            <div class="lead-form-row">
-              <label class="lead-field-v2" for="lead-phone">
-                <span class="lead-label">Teléfono</span>
-                <input id="lead-phone" name="phone" type="tel" autocomplete="tel" placeholder="Ej. 81 1234 5678" required />
-                <span class="lead-field-error" data-error-for="phone" aria-live="polite"></span>
-              </label>
-              <label class="lead-field-v2" for="lead-email">
-                <span class="lead-label">Correo electrónico</span>
-                <input id="lead-email" name="email" type="email" autocomplete="email" placeholder="tu@empresa.com" required />
-                <span class="lead-field-error" data-error-for="email" aria-live="polite"></span>
-              </label>
-            </div>
-            <label class="lead-field-v2 full-width" for="lead-need">
-              <span class="lead-label">¿Qué quieres mejorar en tu proceso comercial?</span>
-              <textarea id="lead-need" name="need" rows="3" placeholder="Ej. Quiero mejorar el seguimiento de prospectos y la visibilidad del equipo." required></textarea>
-              <span class="lead-field-error" data-error-for="need" aria-live="polite"></span>
-            </label>
-            <button class="btn btn-primary cta-submit-btn" type="submit" data-track="lead_email_submit_click">
-              Solicitar demo gratuita →
-            </button>
-            <p id="lead-form-status" class="contact-note" role="status" aria-live="polite"></p>
-          </form>
         </div>
 
       </div>
