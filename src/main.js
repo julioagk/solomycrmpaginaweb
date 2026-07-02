@@ -3,8 +3,18 @@ import { Router } from './router.js'
 import { renderHero } from './sections/hero.js'
 import { renderPricingPage } from './sections/pricing.js'
 import { renderSubscriptionPage } from './sections/subscription.js'
-import { initCascade, initHeroText, initHeroPhrases, initBenefitsAnimation } from './animations.js'
+import { initCascade, initHeroText, initHeroPhrases, initBenefitsAnimation, initHeroTextMobile, initHeroPhrasesMobile } from './animations.js'
 import { trackEvent } from './analytics.js'
+
+// ── Mobile component imports ─────────────────────────────────
+import { renderHeroMobile } from './sections/mobile/heroMobile.js'
+import { renderPricingMobile } from './sections/mobile/pricingMobile.js'
+import { renderSubscriptionMobile } from './sections/mobile/subscriptionMobile.js'
+import { initMobileMenu } from './sections/mobile/headerMobile.js'
+import { initMobileSlider } from './sections/mobile/pricingMobile.js'
+
+// ── Device detection (evaluated once at boot) ─────────────────
+const isMobile = window.matchMedia('(max-width: 768px)').matches
 
 import Swiper from 'swiper';
 import { Navigation, Pagination, EffectCoverflow, Autoplay } from 'swiper/modules';
@@ -26,11 +36,11 @@ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
 // Initialize router
 const router = new Router()
 
-// Register routes
-router.register('/', renderHero)
-router.register('/inicio', renderHero)
-router.register('/funcionalidades', renderPricingPage)
-router.register('/precios', renderSubscriptionPage)
+// Register routes — use mobile components when on a small screen
+router.register('/', isMobile ? renderHeroMobile : renderHero)
+router.register('/inicio', isMobile ? renderHeroMobile : renderHero)
+router.register('/funcionalidades', isMobile ? renderPricingMobile : renderPricingPage)
+router.register('/precios', isMobile ? renderSubscriptionMobile : renderSubscriptionPage)
 
 // ── Modal helpers ────────────────────────────────────────────
 function showModal({ type, title, message }) {
@@ -121,15 +131,30 @@ function setupRouteTracking() {
 		const routePath = event?.detail?.path || window.location.pathname
 		trackEvent('page_view', { path: routePath })
 
+		// Wire up mobile-specific interactivity after every render
+		if (isMobile) {
+			initMobileMenu()
+		}
+
 		if (routePath === '/' || routePath === '/inicio') {
-			initCascade('#hero-cascade')
-			initHeroText()
-			initHeroPhrases()
-			initBenefitsAnimation()
+			if (isMobile) {
+				initHeroTextMobile()
+				initHeroPhrasesMobile()
+				initBenefitsAnimation()
+			} else {
+				initCascade('#hero-cascade')
+				initHeroText()
+				initHeroPhrases()
+				initBenefitsAnimation()
+			}
 		}
 
 		if (routePath === '/funcionalidades') {
-			initFeaturesSwiper()
+			if (isMobile) {
+				initMobileSlider()
+			} else {
+				initFeaturesSwiper()
+			}
 		}
 	})
 }
@@ -337,11 +362,22 @@ setupLeadForm()
 // Start router
 router.start()
 
+// Mobile menu init for initial render (route:changed already handles subsequent navigations)
+if (isMobile) {
+	initMobileMenu()
+}
+
 // Initial cascade call for the home page
 if (window.location.pathname === '/' || window.location.pathname === '/inicio') {
-	initCascade('#hero-cascade')
-	initHeroText()
-	initHeroPhrases()
-	initBenefitsAnimation()
+	if (isMobile) {
+		initHeroTextMobile()
+		initHeroPhrasesMobile()
+		initBenefitsAnimation()
+	} else {
+		initCascade('#hero-cascade')
+		initHeroText()
+		initHeroPhrases()
+		initBenefitsAnimation()
+	}
 }
 

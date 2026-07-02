@@ -169,3 +169,89 @@ export function initBenefitsAnimation() {
 
   runAnimation();
 }
+
+// ── Mobile variants ─────────────────────────────────────────────
+
+export function initHeroTextMobile() {
+  const container = document.getElementById('modules-carousel-mobile') || document.querySelector('.mob-module-carousel');
+  const iconEl = document.getElementById('module-icon-mobile');
+  const titleEl = document.getElementById('module-title-mobile');
+  const descEl = document.getElementById('module-desc-mobile');
+  if (!iconEl || !titleEl || !descEl) return;
+
+  const modules = [
+    {
+      icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>`,
+      title: "Dashboard Intuitivo",
+      desc: "Métricas y gráficas de ventas en tiempo real."
+    },
+    {
+      icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+      title: "Gestión de Clientes",
+      desc: "Historial completo de interacciones con cada prospecto."
+    },
+    {
+      icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>`,
+      title: "Tareas y Actividades",
+      desc: "Agenda reuniones y pendientes automáticamente."
+    },
+    {
+      icon: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>`,
+      title: "Alertas Inteligentes",
+      desc: "Notificaciones para cerrar tratos a tiempo."
+    }
+  ];
+
+  let idx = 0;
+  const wrapEl = iconEl.closest('div') || iconEl.parentElement;
+
+  setInterval(() => {
+    if (wrapEl) { wrapEl.style.opacity = '0'; wrapEl.style.transform = 'translateX(-20px)'; }
+
+    setTimeout(() => {
+      idx = (idx + 1) % modules.length;
+      const mod = modules[idx];
+      iconEl.innerHTML = mod.icon;
+      titleEl.innerText = mod.title;
+      descEl.innerText = mod.desc;
+
+      if (wrapEl) {
+        wrapEl.style.transition = 'none';
+        wrapEl.style.transform = 'translateX(20px)';
+        void wrapEl.offsetWidth;
+        wrapEl.style.transition = 'all 0.4s ease-in-out';
+        wrapEl.style.opacity = '1';
+        wrapEl.style.transform = 'translateX(0)';
+      }
+    }, 400);
+  }, 4500);
+}
+
+export function initHeroPhrasesMobile() {
+  const textEl = document.getElementById('hero-phrase-text-mobile');
+  if (!textEl) return;
+
+  const phrases = [
+    "El CRM más fácil de usar.",
+    "Diseñado para aumentar tus ventas.",
+    "Sin funciones innecesarias.",
+    "Visibilidad total de tus prospectos."
+  ];
+
+  let idx = 0;
+  setInterval(() => {
+    textEl.style.opacity = '0';
+    textEl.style.transform = 'translateX(-15px)';
+
+    setTimeout(() => {
+      idx = (idx + 1) % phrases.length;
+      textEl.innerText = phrases[idx];
+      textEl.style.transition = 'none';
+      textEl.style.transform = 'translateX(15px)';
+      void textEl.offsetWidth;
+      textEl.style.transition = 'all 0.4s ease-in-out';
+      textEl.style.opacity = '1';
+      textEl.style.transform = 'translateX(0)';
+    }, 400);
+  }, 4000);
+}
