@@ -134,8 +134,8 @@ export function renderHero() {
             ">
               ${renderFloatingIcons(15)}
               <div id="modules-carousel" style="position: relative; z-index: 10; width: 100%; transition: all 0.5s ease-in-out;">
-                <div id="module-icon" style="margin-bottom: 1rem; filter: drop-shadow(0 4px 10px rgba(59, 130, 246, 0.2));">
-                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></svg>
+                <div id="module-icon" style="margin-bottom: 1rem; filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));">
+                  <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
                 </div>
                 <h3 id="module-title" style="font-size: 1.4rem; font-weight: 900; color: #0f172a; margin: 0 0 0.5rem 0; letter-spacing: -0.02em;">Dashboard Intuitivo</h3>
                 <p id="module-desc" style="font-size: 0.95rem; font-weight: 500; color: #64748b; margin: 0; line-height: 1.5;">Métricas y gráficas de ventas actualizadas en tiempo real. Obtén una vista panorámica de todo tu embudo de ventas al instante y toma mejores decisiones basadas en datos y rendimiento real.</p>

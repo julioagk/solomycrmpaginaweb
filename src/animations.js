@@ -44,22 +44,22 @@ export function initHeroText() {
 
   const modules = [
     { 
-      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></svg>`, 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>`, 
       title: "Dashboard Intuitivo", 
       desc: "Métricas y gráficas de ventas actualizadas en tiempo real. Obtén una vista panorámica de todo tu embudo de ventas al instante y toma mejores decisiones basadas en datos y rendimiento real." 
     },
     { 
-      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`, 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, 
       title: "Gestión de Clientes", 
       desc: "Toda la información de tus prospectos a un solo clic de distancia. Mantén un historial completo de interacciones, notas y documentos para dar el mejor seguimiento personalizado sin perder el hilo." 
     },
     { 
-      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /><path d="m9 16 2 2 4-4" /></svg>`, 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>`, 
       title: "Tareas y Actividades", 
       desc: "Agenda reuniones, llamadas y pendientes sin que nada se te pase. Con el organizador inteligente, tu equipo sabrá exactamente qué hacer cada día para mantener el ritmo de cierre de ventas." 
     },
     { 
-      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>`, 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>`, 
       title: "Notificaciones Proactivas", 
       desc: "Alertas inteligentes para que cierres tus tratos a tiempo. Te avisaremos cuando un cliente lleve mucho tiempo sin respuesta o cuando tengas una junta importante a punto de comenzar." 
     }
@@ -139,7 +139,8 @@ export function initBenefitsAnimation() {
     "📈 Seguimiento perfecto",
     "🤝 Trabajo en equipo",
     "⚡ Soporte ultra rápido",
-    "📱 Móvil y Escritorio"
+    "📱 Móvil y Escritorio",
+    "⏳ Más próximamente..."
   ];
 
   function runAnimation() {

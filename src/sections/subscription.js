@@ -3,15 +3,42 @@ import { renderFooter } from './footer.js'
 
 export function renderSubscription() {
   return `
-    <section class="section" id="precios" style="padding: 6rem 1.5rem; background-color: var(--bg-body);">
-      <div class="container" style="max-width: 1150px; width: 100%; margin: 0 auto;">
+    <section class="section" id="precios" style="padding: 2rem 1.5rem 6rem; background-color: var(--bg-body);">
+      <style>
+        .pricing-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          align-items: stretch;
+        }
+        @media (max-width: 1100px) {
+          .pricing-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 640px) {
+          .pricing-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        .pricing-card {
+          transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.15), 0 10px 10px -5px rgba(37, 99, 235, 0.04);
+          border-color: var(--brand) !important;
+          z-index: 10;
+        }
+      </style>
+      <div class="container" style="max-width: 1300px; width: 100%; margin: 0 auto;">
 
 
         <!-- Grid de Precios -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: stretch;">
+        <div class="pricing-grid">
           
           <!-- Plan Free (Broma) -->
-          <div style="background: white; border-radius: 16px; border: 1px dashed #cbd5e1; padding: 2rem; display: flex; flex-direction: column; opacity: 0.7;">
+          <div class="pricing-card" style="background: white; border-radius: 16px; border: 1px dashed #cbd5e1; padding: 2rem; display: flex; flex-direction: column; opacity: 0.7; position: relative;">
             <h3 style="font-size: 1.3rem; font-weight: 800; color: #64748b; margin-bottom: 0.25rem;">Plan "A la Antigua"</h3>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Para los que aman vivir al límite y perder ventas.</p>
             <div style="margin-bottom: 2rem;">
@@ -44,7 +71,7 @@ export function renderSubscription() {
           </div>
 
           <!-- Plan Mensual -->
-          <div style="background: white; border-radius: 16px; border: 1px solid var(--border-light); padding: 2rem; display: flex; flex-direction: column;">
+          <div class="pricing-card" style="background: white; border-radius: 16px; border: 1px solid var(--border-light); padding: 2rem; display: flex; flex-direction: column; position: relative;">
             <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem;">Pago Mensual</h3>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Flexibilidad total, cancela cuando quieras.</p>
             <div style="margin-bottom: 2rem;">
@@ -76,11 +103,47 @@ export function renderSubscription() {
                 <span style="font-size: 0.95rem; color: var(--text-muted);">Soporte y actualizaciones</span>
               </li>
             </ul>
-            <a href="https://app.solomycrm.com" target="_blank" rel="noopener noreferrer" class="btn" style="width: 100%; border: 1px solid var(--border-color); background: transparent; color: var(--text-main); font-weight: 600; padding: 0.8rem; border-radius: 8px; text-decoration: none; display: inline-block; text-align: center; font-family: inherit;">Ir al CRM</a>
+            <button disabled style="width: 100%; border: 1px solid #cbd5e1; background: #f1f5f9; color: #94a3b8; font-weight: 600; padding: 0.8rem; border-radius: 8px; cursor: not-allowed; font-family: inherit;">Próximamente</button>
+          </div>
+
+          <!-- Plan Mensual Equipo -->
+          <div class="pricing-card" style="background: white; border-radius: 16px; border: 1px solid var(--border-light); padding: 2rem; display: flex; flex-direction: column; position: relative;">
+            <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.25rem;">Pago Mensual (Equipo)</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Ideal para equipos comerciales en crecimiento.</p>
+            <div style="margin-bottom: 2rem;">
+              <span style="font-size: 2.5rem; font-weight: 900; color: var(--text-main); line-height: 1;">$299</span><span style="font-size: 0.95rem; color: var(--text-muted);">/mes</span>
+            </div>
+            
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem; flex-grow: 1; display: flex; flex-direction: column; gap: 0.85rem;">
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0; margin-top: 0.1rem;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                <div>
+                  <span style="font-size: 0.95rem; color: var(--text-muted); display: block;"><strong>1 cuenta con 4 usuarios</strong></span>
+                  <span style="font-size: 0.75rem; color: var(--brand); font-weight: 600;">+ Usuarios extra desde la app</span>
+                </div>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                <span style="font-size: 0.95rem; color: var(--text-muted);">Embudos de venta visuales</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                <span style="font-size: 0.95rem; color: var(--text-muted);">Recordatorios y tareas automáticas</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                <span style="font-size: 0.95rem; color: var(--text-muted);">Métricas en tiempo real</span>
+              </li>
+              <li style="display: flex; align-items: flex-start; gap: 0.6rem;">
+                <svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink: 0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                <span style="font-size: 0.95rem; color: var(--text-muted);">Soporte y actualizaciones</span>
+              </li>
+            </ul>
+            <button disabled style="width: 100%; border: 1px solid #cbd5e1; background: #f1f5f9; color: #94a3b8; font-weight: 600; padding: 0.8rem; border-radius: 8px; cursor: not-allowed; font-family: inherit;">Próximamente</button>
           </div>
 
           <!-- Plan Anual -->
-          <div style="background: white; border-radius: 16px; border: 2px solid var(--brand); padding: 2rem; display: flex; flex-direction: column; position: relative; box-shadow: 0 15px 30px -10px rgba(37,99,235,0.15); transform: translateY(-5px);">
+          <div class="pricing-card" style="background: white; border-radius: 16px; border: 2px solid var(--brand); padding: 2rem; display: flex; flex-direction: column; position: relative; box-shadow: 0 15px 30px -10px rgba(37,99,235,0.15);">
             <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--brand); color: white; padding: 0.2rem 1rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap;">1 MES GRATIS</div>
             <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--brand); margin-bottom: 0.25rem;">Pago Anual</h3>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">La opción más inteligente para ahorrar a largo plazo.</p>
@@ -113,8 +176,20 @@ export function renderSubscription() {
                 <span style="font-size: 0.95rem; color: var(--text-muted);">Soporte y actualizaciones</span>
               </li>
             </ul>
-            <a href="https://app.solomycrm.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; border: none; font-weight: 600; padding: 0.8rem; border-radius: 8px; color: white; text-decoration: none; display: inline-block; text-align: center; font-family: inherit;">Ir al CRM</a>
+            <button disabled style="width: 100%; border: 1px solid #cbd5e1; background: #f1f5f9; color: #94a3b8; font-weight: 600; padding: 0.8rem; border-radius: 8px; cursor: not-allowed; font-family: inherit;">Próximamente</button>
           </div>
+        </div>
+        
+        <!-- Payment Gateways -->
+        <div style="margin-top: 2rem; text-align: center;">
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 500;">Pagos 100% seguros procesados por:</p>
+          <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; opacity: 0.8;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" style="height: 35px; object-fit: contain;">
+            <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.19.1/mercadopago/logo__large.png" alt="Mercado Pago" style="height: 30px; object-fit: contain;">
+          </div>
+        </div>
+
+      </div>
     </section>
   `;
 }
