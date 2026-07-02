@@ -51,7 +51,7 @@ export function renderProcess() {
         </div>
 
         <div style="text-align: center; margin-top: 4rem;">
-          <a class="btn btn-primary" href="/contacto" data-link style="margin-right: 1rem;">Solicitar demo</a>
+          <button class="open-contact-modal btn btn-primary" style="margin-right: 1rem; border: none; cursor: pointer; color: white; font-family: inherit; font-size: inherit;">Solicitar demo</button>
           <a class="btn btn-secondary" href="/funcionalidades" data-link>Ver módulos</a>
         </div>
       </div>

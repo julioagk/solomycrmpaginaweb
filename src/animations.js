@@ -34,3 +34,137 @@ export function initCascade(selector) {
     container.appendChild(div);
   }
 }
+
+export function initHeroText() {
+  const container = document.getElementById('modules-carousel');
+  const iconEl = document.getElementById('module-icon');
+  const titleEl = document.getElementById('module-title');
+  const descEl = document.getElementById('module-desc');
+  if (!container || !iconEl || !titleEl || !descEl) return;
+
+  const modules = [
+    { 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" /></svg>`, 
+      title: "Dashboard Intuitivo", 
+      desc: "Métricas y gráficas de ventas actualizadas en tiempo real. Obtén una vista panorámica de todo tu embudo de ventas al instante y toma mejores decisiones basadas en datos y rendimiento real." 
+    },
+    { 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>`, 
+      title: "Gestión de Clientes", 
+      desc: "Toda la información de tus prospectos a un solo clic de distancia. Mantén un historial completo de interacciones, notas y documentos para dar el mejor seguimiento personalizado sin perder el hilo." 
+    },
+    { 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /><path d="m9 16 2 2 4-4" /></svg>`, 
+      title: "Tareas y Actividades", 
+      desc: "Agenda reuniones, llamadas y pendientes sin que nada se te pase. Con el organizador inteligente, tu equipo sabrá exactamente qué hacer cada día para mantener el ritmo de cierre de ventas." 
+    },
+    { 
+      icon: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>`, 
+      title: "Notificaciones Proactivas", 
+      desc: "Alertas inteligentes para que cierres tus tratos a tiempo. Te avisaremos cuando un cliente lleve mucho tiempo sin respuesta o cuando tengas una junta importante a punto de comenzar." 
+    }
+  ];
+
+  let idx = 0; 
+
+  setInterval(() => {
+    container.style.opacity = '0';
+    container.style.transform = 'translateX(-30px)';
+    container.style.filter = 'blur(10px)';
+    
+    setTimeout(() => {
+      idx = (idx + 1) % modules.length;
+      const mod = modules[idx];
+      
+      iconEl.innerHTML = mod.icon;
+      titleEl.innerText = mod.title;
+      descEl.innerText = mod.desc;
+      
+      // Reset position for enter animation (sliding in from the right)
+      container.style.transition = 'none';
+      container.style.transform = 'translateX(30px)';
+      
+      // Force reflow
+      void container.offsetWidth;
+      
+      container.style.transition = 'all 0.5s ease-in-out';
+      container.style.opacity = '1';
+      container.style.transform = 'translateX(0)';
+      container.style.filter = 'blur(0px)';
+    }, 500);
+  }, 5000);
+}
+
+export function initHeroPhrases() {
+  const container = document.getElementById('hero-phrase-carousel');
+  const textEl = document.getElementById('hero-phrase-text');
+  if (!container || !textEl) return;
+
+  const phrases = [
+    "El CRM más fácil de usar.",
+    "Diseñado para aumentar tus ventas.",
+    "Sin funciones innecesarias, solo lo esencial.",
+    "Visibilidad total de tus prospectos 24/7."
+  ];
+
+  let idx = 0;
+  setInterval(() => {
+    container.style.opacity = '0';
+    container.style.transform = 'translateX(-30px)';
+    container.style.filter = 'blur(10px)';
+    
+    setTimeout(() => {
+      idx = (idx + 1) % phrases.length;
+      textEl.innerText = phrases[idx];
+      
+      container.style.transition = 'none';
+      container.style.transform = 'translateX(30px)';
+      void container.offsetWidth;
+      
+      container.style.transition = 'all 0.5s ease-in-out';
+      container.style.opacity = '1';
+      container.style.transform = 'translateX(0)';
+      container.style.filter = 'blur(0px)';
+    }, 500);
+  }, 4500);
+}
+
+export function initBenefitsAnimation() {
+  const container = document.getElementById('benefits-list');
+  if (!container) return;
+
+  const benefits = [
+    "✨ Simplicidad extrema",
+    "🚀 Sin funciones de más",
+    "📈 Seguimiento perfecto",
+    "🤝 Trabajo en equipo",
+    "⚡ Soporte ultra rápido",
+    "📱 Móvil y Escritorio"
+  ];
+
+  function runAnimation() {
+    container.innerHTML = '';
+    
+    benefits.forEach((benefit, index) => {
+      const item = document.createElement('div');
+      item.innerHTML = `
+        <div style="padding: 0.75rem 1rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; display: flex; align-items: center; gap: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); font-size: 0.95rem; font-weight: 700; color: #334155; opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.15}s;">
+          <span style="color: var(--brand); font-size: 1.1rem;">✓</span>
+          ${benefit}
+        </div>
+      `;
+      container.appendChild(item);
+      
+      // trigger reflow
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = item.firstElementChild;
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  }
+
+  runAnimation();
+}
