@@ -29,12 +29,54 @@ export class Router {
     const handler = this.routes[targetPath] || this.routes['/']
     if (!handler) return
 
-    if (window.location.pathname !== targetPath) {
-      window.history.pushState({}, '', targetPath)
+    if (targetPath === '/pago') {
+      this.showPremiumTransition(() => {
+        if (window.location.pathname + window.location.search !== path) {
+          window.history.pushState({}, '', path)
+        }
+        this.currentRoute = targetPath
+        this.render()
+      })
+      return
+    }
+
+    if (window.location.pathname + window.location.search !== path) {
+      window.history.pushState({}, '', path)
     }
 
     this.currentRoute = targetPath
     this.render()
+  }
+
+  showPremiumTransition(callback) {
+    let overlay = document.getElementById('premium-transition')
+    if (!overlay) {
+      overlay = document.createElement('div')
+      overlay.id = 'premium-transition'
+      overlay.style.cssText = `
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: #ffffff;
+        z-index: 99999; display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      `
+      overlay.innerHTML = `
+        <div style="width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top-color: #2563eb; border-radius: 50%; animation: spin-loader 0.8s linear infinite;"></div>
+        <style>@keyframes spin-loader { to { transform: rotate(360deg); } }</style>
+      `
+      document.body.appendChild(overlay)
+    }
+    
+    overlay.style.pointerEvents = 'all'
+    requestAnimationFrame(() => overlay.style.opacity = '1')
+    
+    setTimeout(() => {
+      callback()
+      setTimeout(() => {
+        overlay.style.opacity = '0'
+        setTimeout(() => overlay.style.pointerEvents = 'none', 300)
+      }, 100)
+    }, 400)
   }
 
   render() {
