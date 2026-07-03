@@ -69,7 +69,7 @@ export function renderSubscriptionMobile() {
               ${featureItem(checkSVG(), 'Métricas en tiempo real')}
               ${featureItem(checkSVG(), 'Soporte y actualizaciones')}
             </ul>
-            <button disabled style="width: 100%; border: 1px solid #cbd5e1; background: #f1f5f9; color: #94a3b8; font-weight: 600; padding: 0.7rem; border-radius: 8px; cursor: not-allowed; font-family: inherit; font-size: 0.88rem;">Próximamente</button>
+            <a href="/pago?plan=mensual" data-link style="display:block;text-align:center;text-decoration:none;width: 100%; border: 1px solid var(--brand); background: var(--brand); color: white; font-weight: 700; padding: 0.8rem; border-radius: 8px; font-family: inherit; font-size: 0.95rem;">Suscribirme</a>
           </div>
 
           <!-- Plan Mensual Equipo -->
@@ -87,7 +87,7 @@ export function renderSubscriptionMobile() {
               ${featureItem(checkSVG(), 'Métricas en tiempo real')}
               ${featureItem(checkSVG(), 'Soporte y actualizaciones')}
             </ul>
-            <button disabled style="width: 100%; border: 1px solid #cbd5e1; background: #f1f5f9; color: #94a3b8; font-weight: 600; padding: 0.7rem; border-radius: 8px; cursor: not-allowed; font-family: inherit; font-size: 0.88rem;">Próximamente</button>
+            <a href="/pago?plan=mensual_equipo" data-link style="display:block;text-align:center;text-decoration:none;width: 100%; border: 1px solid var(--brand); background: var(--brand); color: white; font-weight: 700; padding: 0.8rem; border-radius: 8px; font-family: inherit; font-size: 0.95rem;">Suscribirme</a>
           </div>
 
           <!-- Plan Anual (featured) -->
@@ -106,7 +106,7 @@ export function renderSubscriptionMobile() {
               ${featureItem(checkSVG(), 'Métricas en tiempo real')}
               ${featureItem(checkSVG(), 'Soporte y actualizaciones')}
             </ul>
-            <button disabled style="width: 100%; border: 1px solid #cbd5e1; background: #f1f5f9; color: #94a3b8; font-weight: 600; padding: 0.7rem; border-radius: 8px; cursor: not-allowed; font-family: inherit; font-size: 0.88rem;">Próximamente</button>
+            <a href="/pago?plan=anual" data-link style="display:block;text-align:center;text-decoration:none;width: 100%; border: none; background: linear-gradient(135deg, var(--theme-600), var(--theme-500)); color: white; font-weight: 700; padding: 0.8rem; border-radius: 8px; font-family: inherit; font-size: 0.95rem;">Suscribirme — Ahorro</a>
           </div>
 
         </div>

@@ -389,36 +389,18 @@ function renderSuccessPage() {
 
 router.register('/success', renderSuccessPage)
 
-// ── Modal de Registro + Pago ─────────────────────────────────────────
-function setupRegisterPaymentModal() {
+import { renderCheckoutPage } from './sections/checkout.js'
+
+// Register routes
+router.register('/pago', renderCheckoutPage)
+
+// ── Lógica de la página de Checkout (/pago) ────────────────────────
+function setupCheckoutForm() {
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-  function openModal(plan, label, price) {
-    const modal = document.getElementById('register-payment-modal')
-    if (!modal) return
-    document.getElementById('rp-plan-input').value = plan
-    document.getElementById('rp-plan-label').textContent = label
-    document.getElementById('rp-summary-label').textContent = label
-    document.getElementById('rp-summary-price').textContent = price
-    document.getElementById('rp-global-error').className = 'rp-global-error'
-    document.getElementById('rp-form').reset()
-    clearAllErrors()
-    modal.classList.add('is-visible')
-    document.body.style.overflow = 'hidden'
-    setTimeout(() => document.getElementById('rp-nombre')?.focus(), 300)
-  }
-
-  function closeModal() {
-    const modal = document.getElementById('register-payment-modal')
-    if (modal) {
-      modal.classList.remove('is-visible')
-      document.body.style.overflow = ''
-    }
-  }
 
   function setFieldState(id, state, message) {
     const input = document.getElementById(id)
-    const errEl = document.getElementById('err-' + id.replace('rp-', ''))
+    const errEl = document.getElementById('err-' + id.replace('co-', ''))
     if (input) {
       input.classList.remove('is-error', 'is-ok')
       if (state === 'error') input.classList.add('is-error')
@@ -428,10 +410,10 @@ function setupRegisterPaymentModal() {
   }
 
   function clearAllErrors() {
-    ['rp-nombre','rp-email','rp-usuario','rp-contrasena','rp-confirmar'].forEach(id => {
+    ['co-nombre','co-email','co-usuario','co-contrasena','co-confirmar'].forEach(id => {
       setFieldState(id, '', '')
     })
-    const fillEl = document.getElementById('rp-strength-fill')
+    const fillEl = document.getElementById('co-strength-fill')
     if (fillEl) { fillEl.style.width = '0%'; fillEl.style.background = '#e2e8f0' }
   }
 
@@ -448,10 +430,10 @@ function setupRegisterPaymentModal() {
   }
 
   function setLoading(loading) {
-    const btn = document.getElementById('rp-submit-btn')
-    const spinner = document.getElementById('rp-spinner')
-    const lockIcon = document.getElementById('rp-lock-icon')
-    const text = document.getElementById('rp-submit-text')
+    const btn = document.getElementById('co-submit-btn')
+    const spinner = document.getElementById('co-spinner')
+    const lockIcon = document.getElementById('co-lock-icon')
+    const text = document.getElementById('co-submit-text')
     if (!btn) return
     btn.disabled = loading
     if (spinner) spinner.style.display = loading ? 'block' : 'none'
@@ -460,33 +442,21 @@ function setupRegisterPaymentModal() {
   }
 
   function showGlobalError(msg) {
-    const el = document.getElementById('rp-global-error')
-    if (el) { el.textContent = msg; el.className = 'rp-global-error show' }
+    const el = document.getElementById('co-global-error')
+    if (el) { el.textContent = msg; el.style.display = 'block' }
   }
 
-  // Delegated events — only wire up if modal exists in DOM
+  // Delegated events
   document.addEventListener('click', (e) => {
-    // Open modal
-    const btn = e.target.closest('.open-register-modal')
-    if (btn) {
-      e.preventDefault()
-      openModal(btn.dataset.plan, btn.dataset.label, btn.dataset.price)
-      return
-    }
-    // Close button
-    if (e.target.closest('#rp-close-btn')) { closeModal(); return }
-    // Click backdrop
-    const modal = document.getElementById('register-payment-modal')
-    if (modal && e.target === modal) { closeModal(); return }
     // Eye toggle pass
-    if (e.target.closest('#rp-eye-pass')) {
-      const inp = document.getElementById('rp-contrasena')
+    if (e.target.closest('#co-eye-pass')) {
+      const inp = document.getElementById('co-contrasena')
       if (inp) inp.type = inp.type === 'password' ? 'text' : 'password'
       return
     }
     // Eye toggle confirm
-    if (e.target.closest('#rp-eye-confirm')) {
-      const inp = document.getElementById('rp-confirmar')
+    if (e.target.closest('#co-eye-confirm')) {
+      const inp = document.getElementById('co-confirmar')
       if (inp) inp.type = inp.type === 'password' ? 'text' : 'password'
       return
     }
@@ -494,9 +464,9 @@ function setupRegisterPaymentModal() {
 
   // Password strength on input
   document.addEventListener('input', (e) => {
-    if (e.target.id === 'rp-contrasena') {
+    if (e.target.id === 'co-contrasena') {
       const val = e.target.value
-      const fillEl = document.getElementById('rp-strength-fill')
+      const fillEl = document.getElementById('co-strength-fill')
       if (fillEl && val) {
         const s = getPasswordStrength(val)
         fillEl.style.width = s.pct + '%'
@@ -507,35 +477,29 @@ function setupRegisterPaymentModal() {
     }
   })
 
-  // Keyboard close
-  document.addEventListener('keydown', (e) => {
-    const modal = document.getElementById('register-payment-modal')
-    if (e.key === 'Escape' && modal?.classList.contains('is-visible')) closeModal()
-  })
-
   // Form submit
   document.addEventListener('submit', async (e) => {
-    const form = e.target.closest('#rp-form')
+    const form = e.target.closest('#checkout-form')
     if (!form) return
     e.preventDefault()
 
     clearAllErrors()
-    document.getElementById('rp-global-error').className = 'rp-global-error'
+    document.getElementById('co-global-error').style.display = 'none'
 
-    const nombre   = document.getElementById('rp-nombre').value.trim()
-    const email    = document.getElementById('rp-email').value.trim()
-    const usuario  = document.getElementById('rp-usuario').value.trim()
-    const contrasena = document.getElementById('rp-contrasena').value
-    const confirmar  = document.getElementById('rp-confirmar').value
-    const plan     = document.getElementById('rp-plan-input').value
-    const telefono = document.getElementById('rp-telefono')?.value.trim() || ''
+    const nombre   = document.getElementById('co-nombre').value.trim()
+    const email    = document.getElementById('co-email').value.trim()
+    const usuario  = document.getElementById('co-usuario').value.trim()
+    const contrasena = document.getElementById('co-contrasena').value
+    const confirmar  = document.getElementById('co-confirmar').value
+    const plan     = document.getElementById('co-plan-input').value
+    const telefono = document.getElementById('co-telefono')?.value.trim() || ''
 
     let valid = true
-    if (!nombre) { setFieldState('rp-nombre', 'error', 'Ingresa tu nombre completo.'); valid = false }
-    if (!email || !EMAIL_RE.test(email)) { setFieldState('rp-email', 'error', 'Ingresa un correo electrónico válido.'); valid = false }
-    if (!usuario || usuario.length < 3) { setFieldState('rp-usuario', 'error', 'El usuario debe tener al menos 3 caracteres.'); valid = false }
-    if (!contrasena || contrasena.length < 6) { setFieldState('rp-contrasena', 'error', 'La contraseña debe tener al menos 6 caracteres.'); valid = false }
-    if (contrasena !== confirmar) { setFieldState('rp-confirmar', 'error', 'Las contraseñas no coinciden.'); valid = false }
+    if (!nombre) { setFieldState('co-nombre', 'error', 'Ingresa tu nombre completo.'); valid = false }
+    if (!email || !EMAIL_RE.test(email)) { setFieldState('co-email', 'error', 'Ingresa un correo electrónico válido.'); valid = false }
+    if (!usuario || usuario.length < 3) { setFieldState('co-usuario', 'error', 'El usuario debe tener al menos 3 caracteres.'); valid = false }
+    if (!contrasena || contrasena.length < 6) { setFieldState('co-contrasena', 'error', 'La contraseña debe tener al menos 6 caracteres.'); valid = false }
+    if (contrasena !== confirmar) { setFieldState('co-confirmar', 'error', 'Las contraseñas no coinciden.'); valid = false }
     if (!valid) return
 
     setLoading(true)
@@ -551,8 +515,8 @@ function setupRegisterPaymentModal() {
 
       if (!res.ok) {
         if (data.errors) {
-          if (data.errors.usuario) setFieldState('rp-usuario', 'error', data.errors.usuario)
-          if (data.errors.email) setFieldState('rp-email', 'error', data.errors.email)
+          if (data.errors.usuario) setFieldState('co-usuario', 'error', data.errors.usuario)
+          if (data.errors.email) setFieldState('co-email', 'error', data.errors.email)
         } else {
           showGlobalError(data.error || 'Error al procesar. Intenta de nuevo.')
         }
@@ -575,7 +539,7 @@ function setupRegisterPaymentModal() {
   })
 }
 
-setupRegisterPaymentModal()
+setupCheckoutForm()
 
 // Start router
 router.start()
