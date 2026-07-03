@@ -1,4 +1,4 @@
-import { isMobile } from '../main.js'
+const isMobile = window.matchMedia('(max-width: 768px)').matches
 
 export function renderCheckoutPage() {
   const params = new URLSearchParams(window.location.search)
