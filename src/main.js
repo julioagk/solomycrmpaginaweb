@@ -359,6 +359,224 @@ setupRouteTracking()
 setupContactModal()
 setupLeadForm()
 
+// ── Página de éxito post-pago ────────────────────────────────────────
+function renderSuccessPage() {
+  const params = new URLSearchParams(window.location.search)
+  const sessionId = params.get('session_id')
+  return `
+    ${isMobile ? '' : `<nav class="navbar"><div class="container"><a href="/" data-link class="logo">SOLOMYCRM</a></div></nav>`}
+    <main style="min-height:80vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--theme-50) 0%,white 100%);padding:2rem;">
+      <div style="text-align:center;max-width:520px;padding:3rem 2rem;background:white;border-radius:24px;box-shadow:0 30px 60px -15px rgba(37,99,235,0.15);border:1px solid var(--border-light);">
+        <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--theme-500),var(--theme-600));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 12px 30px rgba(37,99,235,0.3);">
+          <svg width="32" height="32" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h1 style="font-size:2rem;font-weight:800;color:var(--text-main);margin-bottom:0.75rem;">¡Pago exitoso!</h1>
+        <p style="color:var(--text-muted);font-size:1rem;margin-bottom:2rem;line-height:1.7;">
+          Tu suscripción está activa. Te enviamos un correo con tus credenciales de acceso.<br>
+          <strong style="color:var(--text-main);">Revisa tu bandeja de entrada</strong> (y spam, por si acaso).
+        </p>
+        <a href="https://crm.solomycrm.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,var(--theme-600),var(--theme-500));color:white;font-weight:700;padding:0.9rem 2rem;border-radius:12px;text-decoration:none;font-size:1rem;box-shadow:0 8px 20px rgba(37,99,235,0.3);transition:all 0.25s;">
+          Ir al CRM ahora
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+        <div style="margin-top:1.5rem;">
+          <a href="/" data-link style="font-size:0.85rem;color:var(--text-muted);">← Volver a la página principal</a>
+        </div>
+      </div>
+    </main>
+  `
+}
+
+router.register('/success', renderSuccessPage)
+
+// ── Modal de Registro + Pago ─────────────────────────────────────────
+function setupRegisterPaymentModal() {
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  function openModal(plan, label, price) {
+    const modal = document.getElementById('register-payment-modal')
+    if (!modal) return
+    document.getElementById('rp-plan-input').value = plan
+    document.getElementById('rp-plan-label').textContent = label
+    document.getElementById('rp-summary-label').textContent = label
+    document.getElementById('rp-summary-price').textContent = price
+    document.getElementById('rp-global-error').className = 'rp-global-error'
+    document.getElementById('rp-form').reset()
+    clearAllErrors()
+    modal.classList.add('is-visible')
+    document.body.style.overflow = 'hidden'
+    setTimeout(() => document.getElementById('rp-nombre')?.focus(), 300)
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('register-payment-modal')
+    if (modal) {
+      modal.classList.remove('is-visible')
+      document.body.style.overflow = ''
+    }
+  }
+
+  function setFieldState(id, state, message) {
+    const input = document.getElementById(id)
+    const errEl = document.getElementById('err-' + id.replace('rp-', ''))
+    if (input) {
+      input.classList.remove('is-error', 'is-ok')
+      if (state === 'error') input.classList.add('is-error')
+      else if (state === 'ok') input.classList.add('is-ok')
+    }
+    if (errEl) errEl.textContent = message || ''
+  }
+
+  function clearAllErrors() {
+    ['rp-nombre','rp-email','rp-usuario','rp-contrasena','rp-confirmar'].forEach(id => {
+      setFieldState(id, '', '')
+    })
+    const fillEl = document.getElementById('rp-strength-fill')
+    if (fillEl) { fillEl.style.width = '0%'; fillEl.style.background = '#e2e8f0' }
+  }
+
+  function getPasswordStrength(pw) {
+    let s = 0
+    if (pw.length >= 6) s++
+    if (pw.length >= 10) s++
+    if (/[A-Z]/.test(pw)) s++
+    if (/[0-9]/.test(pw)) s++
+    if (/[^A-Za-z0-9]/.test(pw)) s++
+    if (s <= 1) return { pct: 25, color: '#ef4444', label: 'Débil' }
+    if (s <= 3) return { pct: 60, color: '#f59e0b', label: 'Media' }
+    return { pct: 100, color: '#10b981', label: 'Fuerte' }
+  }
+
+  function setLoading(loading) {
+    const btn = document.getElementById('rp-submit-btn')
+    const spinner = document.getElementById('rp-spinner')
+    const lockIcon = document.getElementById('rp-lock-icon')
+    const text = document.getElementById('rp-submit-text')
+    if (!btn) return
+    btn.disabled = loading
+    if (spinner) spinner.style.display = loading ? 'block' : 'none'
+    if (lockIcon) lockIcon.style.display = loading ? 'none' : 'block'
+    if (text) text.textContent = loading ? 'Validando...' : 'Continuar al pago seguro'
+  }
+
+  function showGlobalError(msg) {
+    const el = document.getElementById('rp-global-error')
+    if (el) { el.textContent = msg; el.className = 'rp-global-error show' }
+  }
+
+  // Delegated events — only wire up if modal exists in DOM
+  document.addEventListener('click', (e) => {
+    // Open modal
+    const btn = e.target.closest('.open-register-modal')
+    if (btn) {
+      e.preventDefault()
+      openModal(btn.dataset.plan, btn.dataset.label, btn.dataset.price)
+      return
+    }
+    // Close button
+    if (e.target.closest('#rp-close-btn')) { closeModal(); return }
+    // Click backdrop
+    const modal = document.getElementById('register-payment-modal')
+    if (modal && e.target === modal) { closeModal(); return }
+    // Eye toggle pass
+    if (e.target.closest('#rp-eye-pass')) {
+      const inp = document.getElementById('rp-contrasena')
+      if (inp) inp.type = inp.type === 'password' ? 'text' : 'password'
+      return
+    }
+    // Eye toggle confirm
+    if (e.target.closest('#rp-eye-confirm')) {
+      const inp = document.getElementById('rp-confirmar')
+      if (inp) inp.type = inp.type === 'password' ? 'text' : 'password'
+      return
+    }
+  })
+
+  // Password strength on input
+  document.addEventListener('input', (e) => {
+    if (e.target.id === 'rp-contrasena') {
+      const val = e.target.value
+      const fillEl = document.getElementById('rp-strength-fill')
+      if (fillEl && val) {
+        const s = getPasswordStrength(val)
+        fillEl.style.width = s.pct + '%'
+        fillEl.style.background = s.color
+      } else if (fillEl) {
+        fillEl.style.width = '0%'
+      }
+    }
+  })
+
+  // Keyboard close
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('register-payment-modal')
+    if (e.key === 'Escape' && modal?.classList.contains('is-visible')) closeModal()
+  })
+
+  // Form submit
+  document.addEventListener('submit', async (e) => {
+    const form = e.target.closest('#rp-form')
+    if (!form) return
+    e.preventDefault()
+
+    clearAllErrors()
+    document.getElementById('rp-global-error').className = 'rp-global-error'
+
+    const nombre   = document.getElementById('rp-nombre').value.trim()
+    const email    = document.getElementById('rp-email').value.trim()
+    const usuario  = document.getElementById('rp-usuario').value.trim()
+    const contrasena = document.getElementById('rp-contrasena').value
+    const confirmar  = document.getElementById('rp-confirmar').value
+    const plan     = document.getElementById('rp-plan-input').value
+    const telefono = document.getElementById('rp-telefono')?.value.trim() || ''
+
+    let valid = true
+    if (!nombre) { setFieldState('rp-nombre', 'error', 'Ingresa tu nombre completo.'); valid = false }
+    if (!email || !EMAIL_RE.test(email)) { setFieldState('rp-email', 'error', 'Ingresa un correo electrónico válido.'); valid = false }
+    if (!usuario || usuario.length < 3) { setFieldState('rp-usuario', 'error', 'El usuario debe tener al menos 3 caracteres.'); valid = false }
+    if (!contrasena || contrasena.length < 6) { setFieldState('rp-contrasena', 'error', 'La contraseña debe tener al menos 6 caracteres.'); valid = false }
+    if (contrasena !== confirmar) { setFieldState('rp-confirmar', 'error', 'Las contraseñas no coinciden.'); valid = false }
+    if (!valid) return
+
+    setLoading(true)
+
+    try {
+      const res = await fetch('/api/checkout/create-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, email, usuario, contraseña: contrasena, telefono, plan }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        if (data.errors) {
+          if (data.errors.usuario) setFieldState('rp-usuario', 'error', data.errors.usuario)
+          if (data.errors.email) setFieldState('rp-email', 'error', data.errors.email)
+        } else {
+          showGlobalError(data.error || 'Error al procesar. Intenta de nuevo.')
+        }
+        setLoading(false)
+        return
+      }
+
+      // Redirigir a Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        showGlobalError('No se pudo obtener la URL de pago.')
+        setLoading(false)
+      }
+    } catch (err) {
+      console.error('Error al crear sesión de pago:', err)
+      showGlobalError('Error de conexión. Verifica tu internet e intenta de nuevo.')
+      setLoading(false)
+    }
+  })
+}
+
+setupRegisterPaymentModal()
+
 // Start router
 router.start()
 
