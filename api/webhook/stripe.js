@@ -1,4 +1,4 @@
-﻿import Stripe from "stripe";
+import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const CRM_API_URL = process.env.CRM_API_URL || "https://api.solomycrm.com";
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           usuario,
-          "contrasenya_hash": contrasena_hash,
+          contraseña_hash: contrasena_hash,
           nombre,
           email,
           telefono: telefono || "",
