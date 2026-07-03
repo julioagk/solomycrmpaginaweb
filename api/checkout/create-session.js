@@ -69,8 +69,8 @@ export default async function handler(req, res) {
       mode: 'subscription',
       line_items: [{ price: PLAN_PRICES[plan], quantity: 1 }],
       customer_email: email.trim(),
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url:  `${origin}/precios?cancelled=1`,
+      success_url: `${origin}/pago?plan=${plan}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url:  `${origin}/pago?plan=${plan}&cancelled=1`,
       locale: 'es',
       // Metadata que el webhook usará para crear la cuenta en el CRM
       metadata: {

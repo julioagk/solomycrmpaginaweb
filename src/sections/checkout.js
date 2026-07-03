@@ -45,6 +45,8 @@ function renderFloatingIcons(count = 20) {
 export function renderCheckoutPage() {
   const params = new URLSearchParams(window.location.search)
   const plan = params.get('plan') || 'mensual'
+  const sessionId = params.get('session_id')
+  const cancelled = params.get('cancelled')
   
   let label = 'Plan Mensual'
   let price = '$199/mes'
@@ -58,6 +60,111 @@ export function renderCheckoutPage() {
 
   const headerHtml = isMobile ? renderHeaderMobile() : renderHeader()
   const footerHtml = isMobile ? renderFooterMobile() : renderFooter()
+
+  // Timeline dynamic variables
+  const step2Class = sessionId ? 'completed' : 'active'
+  const step2Icon  = sessionId ? '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>' : '2'
+  const step3Class = sessionId ? 'completed' : 'pending'
+  const step3Icon  = sessionId ? '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>' : '3'
+  const line2Width = sessionId ? '70%' : '35%'
+  
+  // Dynamic Right Card Content
+  let rightCardContent = ''
+  
+  if (sessionId) {
+    rightCardContent = `
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
+        <div style="width: 80px; height: 80px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 0 0 10px rgba(220, 252, 231, 0.5);">
+          <svg width="45" height="45" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 style="font-size: 1.8rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; letter-spacing: -0.03em;">¡Pago Exitoso!</h3>
+        <p style="font-size: 1.05rem; color: #64748b; margin-bottom: 2rem; line-height: 1.6;">Tu cuenta ha sido creada correctamente. Ya puedes acceder a todas las herramientas de tu nuevo CRM.</p>
+        <a href="https://app.solomycrm.com" class="co-submit-btn" style="text-decoration: none;">
+          Ir a mi CRM ahora
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
+    `
+  } else {
+    let errorHTML = ''
+    if (cancelled) {
+      errorHTML = `<div style="background: #fee2e2; color: #b91c1c; padding: 0.85rem; border-radius: 0.75rem; font-size: 0.9rem; font-weight: 600; text-align: center; margin-bottom: 1.5rem; border: 1px solid #fca5a5;">Has cancelado el proceso de pago. Puedes volver a intentarlo cuando estés listo.</div>`
+    }
+    rightCardContent = `
+      <h3 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Crea tu cuenta</h3>
+      <p style="font-size: 1rem; color: #64748b; margin-bottom: 1.5rem;">Ingresa tus datos para comenzar tu experiencia en SOLOMYCRM.</p>
+      
+      ${errorHTML}
+      <div id="co-global-error" class="co-global-error"></div>
+
+      <form id="checkout-form" novalidate autocomplete="off" style="display: flex; flex-direction: column; gap: 1.25rem; flex: 1;">
+        <input type="hidden" id="co-plan-input" value="${plan}">
+        
+        <div class="co-input-group">
+          <label class="co-label">Nombre completo <span style="color: var(--danger)">*</span></label>
+          <div class="co-input-wrapper">
+            <input type="text" id="co-nombre" class="co-input" placeholder="Ej. Carlos Ramírez" required>
+          </div>
+          <div class="co-error-msg" id="err-nombre"></div>
+        </div>
+
+        <div class="co-input-group">
+          <label class="co-label">Correo electrónico <span style="color: var(--danger)">*</span></label>
+          <div class="co-input-wrapper">
+            <input type="email" id="co-email" class="co-input" placeholder="tu@correo.com" required>
+          </div>
+          <div class="co-error-msg" id="err-email"></div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="co-input-group">
+            <label class="co-label">Teléfono <span style="font-weight:400; color:#64748b;">(Opcional)</span></label>
+            <div class="co-input-wrapper">
+              <input type="tel" id="co-telefono" class="co-input" placeholder="Ej. 81 1234 5678">
+            </div>
+            <div class="co-error-msg"></div>
+          </div>
+          <div class="co-input-group">
+            <label class="co-label">Usuario <span style="color: var(--danger)">*</span></label>
+            <div class="co-input-wrapper">
+              <input type="text" id="co-usuario" class="co-input" placeholder="miusuario123" required>
+            </div>
+            <div class="co-error-msg" id="err-usuario"></div>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="co-input-group">
+            <label class="co-label">Contraseña <span style="color: var(--danger)">*</span></label>
+            <div class="co-input-wrapper">
+              <input type="password" id="co-contrasena" class="co-input" placeholder="••••••••" required>
+              <button type="button" id="co-eye-pass" class="co-eye-btn"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
+            </div>
+            <div style="height:4px; background:#e2e8f0; border-radius:4px; margin-top:6px; overflow:hidden;">
+              <div id="co-strength-fill" style="height:100%; width:0%; background:#10b981; transition:all 0.3s;"></div>
+            </div>
+            <div class="co-error-msg" id="err-contrasena"></div>
+          </div>
+          
+          <div class="co-input-group">
+            <label class="co-label">Confirmar Contraseña <span style="color: var(--danger)">*</span></label>
+            <div class="co-input-wrapper">
+              <input type="password" id="co-confirmar" class="co-input" placeholder="••••••••" required>
+              <button type="button" id="co-eye-confirm" class="co-eye-btn"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
+            </div>
+            <div class="co-error-msg" id="err-confirmar"></div>
+          </div>
+        </div>
+
+        <button type="submit" id="co-submit-btn" class="co-submit-btn" style="margin-top: auto;">
+          <svg id="co-lock-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <svg id="co-spinner" viewBox="0 0 24 24" style="display:none; width:18px; height:18px; animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"></circle><path fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+          <span id="co-submit-text">Continuar al pago seguro</span>
+        </button>
+      </form>
+    `
+  }
+
 
   return `
     ${headerHtml}
@@ -197,7 +304,7 @@ export function renderCheckoutPage() {
             <div class="checkout-timeline">
               <!-- Conectores -->
               <div style="position: absolute; top: 16px; left: 15%; right: 15%; height: 2px; background: #e2e8f0; z-index: 1;"></div>
-              <div style="position: absolute; top: 16px; left: 15%; width: 35%; height: 2px; background: var(--brand); z-index: 2;"></div>
+              <div style="position: absolute; top: 16px; left: 15%; width: ${line2Width}; height: 2px; background: var(--brand); z-index: 2; transition: width 0.5s ease;"></div>
               
               <div class="timeline-step">
                 <div class="timeline-circle completed">
@@ -206,12 +313,12 @@ export function renderCheckoutPage() {
                 <span class="timeline-label completed">Plan</span>
               </div>
               <div class="timeline-step">
-                <div class="timeline-circle active">2</div>
-                <span class="timeline-label active">Cuenta</span>
+                <div class="timeline-circle ${step2Class}">${step2Icon}</div>
+                <span class="timeline-label ${step2Class}">Cuenta</span>
               </div>
               <div class="timeline-step">
-                <div class="timeline-circle pending">3</div>
-                <span class="timeline-label pending">Pago</span>
+                <div class="timeline-circle ${step3Class}">${step3Icon}</div>
+                <span class="timeline-label ${step3Class}">Pago</span>
               </div>
             </div>
           </div>
@@ -261,80 +368,11 @@ export function renderCheckoutPage() {
           </div>
         </div>
 
-        <!-- Tarjeta 3: Formulario -->
+        <!-- Tarjeta 3: Formulario o Éxito -->
         <div class="bento-card card-form">
           ${renderFloatingIcons(20)}
           <div style="position: relative; z-index: 10; display: flex; flex-direction: column; height: 100%;">
-            <h3 style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Crea tu cuenta</h3>
-            <p style="font-size: 1rem; color: #64748b; margin-bottom: 2rem;">Ingresa tus datos para comenzar tu experiencia en SOLOMYCRM.</p>
-            
-            <div id="co-global-error" class="co-global-error"></div>
-
-            <form id="checkout-form" novalidate autocomplete="off" style="display: flex; flex-direction: column; gap: 1.25rem; flex: 1;">
-              <input type="hidden" id="co-plan-input" value="${plan}">
-              
-              <div class="co-input-group">
-                <label class="co-label">Nombre completo <span style="color: var(--danger)">*</span></label>
-                <div class="co-input-wrapper">
-                  <input type="text" id="co-nombre" class="co-input" placeholder="Ej. Carlos Ramírez" required>
-                </div>
-                <div class="co-error-msg" id="err-nombre"></div>
-              </div>
-
-              <div class="co-input-group">
-                <label class="co-label">Correo electrónico <span style="color: var(--danger)">*</span></label>
-                <div class="co-input-wrapper">
-                  <input type="email" id="co-email" class="co-input" placeholder="tu@correo.com" required>
-                </div>
-                <div class="co-error-msg" id="err-email"></div>
-              </div>
-
-              <div class="form-row-2">
-                <div class="co-input-group">
-                  <label class="co-label">Teléfono <span style="font-weight:400; color:#64748b;">(Opcional)</span></label>
-                  <div class="co-input-wrapper">
-                    <input type="tel" id="co-telefono" class="co-input" placeholder="Ej. 81 1234 5678">
-                  </div>
-                  <div class="co-error-msg"></div>
-                </div>
-                <div class="co-input-group">
-                  <label class="co-label">Usuario <span style="color: var(--danger)">*</span></label>
-                  <div class="co-input-wrapper">
-                    <input type="text" id="co-usuario" class="co-input" placeholder="miusuario123" required>
-                  </div>
-                  <div class="co-error-msg" id="err-usuario"></div>
-                </div>
-              </div>
-
-              <div class="form-row-2">
-                <div class="co-input-group">
-                  <label class="co-label">Contraseña <span style="color: var(--danger)">*</span></label>
-                  <div class="co-input-wrapper">
-                    <input type="password" id="co-contrasena" class="co-input" placeholder="••••••••" required>
-                    <button type="button" id="co-eye-pass" class="co-eye-btn"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
-                  </div>
-                  <div style="height:4px; background:#e2e8f0; border-radius:4px; margin-top:6px; overflow:hidden;">
-                    <div id="co-strength-fill" style="height:100%; width:0%; background:#10b981; transition:all 0.3s;"></div>
-                  </div>
-                  <div class="co-error-msg" id="err-contrasena"></div>
-                </div>
-                
-                <div class="co-input-group">
-                  <label class="co-label">Confirmar Contraseña <span style="color: var(--danger)">*</span></label>
-                  <div class="co-input-wrapper">
-                    <input type="password" id="co-confirmar" class="co-input" placeholder="••••••••" required>
-                    <button type="button" id="co-eye-confirm" class="co-eye-btn"><svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg></button>
-                  </div>
-                  <div class="co-error-msg" id="err-confirmar"></div>
-                </div>
-              </div>
-
-              <button type="submit" id="co-submit-btn" class="co-submit-btn" style="margin-top: auto;">
-                <svg id="co-lock-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                <svg id="co-spinner" viewBox="0 0 24 24" style="display:none; width:18px; height:18px; animation:spin 1s linear infinite;"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" opacity="0.25"></circle><path fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                <span id="co-submit-text">Continuar al pago seguro</span>
-              </button>
-            </form>
+            ${rightCardContent}
           </div>
         </div>
 

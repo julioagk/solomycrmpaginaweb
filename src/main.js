@@ -42,6 +42,9 @@ router.register('/inicio', isMobile ? renderHeroMobile : renderHero)
 router.register('/funcionalidades', isMobile ? renderPricingMobile : renderPricingPage)
 router.register('/precios', isMobile ? renderSubscriptionMobile : renderSubscriptionPage)
 
+import { renderCheckoutPage } from './sections/checkout.js'
+router.register('/pago', renderCheckoutPage)
+
 // ── Modal helpers ────────────────────────────────────────────
 function showModal({ type, title, message }) {
 	let overlay = document.getElementById('lead-modal')
@@ -359,41 +362,6 @@ setupRouteTracking()
 setupContactModal()
 setupLeadForm()
 
-// ── Página de éxito post-pago ────────────────────────────────────────
-function renderSuccessPage() {
-  const params = new URLSearchParams(window.location.search)
-  const sessionId = params.get('session_id')
-  return `
-    ${isMobile ? '' : `<nav class="navbar"><div class="container"><a href="/" data-link class="logo">SOLOMYCRM</a></div></nav>`}
-    <main style="min-height:80vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--theme-50) 0%,white 100%);padding:2rem;">
-      <div style="text-align:center;max-width:520px;padding:3rem 2rem;background:white;border-radius:24px;box-shadow:0 30px 60px -15px rgba(37,99,235,0.15);border:1px solid var(--border-light);">
-        <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--theme-500),var(--theme-600));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 12px 30px rgba(37,99,235,0.3);">
-          <svg width="32" height="32" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <h1 style="font-size:2rem;font-weight:800;color:var(--text-main);margin-bottom:0.75rem;">¡Pago exitoso!</h1>
-        <p style="color:var(--text-muted);font-size:1rem;margin-bottom:2rem;line-height:1.7;">
-          Tu suscripción está activa. Te enviamos un correo con tus credenciales de acceso.<br>
-          <strong style="color:var(--text-main);">Revisa tu bandeja de entrada</strong> (y spam, por si acaso).
-        </p>
-        <a href="https://crm.solomycrm.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,var(--theme-600),var(--theme-500));color:white;font-weight:700;padding:0.9rem 2rem;border-radius:12px;text-decoration:none;font-size:1rem;box-shadow:0 8px 20px rgba(37,99,235,0.3);transition:all 0.25s;">
-          Ir al CRM ahora
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-        <div style="margin-top:1.5rem;">
-          <a href="/" data-link style="font-size:0.85rem;color:var(--text-muted);">← Volver a la página principal</a>
-        </div>
-      </div>
-    </main>
-  `
-}
-
-router.register('/success', renderSuccessPage)
-
-import { renderCheckoutPage } from './sections/checkout.js'
-
-// Register routes
-router.register('/pago', renderCheckoutPage)
-
 // ── Lógica de la página de Checkout (/pago) ────────────────────────
 function setupCheckoutForm() {
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -563,45 +531,5 @@ if (window.location.pathname === '/' || window.location.pathname === '/inicio') 
 	}
 }
 
-// ── Payment status handling ──────────────────────────────────
-function checkPaymentStatus() {
-  const params = new URLSearchParams(window.location.search);
-  const sessionId = params.get('session_id');
-  const cancelled = params.get('cancelled');
-
-  if (sessionId) {
-    // Clear URL parameters
-    window.history.replaceState({}, document.title, window.location.pathname);
-    
-    // Show dedicated success modal
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay is-visible';
-    overlay.style.zIndex = '10000';
-    overlay.innerHTML = `
-      <div class="modal-box" style="text-align: center; padding: 3rem 2rem; max-width: 450px; background: white; border-radius: 1.25rem; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
-        <div style="width: 80px; height: 80px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 0 0 10px rgba(220, 252, 231, 0.5);">
-          <svg width="45" height="45" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <h3 style="font-size: 1.8rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; letter-spacing: -0.03em;">¡Pago Exitoso!</h3>
-        <p style="font-size: 1.05rem; color: #64748b; margin-bottom: 2rem; line-height: 1.6;">Tu cuenta ha sido creada correctamente. Ya puedes acceder a todas las herramientas de tu nuevo CRM.</p>
-        <a href="https://app.solomycrm.com" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; padding: 1.1rem; border-radius: 0.85rem; text-decoration: none; font-size: 1.1rem; font-weight: 700; color: white; background: var(--brand); transition: all 0.3s ease; box-shadow: 0 10px 15px -3px rgba(59,130,246,0.3); border: none;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 20px 25px -5px rgba(59,130,246,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 15px -3px rgba(59,130,246,0.3)'">
-          Ir a mi CRM ahora
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-        </a>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-  } else if (cancelled) {
-    // Clear URL parameters
-    window.history.replaceState({}, document.title, window.location.pathname);
-    
-    showModal({
-      type: 'error',
-      title: 'Pago cancelado',
-      message: 'Has cancelado el proceso de pago. Puedes volver a intentarlo cuando estés listo.'
-    });
-  }
-}
-
-checkPaymentStatus();
+// Removed checkPaymentStatus as success is now handled in checkout.js
 
