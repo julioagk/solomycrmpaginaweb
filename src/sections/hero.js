@@ -267,9 +267,7 @@ export function renderHero() {
       </section>
 
       <!-- Sección: CTA Banner -->
-      <section style="padding: 8rem 1.5rem; background: radial-gradient(circle at 50% 0%, var(--theme-50) 0%, var(--bg-body) 100%); position: relative; overflow: hidden; display: flex; justify-content: center;">
-        <div style="position: absolute; top: -20%; left: -10%; width: 500px; height: 500px; background: var(--brand); filter: blur(150px); opacity: 0.15; border-radius: 50%; pointer-events: none;"></div>
-        <div style="position: absolute; bottom: -20%; right: -10%; width: 500px; height: 500px; background: #8b5cf6; filter: blur(150px); opacity: 0.15; border-radius: 50%; pointer-events: none;"></div>
+      <section style="padding: 8rem 1.5rem; background-color: var(--bg-body); position: relative; display: flex; justify-content: center;">
 
         <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 10;">
           <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: #0f172a; margin-bottom: 1.5rem; letter-spacing: -0.04em; line-height: 1.1;">

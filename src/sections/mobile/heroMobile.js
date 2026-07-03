@@ -45,7 +45,7 @@ export function renderHeroMobile() {
               Ir al CRM
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
-            <a href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
+            <a class="premium-reflejo" href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
               padding: 0.65rem 1.25rem; font-size: 0.88rem; border-radius: 10px;
               background: #f59e0b; color: white; font-weight: 700;
               text-decoration: none; display: inline-flex; align-items: center;
@@ -141,11 +141,9 @@ export function renderHeroMobile() {
       <!-- ===== CTA BANNER (mobile) ===== -->
       <section style="
         padding: 3.5rem 1.25rem;
-        background: radial-gradient(circle at 50% 0%, var(--theme-50) 0%, var(--bg-body) 100%);
-        position: relative; overflow: hidden; text-align: center;
+        background-color: var(--bg-body);
+        position: relative; text-align: center;
       ">
-        <div style="position: absolute; top: -20%; left: -10%; width: 280px; height: 280px; background: var(--brand); filter: blur(100px); opacity: 0.12; border-radius: 50%; pointer-events: none;"></div>
-        <div style="position: absolute; bottom: -20%; right: -10%; width: 280px; height: 280px; background: #8b5cf6; filter: blur(100px); opacity: 0.12; border-radius: 50%; pointer-events: none;"></div>
 
         <div style="position: relative; z-index: 10;">
           <h2 style="font-size: 1.75rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; letter-spacing: -0.04em; line-height: 1.15;">

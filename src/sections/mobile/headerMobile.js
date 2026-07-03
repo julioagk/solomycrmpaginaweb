@@ -145,7 +145,7 @@ export function renderHeaderMobile() {
           color: var(--brand); font-weight: 700; font-family: inherit;
           transition: all 0.2s;
         ">Contacto</button>
-        <a href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
+        <a class="premium-reflejo" href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
           display: block; width: 100%; padding: 0.75rem;
           font-size: 0.9rem; border-radius: 10px; text-align: center;
           background: #f59e0b; color: white; font-weight: 700;
