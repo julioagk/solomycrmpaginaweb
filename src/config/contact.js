@@ -1,4 +1,4 @@
-﻿const whatsappPhone = '+52 8136458366'
+const whatsappPhone = '+52 81 2429 1645'
 const defaultMessage = 'Hola, quiero informacion sobre SOLOMYCRM.'
 
 function normalizePhone(phone) {

@@ -29,7 +29,7 @@ export function renderFooter() {
             <a href="/funcionalidades" data-link style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Funciones</a>
             <a href="/precios" data-link style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Precios</a>
             ${whatsappLink ? `<a href="${whatsappLink}" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">WhatsApp</a>` : ''}
-            <a href="mailto:lesly@updm.mx" style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Contacto</a>
+            <a href="mailto:info@solomycrm.com" style="color: white; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Contacto</a>
           </div>
 
           <!-- Botón de acción -->

@@ -28,7 +28,7 @@ export function renderCTA() {
                 </div>
                 <div>
                   <span style="display: block; font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 0.15rem;">Correo Electrónico</span>
-                  <a href="mailto:lesly@updm.mx" style="color: white; font-weight: 500; font-size: 1rem; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">lesly@updm.mx</a>
+                  <a href="mailto:info@solomycrm.com" style="color: white; font-weight: 500; font-size: 1rem; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">info@solomycrm.com</a>
                 </div>
               </div>
               
@@ -38,7 +38,7 @@ export function renderCTA() {
                 </div>
                 <div>
                   <span style="display: block; font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 0.15rem;">Teléfono</span>
-                  <a href="#" style="color: white; font-weight: 500; font-size: 1rem; text-decoration: none; pointer-events: none;">Próximamente</a>
+                  <a href="tel:8124291645" style="color: white; font-weight: 500; font-size: 1rem; text-decoration: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">81 2429 1645</a>
                 </div>
               </div>
             </div>

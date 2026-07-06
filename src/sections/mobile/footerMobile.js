@@ -37,7 +37,7 @@ export function renderFooterMobile() {
         <a href="/funcionalidades" data-link style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Funciones</a>
         <a href="/precios" data-link style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Precios</a>
         ${whatsappLink ? `<a href="${whatsappLink}" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.85rem; font-weight: 500;">WhatsApp</a>` : ''}
-        <a href="mailto:lesly@updm.mx" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Contacto</a>
+        <a href="mailto:info@solomycrm.com" style="color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.85rem; font-weight: 500;">Contacto</a>
       </div>
 
       <!-- Bottom -->

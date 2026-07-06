@@ -329,7 +329,7 @@ function setupLeadForm() {
 			showModal({
 				type: 'error',
 				title: 'Algo salió mal',
-				message: 'No pudimos enviar tu mensaje. Por favor escríbenos a lesly@updm.mx',
+				message: 'No pudimos enviar tu mensaje. Por favor escríbenos a info@solomycrm.com',
 			})
 		})
 	})
