@@ -39,7 +39,25 @@ async function handleCheckoutCompleted(session) {
     return;
   }
 
-  const { usuario, nombre, email, telefono, plan, contrasena_hash, contrasena } = session.metadata || {};
+  const { usuario, nombre, email, telefono, plan, contrasena_hash, contrasena, is_renewal } = session.metadata || {};
+
+  if (is_renewal === "true") {
+    console.log(`💳 Renovación confirmada para: ${usuario} (plan: ${plan})`);
+    const { ok, data } = await callCRM("/register-paid", {
+      usuario,
+      email,
+      plan,
+      stripe_customer_id: session.customer || null,
+      stripe_subscription_id: session.subscription || null,
+      is_renewal: true
+    });
+    if (!ok) {
+      console.error("❌ Error renovando en CRM:", data);
+    } else {
+      console.log("✅ Renovación exitosa en CRM");
+    }
+    return;
+  }
 
   if (!usuario || !nombre || !email || !plan || !contrasena_hash) {
     console.error("❌ Metadata incompleta en sesion:", session.id, session.metadata);
