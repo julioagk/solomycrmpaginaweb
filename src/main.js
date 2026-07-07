@@ -5,6 +5,7 @@ import { renderPricingPage } from './sections/pricing.js'
 import { renderSubscriptionPage } from './sections/subscription.js'
 import { initCascade, initHeroText, initHeroPhrases, initBenefitsAnimation, initHeroTextMobile, initHeroPhrasesMobile } from './animations.js'
 import { trackEvent } from './analytics.js'
+import { getWhatsAppLink } from './config/contact.js'
 
 // ── Mobile component imports ─────────────────────────────────
 import { renderHeroMobile } from './sections/mobile/heroMobile.js'
@@ -227,9 +228,11 @@ function setupContactModal() {
 	document.addEventListener('click', (e) => {
 		if (e.target.closest('.open-contact-modal')) {
 			e.preventDefault();
-			const modal = document.getElementById('contact-form-modal');
-			if (modal) {
-				modal.classList.add('is-visible');
+			const wpLink = getWhatsAppLink();
+			if (wpLink) {
+				window.open(wpLink, '_blank');
+			} else {
+				alert('Contacto por WhatsApp no configurado en este momento.');
 			}
 		}
 	});
