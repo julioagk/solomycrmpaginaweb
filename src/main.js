@@ -23,16 +23,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 
-import emailjs from '@emailjs/browser'
-
-// EmailJS configuration
-const EMAILJS_SERVICE_ID = 'service_4wpqrr7'
-const EMAILJS_TEMPLATE_ID = 'template_sh906y3'
-const EMAILJS_PUBLIC_KEY = 'vHksxDcHgxvB7ZPHk'
-
-// Inicializar EmailJS (requerido en v4)
-emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
-
 // Initialize router
 const router = new Router()
 
@@ -300,32 +290,56 @@ function setupLeadForm() {
 			return
 		}
 
-		// Enviar por correo via EmailJS
-		emailjs.send(
-			EMAILJS_SERVICE_ID,
-			EMAILJS_TEMPLATE_ID,
-			{
+		const submitBtn = form.querySelector('button[type="submit"]')
+		const originalBtnHTML = submitBtn.innerHTML
+		submitBtn.innerHTML = `
+			Enviando...
+			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>
+			<style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+		`
+		submitBtn.disabled = true
+
+		// Enviar por correo via Formspree
+		fetch('https://formspree.io/f/xnjkyqzr', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify({
 				name: payload.name,
 				company: payload.company,
 				phone: payload.phone,
 				email: payload.email,
-				need: payload.need,
-			}
-		).then(() => {
-			showModal({
-				type: 'success',
-				title: '¡Mensaje enviado!',
-				message: 'Recibimos tu solicitud. En breve te contactamos para agendar tu demo.',
+				message: payload.need // Formspree suele preferir 'message' pero enviamos todo
 			})
-			form.reset()
-			const contactModal = document.getElementById('contact-form-modal')
-			if (contactModal) {
-				contactModal.classList.remove('is-visible')
+		}).then(response => {
+			submitBtn.innerHTML = originalBtnHTML
+			submitBtn.disabled = false
+			if (response.ok) {
+				showModal({
+					type: 'success',
+					title: '¡Mensaje enviado!',
+					message: 'Recibimos tu solicitud. En breve te contactamos para agendar tu demo.',
+				})
+				form.reset()
+				const contactModal = document.getElementById('contact-form-modal')
+				if (contactModal) {
+					contactModal.classList.remove('is-visible')
+				}
+				trackEvent('lead_email_submit_success', { path: window.location.pathname })
+			} else {
+				response.json().then(data => {
+					if (Object.hasOwn(data, 'errors')) {
+						console.error('Formspree validation error:', data.errors.map(error => error.message).join(", "))
+					}
+					throw new Error('Error en Formspree')
+				})
 			}
-			trackEvent('lead_email_submit_success', { path: window.location.pathname })
 		}).catch((error) => {
-			console.error('EmailJS error status:', error?.status)
-			console.error('EmailJS error text:', error?.text)
+			submitBtn.innerHTML = originalBtnHTML
+			submitBtn.disabled = false
+			console.error('Formspree error:', error)
 			showModal({
 				type: 'error',
 				title: 'Algo salió mal',
