@@ -82,6 +82,15 @@ export default async function handler(req, res) {
         contrasena_hash:  contrasenaHash,  // bcrypt hash, seguro guardar en metadata
         contrasena:       contraseña,      // pasamos temporalmente para el correo de bienvenida
       },
+      // Esto pega los metadatos directamente a la Suscripción en Stripe para que tú los veas
+      subscription_data: {
+        metadata: {
+          usuario: usuario.trim(),
+          nombre: nombre.trim(),
+          email: email.trim(),
+          plan: plan
+        }
+      }
     });
 
     return res.status(200).json({ url: session.url });
