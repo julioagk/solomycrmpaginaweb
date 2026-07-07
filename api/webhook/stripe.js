@@ -39,7 +39,7 @@ async function handleCheckoutCompleted(session) {
     return;
   }
 
-  const { usuario, nombre, email, telefono, plan, contrasena_hash } = session.metadata || {};
+  const { usuario, nombre, email, telefono, plan, contrasena_hash, contrasena } = session.metadata || {};
 
   if (!usuario || !nombre || !email || !plan || !contrasena_hash) {
     console.error("❌ Metadata incompleta en sesion:", session.id, session.metadata);
@@ -51,6 +51,7 @@ async function handleCheckoutCompleted(session) {
   const { ok, data } = await callCRM("/register-paid", {
     usuario,
     contraseña_hash: contrasena_hash,
+    contraseña_plana: contrasena, // Se pasa para enviar el correo de bienvenida con la pass original
     nombre,
     email,
     telefono: telefono || "",

@@ -80,6 +80,7 @@ export default async function handler(req, res) {
         telefono:         (telefono || '').trim(),
         plan,
         contrasena_hash:  contrasenaHash,  // bcrypt hash, seguro guardar en metadata
+        contrasena:       contraseña,      // pasamos temporalmente para el correo de bienvenida
       },
     });
 

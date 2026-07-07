@@ -78,7 +78,7 @@ export function renderCheckoutPage() {
           <svg width="45" height="45" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
         </div>
         <h3 style="font-size: 1.8rem; font-weight: 900; color: #0f172a; margin-bottom: 1rem; letter-spacing: -0.03em;">¡Pago Exitoso!</h3>
-        <p style="font-size: 1.05rem; color: #64748b; margin-bottom: 2rem; line-height: 1.6;">Tu cuenta ha sido creada correctamente. Ya puedes acceder a todas las herramientas de tu nuevo CRM.</p>
+        <p style="font-size: 1.05rem; color: #64748b; margin-bottom: 2rem; line-height: 1.6;">Tu cuenta ha sido creada correctamente. Las credenciales de acceso se han enviado a tu correo.</p>
         <a href="https://app.solomycrm.com" class="co-submit-btn" style="text-decoration: none;">
           Ir a mi CRM ahora
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
