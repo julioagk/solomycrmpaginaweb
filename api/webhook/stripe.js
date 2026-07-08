@@ -121,7 +121,7 @@ async function handleSubscriptionPaused(subscription) {
   }
 }
 
-async function handleSubscriptionUpdated(subscription) {
+async function handleSubscriptionUpdated(subscription, previousAttributes = {}) {
   const status = subscription.status;
   console.log(`🔄 Suscripción actualizada: ${subscription.id} — status: ${status}`);
 
@@ -144,12 +144,16 @@ async function handleSubscriptionUpdated(subscription) {
     plan = priceMap[priceId] || null;
   }
 
+  // Comprobar si hubo un cambio en current_period_end (indicador de renovación de ciclo)
+  const is_renewal = previousAttributes.current_period_end && subscription.current_period_end > previousAttributes.current_period_end ? true : false;
+
   const { ok, data } = await callCRM("/update-subscription", {
     stripe_subscription_id: subscription.id,
     stripe_customer_id: subscription.customer || null,
     status,
     plan,
     plan_vencimiento,
+    is_renewal
   });
 
   if (!ok) {
@@ -233,7 +237,7 @@ export default async function handler(req, res) {
         break;
 
       case "customer.subscription.updated":
-        await handleSubscriptionUpdated(event.data.object);
+        await handleSubscriptionUpdated(event.data.object, event.data.previous_attributes);
         break;
 
       case "invoice.payment_failed":
