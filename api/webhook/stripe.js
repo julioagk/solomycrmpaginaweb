@@ -179,6 +179,25 @@ async function handleInvoicePaymentFailed(invoice) {
   }
 }
 
+async function handleInvoicePaid(invoice) {
+  // Solo procesar si es un cobro recurrente de una suscripción
+  if (invoice.subscription && invoice.billing_reason === 'subscription_cycle') {
+    console.log(`✅ Pago mensual/anual recurrente procesado exitosamente: ${invoice.id}, customer: ${invoice.customer}`);
+    
+    const { ok, data } = await callCRM("/renew-subscription", {
+      stripe_subscription_id: invoice.subscription,
+      stripe_customer_id: invoice.customer || null
+    });
+
+    if (!ok) {
+      console.error("❌ Error notificando renovación en CRM:", data);
+    } else {
+      console.log(`✅ Notificación de renovación enviada por correo a: ${data.usuario}`);
+    }
+  }
+}
+
+
 // ── Handler principal ──────────────────────────────────────────────────────
 
 export default async function handler(req, res) {
@@ -219,6 +238,10 @@ export default async function handler(req, res) {
 
       case "invoice.payment_failed":
         await handleInvoicePaymentFailed(event.data.object);
+        break;
+
+      case "invoice.paid":
+        await handleInvoicePaid(event.data.object);
         break;
 
       default:
