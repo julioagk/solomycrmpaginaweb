@@ -145,7 +145,7 @@ async function handleSubscriptionUpdated(subscription, previousAttributes = {}) 
   }
 
   // Comprobar si hubo un cambio en current_period_end (indicador de renovación de ciclo)
-  const is_renewal = previousAttributes.current_period_end && subscription.current_period_end > previousAttributes.current_period_end ? true : false;
+  const is_renewal = previousAttributes?.current_period_end && subscription.current_period_end > previousAttributes.current_period_end ? true : false;
 
   const { ok, data } = await callCRM("/update-subscription", {
     stripe_subscription_id: subscription.id,
