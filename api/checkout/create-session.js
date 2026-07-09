@@ -68,6 +68,7 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       mode: 'subscription',
       line_items: [{ price: PLAN_PRICES[plan], quantity: 1 }],
+      allow_promotion_codes: true,
       customer_email: email.trim(),
       success_url: `${origin}/pago?plan=${plan}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url:  `${origin}/pago?plan=${plan}&cancelled=1`,
