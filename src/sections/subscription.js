@@ -96,7 +96,7 @@ export function renderSubscription() {
               <li style="display:flex;align-items:flex-start;gap:0.6rem;"><svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span style="font-size:0.95rem;color:var(--text-muted);">Métricas en tiempo real</span></li>
               <li style="display:flex;align-items:flex-start;gap:0.6rem;"><svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span style="font-size:0.95rem;color:var(--text-muted);">Soporte y actualizaciones</span></li>
             </ul>
-            <a href="/pago?plan=mensual" data-link class="btn-subscribe" style="text-decoration:none;">
+            <a href="/pago?plan=mensual" data-link data-track="pricing_monthly_click" class="btn-subscribe" style="text-decoration:none;">
               Suscribirme
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
@@ -118,7 +118,7 @@ export function renderSubscription() {
               <li style="display:flex;align-items:flex-start;gap:0.6rem;"><svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span style="font-size:0.95rem;color:var(--text-muted);">Métricas en tiempo real</span></li>
               <li style="display:flex;align-items:flex-start;gap:0.6rem;"><svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span style="font-size:0.95rem;color:var(--text-muted);">Soporte y actualizaciones</span></li>
             </ul>
-            <a href="/pago?plan=anual" data-link class="btn-subscribe annual" style="text-decoration:none;">
+            <a href="/pago?plan=anual" data-link data-track="pricing_annual_click" class="btn-subscribe annual" style="text-decoration:none;">
               Suscribirme
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
@@ -138,7 +138,7 @@ export function renderSubscription() {
               <li style="display:flex;align-items:flex-start;gap:0.6rem;"><svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span style="font-size:0.95rem;color:var(--text-muted);">Volumen alto de usuarios</span></li>
               <li style="display:flex;align-items:flex-start;gap:0.6rem;"><svg width="20" height="20" fill="none" stroke="var(--brand)" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg><span style="font-size:0.95rem;color:var(--text-muted);">Soporte prioritario</span></li>
             </ul>
-            <a href="#" class="btn-subscribe open-contact-modal" style="text-decoration:none;">
+            <a href="#" class="btn-subscribe open-contact-modal" data-track="pricing_custom_click" style="text-decoration:none;">
               Contáctanos
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>

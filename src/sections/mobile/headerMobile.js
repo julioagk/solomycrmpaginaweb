@@ -138,20 +138,20 @@ export function renderHeaderMobile() {
 
       <!-- Bottom CTAs in drawer -->
       <div style="display: flex; flex-direction: column; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid #e2e8f0;">
-        <button class="btn open-contact-modal" style="
+        <button class="btn open-contact-modal" data-track="header_contact_click_mobile" style="
           width: 100%; padding: 0.75rem; font-size: 0.9rem;
           border-radius: 10px; cursor: pointer;
           background: transparent; border: 2px solid var(--brand);
           color: var(--brand); font-weight: 700; font-family: inherit;
           transition: all 0.2s;
         ">Contacto</button>
-        <a class="premium-reflejo" href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
+        <a class="premium-reflejo" data-track="header_demo_click_mobile" href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
           display: block; width: 100%; padding: 0.75rem;
           font-size: 0.9rem; border-radius: 10px; text-align: center;
           background: #f59e0b; color: white; font-weight: 700;
           text-decoration: none; box-sizing: border-box;
         ">Demo gratis</a>
-        <a href="https://app.solomycrm.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary premium-reflejo" style="
+        <a href="https://app.solomycrm.com/" data-track="header_crm_click_mobile" target="_blank" rel="noopener noreferrer" class="btn btn-primary premium-reflejo" style="
           display: block; width: 100%; padding: 0.75rem;
           font-size: 0.9rem; border-radius: 10px; text-align: center;
           font-weight: 700; text-decoration: none; box-sizing: border-box; border: none;

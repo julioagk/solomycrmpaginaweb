@@ -39,16 +39,14 @@ export function renderHeroMobile() {
 
           <!-- CTA buttons -->
           <div style="display: flex; gap: 0.65rem; justify-content: center; flex-wrap: wrap;">
-            <a href="https://app.solomycrm.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://app.solomycrm.com" data-track="hero_crm_click_mobile" target="_blank" rel="noopener noreferrer"
               class="btn btn-primary premium-reflejo"
               style="padding: 0.65rem 1.25rem; font-size: 0.88rem; border-radius: 10px; font-weight: 700; text-decoration: none; border: none; display: inline-flex; align-items: center; gap: 0.4rem;">
               Ir al CRM
               <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
-            <a class="premium-reflejo" href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
-              padding: 0.65rem 1.25rem; font-size: 0.88rem; border-radius: 10px;
-              background: #f59e0b; color: white; font-weight: 700;
-              text-decoration: none; display: inline-flex; align-items: center;
+            <a class="premium-reflejo" data-track="hero_demo_click_mobile" href="https://app.solomycrm.com/?demo=true" target="_blank" rel="noopener noreferrer" style="
+              padding: 0.9rem 1.5rem; border-radius: 12px; cursor: pointer; background: #f59e0b; border: none; color: white; font-weight: 700; box-shadow: 0 4px 15px rgba(245,158,11,0.3); text-decoration: none; display: inline-flex; align-items: center;
             ">Demo</a>
           </div>
         </div>
@@ -153,7 +151,7 @@ export function renderHeroMobile() {
             Únete a los equipos que ya automatizaron su flujo y duplicaron su tasa de cierre.
           </p>
           <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
-            <a href="https://app.solomycrm.com" target="_blank" rel="noopener noreferrer"
+            <a href="https://app.solomycrm.com" data-track="hero_crm_click_mobile" target="_blank" rel="noopener noreferrer"
               class="btn-primary"
               style="padding: 0.9rem 2rem; border: none; border-radius: 99px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: 0 8px 20px -5px rgba(59,130,246,0.4); display: inline-flex; align-items: center; gap: 0.5rem; color: white; text-decoration: none; background: var(--brand);">
               Ir al CRM

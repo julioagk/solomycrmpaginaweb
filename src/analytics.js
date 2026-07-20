@@ -13,5 +13,10 @@ export function trackEvent(eventName, eventData = {}) {
     window.gtag('event', eventName, eventData)
   }
 
+  // Microsoft Clarity tracking
+  if (typeof window.clarity === 'function') {
+    window.clarity('set', eventName, eventData.label || eventData.href || 'clicked')
+  }
+
   window.dispatchEvent(new CustomEvent('solomycrm:track', { detail: payload }))
 }
